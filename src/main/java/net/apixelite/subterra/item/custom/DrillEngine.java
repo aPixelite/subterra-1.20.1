@@ -4,11 +4,10 @@ import java.util.List;
 
 import net.apixelite.subterra.item.ModItems;
 import net.apixelite.subterra.util.CustomRarity;
-import net.minecraft.client.item.TooltipContext;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.tooltip.TooltipType;
 import net.minecraft.text.Text;
-import net.minecraft.world.World;
 
 public class DrillEngine extends Item {
 
@@ -21,8 +20,9 @@ public class DrillEngine extends Item {
         this.level = level;
     }
 
+
     @Override
-    public void appendTooltip(ItemStack stack, World world, List<Text> tooltip, TooltipContext context) {
+    public void appendTooltip(ItemStack stack, TooltipContext context, List<Text> tooltip, TooltipType Type) {
         tooltip.clear();
 
         tooltip.add(Text.empty().append(this.getName()).formatted(this.rarity.formatting));
@@ -35,7 +35,7 @@ public class DrillEngine extends Item {
         }
         tooltip.add(Text.literal("§l" + this.rarity).formatted(this.rarity.formatting));
 
-        super.appendTooltip(stack, world, tooltip, context);
+        super.appendTooltip(stack, context, tooltip, Type);
     }
 
     public static int getMiningSpeed(int level) {

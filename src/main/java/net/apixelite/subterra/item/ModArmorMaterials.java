@@ -1,83 +1,52 @@
 package net.apixelite.subterra.item;
 
+import java.util.EnumMap;
+import java.util.List;
 import java.util.function.Supplier;
 
 import net.apixelite.subterra.Subterra;
 import net.minecraft.item.ArmorItem;
 import net.minecraft.item.ArmorMaterial;
 import net.minecraft.recipe.Ingredient;
-import net.minecraft.sound.SoundEvent;
+import net.minecraft.registry.Registries;
+import net.minecraft.registry.Registry;
+import net.minecraft.registry.entry.RegistryEntry;
 import net.minecraft.sound.SoundEvents;
+import net.minecraft.util.Identifier;
+import net.minecraft.util.Util;
 
-public enum ModArmorMaterials implements ArmorMaterial {
-    ENDERITE("enderite", 43, new int[] { 7, 13, 10, 7}, 25, SoundEvents.ITEM_ARMOR_EQUIP_NETHERITE,
-     8, 0.3f, () -> Ingredient.ofItems(ModItems.ENDERITE_INGOT)),
-    ARAGONITE("aragonite", 51, new int[] { 13, 26, 20, 13}, 35, SoundEvents.ITEM_ARMOR_EQUIP_NETHERITE,
-     15, 0.7f, () -> Ingredient.ofItems(ModItems.ARAGONITE_INGOT)),
-    INFERNITE("infernite", 69, new int[] { 23, 39, 30, 21}, 52, SoundEvents.ITEM_ARMOR_EQUIP_NETHERITE,
-     22, 1.0f, () -> Ingredient.ofItems(ModItems.INFERNITE_INGOT));
+public class ModArmorMaterials {
+    public static final RegistryEntry<ArmorMaterial> ENDERITE_ARMOR_MATERIAL = registerArmorMaterial("enderite",
+        () -> new ArmorMaterial(Util.make(new EnumMap<>(ArmorItem.Type.class), map -> {
+                    map.put(ArmorItem.Type.BOOTS, 7);
+                    map.put(ArmorItem.Type.LEGGINGS, 10);
+                    map.put(ArmorItem.Type.CHESTPLATE, 13);
+                    map.put(ArmorItem.Type.HELMET, 7);
+                    map.put(ArmorItem.Type.BODY, 12);
+                }), 25, SoundEvents.ITEM_ARMOR_EQUIP_NETHERITE, () -> Ingredient.ofItems(ModItems.ENDERITE_INGOT),
+                List.of(new ArmorMaterial.Layer(Identifier.of(Subterra.MOD_ID, "enderite"))), 8, 0.3f));
+                
+    public static final RegistryEntry<ArmorMaterial> ARAGONITE_ARMOR_MATERIAL = registerArmorMaterial("aragonite",
+        () -> new ArmorMaterial(Util.make(new EnumMap<>(ArmorItem.Type.class), map -> {
+                    map.put(ArmorItem.Type.BOOTS, 13);
+                    map.put(ArmorItem.Type.LEGGINGS, 20);
+                    map.put(ArmorItem.Type.CHESTPLATE, 26);
+                    map.put(ArmorItem.Type.HELMET, 13);
+                    map.put(ArmorItem.Type.BODY, 24);
+                }), 35, SoundEvents.ITEM_ARMOR_EQUIP_NETHERITE, () -> Ingredient.ofItems(ModItems.ARAGONITE_INGOT),
+                List.of(new ArmorMaterial.Layer(Identifier.of(Subterra.MOD_ID, "aragonite"))), 15, 0.7f));
 
-    private final String name;
-    private final int durabilityMultiplier;
-    private final int[] protectionAmounts;
-    private final int enchantability;
-    private final SoundEvent equipSound;
-    private final float toughness;
-    private final float knockbackResistance;
-    private final Supplier<Ingredient> repairIngredient;
+    public static final RegistryEntry<ArmorMaterial> INFERNITE_ARMOR_MATERIAL = registerArmorMaterial("infernite",
+        () -> new ArmorMaterial(Util.make(new EnumMap<>(ArmorItem.Type.class), map -> {
+                    map.put(ArmorItem.Type.BOOTS, 21);
+                    map.put(ArmorItem.Type.LEGGINGS, 30);
+                    map.put(ArmorItem.Type.CHESTPLATE, 39);
+                    map.put(ArmorItem.Type.HELMET, 23);
+                    map.put(ArmorItem.Type.BODY, 36);
+                }), 52, SoundEvents.ITEM_ARMOR_EQUIP_NETHERITE, () -> Ingredient.ofItems(ModItems.INFERNITE_INGOT),
+                List.of(new ArmorMaterial.Layer(Identifier.of(Subterra.MOD_ID, "infernite"))), 22, 1.0f));
 
-    private static final int[] BASE_DURABILITY = { 11, 16, 15, 13 };
-
-    private ModArmorMaterials(String name, int durabilityMultiplier, int[] protectionAmounts, int enchantability, SoundEvent equipSound,
-            float toughness, float knockbackResistance, Supplier<Ingredient> repairIngredient) {
-        this.name = name;
-        this.durabilityMultiplier = durabilityMultiplier;
-        this.protectionAmounts = protectionAmounts;
-        this.enchantability = enchantability;
-        this.equipSound = equipSound;
-        this.toughness = toughness;
-        this.knockbackResistance = knockbackResistance;
-        this.repairIngredient = repairIngredient;
+    public static RegistryEntry<ArmorMaterial> registerArmorMaterial(String name, Supplier<ArmorMaterial> material) {
+        return Registry.registerReference(Registries.ARMOR_MATERIAL, Identifier.of(Subterra.MOD_ID, name), material.get());
     }
-
-    @Override
-    public int getDurability(ArmorItem.Type type) {
-        return BASE_DURABILITY[type.ordinal()] * this.durabilityMultiplier;
-    }
-
-    @Override
-    public int getProtection(ArmorItem.Type type) {
-        return protectionAmounts[type.ordinal()];
-    }
-
-    @Override
-    public int getEnchantability() {
-        return this.enchantability;
-    }
-
-    @Override
-    public SoundEvent getEquipSound() {
-        return this.equipSound;
-    }
-
-    @Override
-    public Ingredient getRepairIngredient() {
-        return this.repairIngredient.get();
-    }
-
-    @Override
-    public String getName() {
-        return Subterra.MOD_ID + ":" + this.name;
-    }
-
-    @Override
-    public float getToughness() {
-        return this.toughness;
-    }
-
-    @Override
-    public float getKnockbackResistance() {
-        return this.knockbackResistance;
-    }
-
 }

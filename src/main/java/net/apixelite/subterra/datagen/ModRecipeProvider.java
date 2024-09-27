@@ -1,18 +1,19 @@
 package net.apixelite.subterra.datagen;
 
-import java.util.function.Consumer;
 import java.util.List;
+import java.util.concurrent.CompletableFuture;
 
 import net.apixelite.subterra.block.ModBlocks;
 import net.apixelite.subterra.item.ModItems;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricRecipeProvider;
-import net.minecraft.data.server.recipe.RecipeJsonProvider;
+import net.minecraft.data.server.recipe.RecipeExporter;
 import net.minecraft.data.server.recipe.ShapedRecipeJsonBuilder;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemConvertible;
 import net.minecraft.item.Items;
 import net.minecraft.recipe.book.RecipeCategory;
+import net.minecraft.registry.RegistryWrapper;
 import net.minecraft.util.Identifier;
 
 public class ModRecipeProvider extends FabricRecipeProvider{
@@ -20,12 +21,12 @@ public class ModRecipeProvider extends FabricRecipeProvider{
     private static final List<ItemConvertible> ARAGONITE_SMELTABLES = List.of(ModItems.RAW_ARAGONITE, ModBlocks.ARAGONITE_ORE);
     private static final List<ItemConvertible> INFERNITE_SMELTABLES = List.of(ModItems.RAW_INFERNITE, ModBlocks.INFERNITE_ORE);
 
-    public ModRecipeProvider(FabricDataOutput output) {
-        super(output);
+    public ModRecipeProvider(FabricDataOutput output, CompletableFuture<RegistryWrapper.WrapperLookup> registriesFuture) {
+        super(output, registriesFuture);
     }
 
     @Override
-    public void generate(Consumer<RecipeJsonProvider> exporter) {
+    public void generate(RecipeExporter exporter) {
 
         // Engines
         ShapedRecipeJsonBuilder.create(RecipeCategory.TOOLS, ModItems.DRILL_ENGINE)
@@ -37,7 +38,7 @@ public class ModRecipeProvider extends FabricRecipeProvider{
             .input('F', Items.FIRE_CHARGE)
             .input('T', ModItems.FUEL_TANK)
             .criterion(hasItem(Items.IRON_BLOCK), conditionsFromItem(Items.IRON_BLOCK))
-            .offerTo(exporter, new Identifier("drill_engine"));
+            .offerTo(exporter, Identifier.of("drill_engine"));
 
         ShapedRecipeJsonBuilder.create(RecipeCategory.TOOLS, ModItems.DRILL_ENGINE_TIER_I)
             .pattern("III")
@@ -47,7 +48,7 @@ public class ModRecipeProvider extends FabricRecipeProvider{
             .input('I', Items.GOLD_INGOT)
             .input('E', ModItems.DRILL_ENGINE)
             .criterion(hasItem(ModItems.DRILL_ENGINE), conditionsFromItem(ModItems.DRILL_ENGINE))
-            .offerTo(exporter, new Identifier("drill_engine_tier_1"));
+            .offerTo(exporter, Identifier.of("drill_engine_tier_1"));
 
         ShapedRecipeJsonBuilder.create(RecipeCategory.TOOLS, ModItems.DRILL_ENGINE_TIER_II)
             .pattern("CHC")
@@ -59,7 +60,7 @@ public class ModRecipeProvider extends FabricRecipeProvider{
             .input('H', Items.HEART_OF_THE_SEA)
             .input('E', ModItems.DRILL_ENGINE)
             .criterion(hasItem(ModItems.DRILL_ENGINE), conditionsFromItem(ModItems.DRILL_ENGINE))
-            .offerTo(exporter, new Identifier("drill_engine_tier_2"));
+            .offerTo(exporter, Identifier.of("drill_engine_tier_2"));
 
         ShapedRecipeJsonBuilder.create(RecipeCategory.TOOLS, ModItems.DRILL_ENGINE_TIER_III)
             .pattern("SSS")
@@ -70,7 +71,7 @@ public class ModRecipeProvider extends FabricRecipeProvider{
             .input('I', ModItems.ARAGONITE_INGOT)
             .input('E', ModItems.DRILL_ENGINE_TIER_II)
             .criterion(hasItem(ModItems.DRILL_ENGINE), conditionsFromItem(ModItems.DRILL_ENGINE))
-            .offerTo(exporter, new Identifier("drill_engine_tier_3"));
+            .offerTo(exporter, Identifier.of("drill_engine_tier_3"));
 
         ShapedRecipeJsonBuilder.create(RecipeCategory.TOOLS, ModItems.DRILL_ENGINE_TIER_IV)
             .pattern("INI")
@@ -81,7 +82,7 @@ public class ModRecipeProvider extends FabricRecipeProvider{
             .input('O', Items.OBSIDIAN)
             .input('E', ModItems.DRILL_ENGINE_TIER_III)
             .criterion(hasItem(ModItems.DRILL_ENGINE), conditionsFromItem(ModItems.DRILL_ENGINE))
-            .offerTo(exporter, new Identifier("drill_engine_tier_4"));
+            .offerTo(exporter, Identifier.of("drill_engine_tier_4"));
 
         ShapedRecipeJsonBuilder.create(RecipeCategory.TOOLS, ModItems.DRILL_ENGINE_TIER_V)
             .pattern("DID")
@@ -92,7 +93,7 @@ public class ModRecipeProvider extends FabricRecipeProvider{
             .input('I', ModItems.INFERNITE_INGOT)
             .input('E', ModItems.DRILL_ENGINE_TIER_IV)
             .criterion(hasItem(ModItems.DRILL_ENGINE), conditionsFromItem(ModItems.DRILL_ENGINE))
-            .offerTo(exporter, new Identifier("drill_engine_tier_5"));
+            .offerTo(exporter, Identifier.of("drill_engine_tier_5"));
 
 
         // Fuel Tanks
@@ -104,7 +105,7 @@ public class ModRecipeProvider extends FabricRecipeProvider{
             .input('I', Items.IRON_INGOT)
             .input('G', Items.GLASS_PANE)
             .criterion(hasItem(Items.IRON_BLOCK), conditionsFromItem(Items.IRON_BLOCK))
-            .offerTo(exporter, new Identifier("fuel_tank"));
+            .offerTo(exporter, Identifier.of("fuel_tank"));
 
         ShapedRecipeJsonBuilder.create(RecipeCategory.TOOLS, ModItems.FUEL_TANK_TIER_I)
             .pattern("BGB")
@@ -115,7 +116,7 @@ public class ModRecipeProvider extends FabricRecipeProvider{
             .input('I', Items.GOLD_INGOT)
             .input('T', ModItems.FUEL_TANK)
             .criterion(hasItem(ModItems.FUEL_TANK), conditionsFromItem(ModItems.FUEL_TANK))
-            .offerTo(exporter, new Identifier("fuel_tank_tier_1"));
+            .offerTo(exporter, Identifier.of("fuel_tank_tier_1"));
 
         ShapedRecipeJsonBuilder.create(RecipeCategory.TOOLS, ModItems.FUEL_TANK_TIER_II)
             .pattern("CHC")
@@ -127,7 +128,7 @@ public class ModRecipeProvider extends FabricRecipeProvider{
             .input('C', Items.PRISMARINE_CRYSTALS)
             .input('T', ModItems.FUEL_TANK_TIER_I)
             .criterion(hasItem(ModItems.FUEL_TANK), conditionsFromItem(ModItems.FUEL_TANK))
-            .offerTo(exporter, new Identifier("fuel_tank_tier_2"));
+            .offerTo(exporter, Identifier.of("fuel_tank_tier_2"));
 
         ShapedRecipeJsonBuilder.create(RecipeCategory.TOOLS, ModItems.FUEL_TANK_TIER_III)
             .pattern("PNP")
@@ -138,7 +139,7 @@ public class ModRecipeProvider extends FabricRecipeProvider{
             .input('A', ModItems.ARAGONITE_INGOT)
             .input('T', ModItems.FUEL_TANK_TIER_II)
             .criterion(hasItem(ModItems.FUEL_TANK), conditionsFromItem(ModItems.FUEL_TANK))
-            .offerTo(exporter, new Identifier("fuel_tank_tier_3"));
+            .offerTo(exporter, Identifier.of("fuel_tank_tier_3"));
 
         ShapedRecipeJsonBuilder.create(RecipeCategory.TOOLS, ModItems.FUEL_TANK_TIER_IV)
             .pattern("SNS")
@@ -149,7 +150,7 @@ public class ModRecipeProvider extends FabricRecipeProvider{
             .input('I', ModItems.INFERNITE_INGOT)
             .input('T', ModItems.FUEL_TANK_TIER_III)
             .criterion(hasItem(ModItems.FUEL_TANK), conditionsFromItem(ModItems.FUEL_TANK))
-            .offerTo(exporter, new Identifier("fuel_tank_tier_4"));
+            .offerTo(exporter, Identifier.of("fuel_tank_tier_4"));
 
 
         // Drills
@@ -164,7 +165,7 @@ public class ModRecipeProvider extends FabricRecipeProvider{
             .input('T', ModItems.FUEL_TANK)
             .criterion(hasItem(ModItems.FUEL_TANK), conditionsFromItem(ModItems.FUEL_TANK))
             .criterion(hasItem(ModItems.DRILL_ENGINE), conditionsFromItem(ModItems.DRILL_ENGINE))
-            .offerTo(exporter, new Identifier("diamond_drill"));
+            .offerTo(exporter, Identifier.of("diamond_drill"));
 
             ShapedRecipeJsonBuilder.create(RecipeCategory.TOOLS, ModItems.NETHERITE_DRILL)
             .pattern("PN ")
@@ -176,7 +177,7 @@ public class ModRecipeProvider extends FabricRecipeProvider{
             .input('E', ModItems.DRILL_ENGINE)
             .input('D', ModItems.DIAMOND_DRILL)
             .criterion(hasItem(ModItems.DIAMOND_DRILL), conditionsFromItem(ModItems.DIAMOND_DRILL))
-            .offerTo(exporter, new Identifier("netherite_drill"));
+            .offerTo(exporter, Identifier.of("netherite_drill"));
 
             ShapedRecipeJsonBuilder.create(RecipeCategory.TOOLS, ModItems.ENDERITE_DRILL)
             .pattern("SI ")
@@ -188,7 +189,7 @@ public class ModRecipeProvider extends FabricRecipeProvider{
             .input('E', ModItems.DRILL_ENGINE)
             .input('D', ModItems.NETHERITE_DRILL)
             .criterion(hasItem(ModItems.DIAMOND_DRILL), conditionsFromItem(ModItems.NETHERITE_DRILL))
-            .offerTo(exporter, new Identifier("enderite_drill"));
+            .offerTo(exporter, Identifier.of("enderite_drill"));
 
             ShapedRecipeJsonBuilder.create(RecipeCategory.TOOLS, ModItems.ARAGONITE_DRILL)
             .pattern("SI ")
@@ -200,7 +201,7 @@ public class ModRecipeProvider extends FabricRecipeProvider{
             .input('E', ModItems.DRILL_ENGINE)
             .input('D', ModItems.ENDERITE_DRILL)
             .criterion(hasItem(ModItems.DIAMOND_DRILL), conditionsFromItem(ModItems.ENDERITE_DRILL))
-            .offerTo(exporter, new Identifier("aragonite_drill"));
+            .offerTo(exporter, Identifier.of("aragonite_drill"));
 
             ShapedRecipeJsonBuilder.create(RecipeCategory.TOOLS, ModItems.INFERNITE_DRILL)
             .pattern("SI ")
@@ -212,7 +213,7 @@ public class ModRecipeProvider extends FabricRecipeProvider{
             .input('E', ModItems.DRILL_ENGINE)
             .input('D', ModItems.ARAGONITE_DRILL)
             .criterion(hasItem(ModItems.DIAMOND_DRILL), conditionsFromItem(ModItems.ARAGONITE_DRILL))
-            .offerTo(exporter, new Identifier("infernite_drill"));
+            .offerTo(exporter, Identifier.of("infernite_drill"));
 
         
         // Smelting
@@ -273,7 +274,7 @@ public class ModRecipeProvider extends FabricRecipeProvider{
         }
         
         private static void ShapedToolRecipeBuilder(String pat1, String pat2, String pat3,
-          Item ingot, Item item, String name, Item result, Consumer<RecipeJsonProvider> exporter) {
+          Item ingot, Item item, String name, Item result, RecipeExporter exporter) {
             ShapedRecipeJsonBuilder.create(RecipeCategory.TOOLS, result)
                 .pattern(pat1)
                 .pattern(pat2)
@@ -281,15 +282,14 @@ public class ModRecipeProvider extends FabricRecipeProvider{
                 .input('#', item)
                 .input('I', ingot)
                 .criterion(hasItem(ingot), conditionsFromItem(ingot))
-                .offerTo(exporter, new Identifier(name));
+                .offerTo(exporter, Identifier.of(name));
         }
 
         private static void OreSmeltingRecipe(List<ItemConvertible> input, Item result,
-          float reward, int time, String name, Consumer<RecipeJsonProvider> exporter) {
+          float reward, int time, String name, RecipeExporter exporter) {
             offerSmelting(exporter, input, RecipeCategory.MISC, result,
                 reward, time, name);
             offerBlasting(exporter, input, RecipeCategory.MISC, result,
                 reward, (time / 2), name);
         }
-        
 }

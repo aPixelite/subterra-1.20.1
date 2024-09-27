@@ -1,7 +1,7 @@
 package net.apixelite.subterra;
 
-import net.apixelite.subterra.screen.DrillUpgradeScreen;
 import net.apixelite.subterra.screen.ModScreenHandlers;
+import net.apixelite.subterra.screen.custom.DrillUpgradeScreen;
 import net.fabricmc.api.ClientModInitializer;
 import net.minecraft.client.gui.screen.ingame.HandledScreens;
 

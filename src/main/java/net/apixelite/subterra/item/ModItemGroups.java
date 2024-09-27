@@ -12,9 +12,10 @@ import net.minecraft.util.Identifier;
 
 public class ModItemGroups {
     public static final ItemGroup SUBTERRA_GROUP = Registry.register(Registries.ITEM_GROUP,
-        new Identifier(Subterra.MOD_ID, "subterra_group"),
-        FabricItemGroup.builder().displayName(Text.translatable("itemgroup.subterra_group"))
-            .icon(() -> new ItemStack(ModItems.ARAGONITE_INGOT)).entries((displayContext, entries) -> {
+        Identifier.of(Subterra.MOD_ID, "subterra_group"), FabricItemGroup.builder()
+            .displayName(Text.translatable("itemgroup.subterra_group"))
+            .icon(() -> new ItemStack(ModItems.ARAGONITE_INGOT))
+            .entries((displayContext, entries) -> {
                 
                 // ENDERITE
                 entries.add(ModBlocks.ENDERITE_ORE);

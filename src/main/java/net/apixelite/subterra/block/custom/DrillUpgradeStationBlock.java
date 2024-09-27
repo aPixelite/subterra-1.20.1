@@ -1,7 +1,9 @@
 package net.apixelite.subterra.block.custom;
 
-import net.apixelite.subterra.block.entity.DrillUpgradeStationBlockEntity;
+import com.mojang.serialization.MapCodec;
+
 import net.apixelite.subterra.block.entity.ModBlockEntities;
+import net.apixelite.subterra.block.entity.custom.DrillUpgradeStationBlockEntity;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockEntityProvider;
 import net.minecraft.block.BlockRenderType;
@@ -14,7 +16,6 @@ import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.screen.NamedScreenHandlerFactory;
 import net.minecraft.util.ActionResult;
-import net.minecraft.util.Hand;
 import net.minecraft.util.ItemScatterer;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
@@ -25,9 +26,15 @@ import net.minecraft.world.World;
 @SuppressWarnings("unused")
 public class DrillUpgradeStationBlock extends BlockWithEntity implements BlockEntityProvider {
     private static final VoxelShape SHAPE = Block.createCuboidShape(0, 0, 0, 16, 16, 16);
+    public static final MapCodec<DrillUpgradeStationBlock> CODEC = DrillUpgradeStationBlock.createCodec(DrillUpgradeStationBlock::new);
 
     public DrillUpgradeStationBlock(Settings settings) {
         super(settings);
+    }
+
+    @Override
+    protected MapCodec<? extends BlockWithEntity> getCodec() {
+        return CODEC;
     }
 
     @Override
@@ -45,7 +52,6 @@ public class DrillUpgradeStationBlock extends BlockWithEntity implements BlockEn
         return new DrillUpgradeStationBlockEntity(pos, state);
     }
 
-    @SuppressWarnings("deprecation")
     @Override
     public void onStateReplaced(BlockState state, World world, BlockPos pos, BlockState newState, boolean moved) {
         if (state.getBlock() != newState.getBlock()) {
@@ -57,9 +63,9 @@ public class DrillUpgradeStationBlock extends BlockWithEntity implements BlockEn
             super.onStateReplaced(state, world, pos, newState, moved);
         }
     }
-
+    
     @Override
-    public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
+    public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, BlockHitResult hit) {
         if (!world.isClient) {
             NamedScreenHandlerFactory screenHandlerFactory = ((DrillUpgradeStationBlockEntity) world.getBlockEntity(pos));
 
@@ -69,11 +75,13 @@ public class DrillUpgradeStationBlock extends BlockWithEntity implements BlockEn
         }
 
         return ActionResult.SUCCESS;
+        
     }
 
     @Override
     public <T extends BlockEntity> BlockEntityTicker<T> getTicker(World world, BlockState state, BlockEntityType<T> type) {
-        return checkType(type, ModBlockEntities.DRILL_UPGRADE_STATION_BLOCK_ENTITY,
+        return validateTicker(type, ModBlockEntities.DRILL_UPGRADE_STATION_BLOCK_ENTITY,
             (world1, pos, state1, blockEntity) -> blockEntity.tick(world1, pos, state1));
     }
+
 }

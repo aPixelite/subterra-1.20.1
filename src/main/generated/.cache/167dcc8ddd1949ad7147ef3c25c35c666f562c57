@@ -1,5 +1,5 @@
-// 1.20.1	2024-09-01T15:13:36.3929163	subterra/Block Loot Tables
-00c5a2b6526aa5ab7b115dc5f63c9462c0623c61 data\subterra\loot_tables\blocks\infernite_ore.json
-0e3e6b343cfa872201fbf174ea461aa5c29fddff data\subterra\loot_tables\blocks\enderite_ore.json
-33655e3553feebe17bf0e8bd63b6935293ad5aa3 data\subterra\loot_tables\blocks\drill_upgrade_station.json
-32cfc4b53cc56c59a2416c333291262a9515a20f data\subterra\loot_tables\blocks\aragonite_ore.json
+// 1.21	2024-09-26T19:02:26.2839071	subterra/Block Loot Tables
+626eb17223f088d7b0da50275d90efc7d7997c38 data\subterra\loot_table\blocks\enderite_ore.json
+33655e3553feebe17bf0e8bd63b6935293ad5aa3 data\subterra\loot_table\blocks\drill_upgrade_station.json
+7f07ac1d05e284f17556ca32aeaf4e9b651ebf8d data\subterra\loot_table\blocks\infernite_ore.json
+e8642549d0cadf3960050bb4ceb4d65f2467a8cb data\subterra\loot_table\blocks\aragonite_ore.json
