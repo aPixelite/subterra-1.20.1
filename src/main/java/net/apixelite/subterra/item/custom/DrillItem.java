@@ -15,6 +15,7 @@ import net.apixelite.subterra.components.custom.MiningSpeedData;
 import net.apixelite.subterra.components.custom.TankData;
 import net.apixelite.subterra.util.CustomRarity;
 import net.minecraft.block.BlockState;
+import net.minecraft.component.DataComponentTypes;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -31,17 +32,16 @@ import org.jetbrains.annotations.NotNull;
 
 public class DrillItem extends PickaxeItem {
 
-    private float attackDamage;
-    private float baseMiningSpeed;
-    private CustomRarity rarity;
+    private final float attackDamage;
+    private final float attackSpeed;
+    private final float baseMiningSpeed;
+    private final CustomRarity rarity;
 
     private boolean abilityActive;
 
-    private static String engine = "";
-    private static String tank = "";
-    private static String upgrade = "";
+    private static final String upgrade = "";
 
-    private static boolean hasUpgrade = false;
+    private static final boolean hasUpgrade = false;
 
     private static int engineTier = 0;
     private static int tankTier = 0;
@@ -49,6 +49,7 @@ public class DrillItem extends PickaxeItem {
 
     private int stopperInt = 0;
     private int i = 0; 
+    private int j = 0;
 
     
     private static boolean hasEngine = false;
@@ -63,33 +64,26 @@ public class DrillItem extends PickaxeItem {
     public DrillItem(ToolMaterial material, float miningSpeed, int attackDamage, float attackSpeed, CustomRarity rarity, Settings settings) {
         super(material, settings);
         this.attackDamage = attackDamage;
+        this.attackSpeed = attackSpeed;
         this.baseMiningSpeed = miningSpeed;
         this.rarity = rarity;
     }
 
 
-// NBT FUNCTIONS
-    // edits the nbt on an item
-    public static void editNbtData(ItemStack item, boolean value, int level, String module, String name) {
-        addOrRemoveNbtFromDrill(item, value, level, module, name);
-    }
-    
-    // adds nbt to the drill
-    private static void addOrRemoveNbtFromDrill(ItemStack item, boolean value, int level, @NotNull String module, String name) {
-        ItemStack drill = item;
+// DATA COMPONENTS
+    // Edits the Data Components of the drill
+    public static void editDrillDataComponents(ItemStack item, boolean value, int level, @NotNull String module) {
         switch (module) {
             case "engine":
                 hasEngine = value;
                 engineTier = level;
                 miningSpeed = getMiningSpeedAddition(level);
-                engine = name;
                 break;
             case "tank":
                 hasTank = value;
                 tankTier = level;
                 maxFuel = getTankFuel(level);
                 fuel = maxFuel;
-                tank = name;
                 break;
             case "fuel":
                 maxFuel = level;
@@ -110,14 +104,14 @@ public class DrillItem extends PickaxeItem {
         FuelData fuelData = new FuelData(fuel, maxFuel);
         MiningSpeedData miningSpeedData = new MiningSpeedData(miningSpeed);
 
-        drill.set(ModDataComponentTypes.ENGINE, engineData);
-        drill.set(ModDataComponentTypes.TANK, tankData);
-        drill.set(ModDataComponentTypes.FUEL, fuelData);
-        drill.set(ModDataComponentTypes.MINING_SPEED, miningSpeedData);
+        item.set(ModDataComponentTypes.ENGINE, engineData);
+        item.set(ModDataComponentTypes.TANK, tankData);
+        item.set(ModDataComponentTypes.FUEL, fuelData);
+        item.set(ModDataComponentTypes.MINING_SPEED, miningSpeedData);
     }
 
 
-// ABLITY FUNCTIONS
+// ABILITY FUNCTIONS
     // the Pickaxe Ability
     @Override
     public TypedActionResult<ItemStack> use(World world, PlayerEntity player, Hand hand) {
@@ -140,12 +134,13 @@ public class DrillItem extends PickaxeItem {
 
  
 
-// SET TOOLTIP FUNTION
+// SET TOOLTIP FUNCTION
     // changes the tooltip of the item
     @Override
     public void appendTooltip(ItemStack stack, TooltipContext context, List<Text> tooltip, TooltipType type) {
         tooltip.clear();
         setFuel(stack);
+        setMiningSpeed(stack);
 
         // Stats of the item
         tooltip.add(Text.empty().append(this.getName()).formatted(this.rarity.formatting));
@@ -160,6 +155,7 @@ public class DrillItem extends PickaxeItem {
             tooltip.add(Text.literal(""));
          
             tooltip.add(Text.literal("§6Enchantments:"));
+            tooltip.add((Text) stack.get(DataComponentTypes.ENCHANTMENTS));
         }
 
         tooltip.add(Text.literal(""));
@@ -167,24 +163,24 @@ public class DrillItem extends PickaxeItem {
         // Drill parts
         // Fuel tank
         if (stack.get(ModDataComponentTypes.TANK).getHasTank()) {
-            tooltip.add(Text.literal("§a" + stack.get(ModDataComponentTypes.TANK).getTankTier()));
-            tooltip.add(Text.literal("§7Increace your fuel capacity"));
-            tooltip.add(Text.literal("§7to: §2" + stack.get(ModDataComponentTypes.FUEL).getMaxFuel()));
+            tooltip.add(Text.literal("§a" + getTankTier(stack)));
+            tooltip.add(Text.literal("§7Increase your fuel capacity"));
+            tooltip.add(Text.literal("§7to: §2" + getMaxFuel(stack)));
         } else {
             tooltip.add(Text.literal("§7Fuel Tank: §cNot Installed"));
-            tooltip.add(Text.literal("§7Increace your fuel capacity"));
+            tooltip.add(Text.literal("§7Increase your fuel capacity"));
             tooltip.add(Text.literal("§7with tank installed"));
         }
         tooltip.add(Text.literal(""));
 
         // Drill Engine
         if (stack.get(ModDataComponentTypes.ENGINE).getHasEngine()) {
-            tooltip.add(Text.literal("§a" + stack.get(ModDataComponentTypes.ENGINE).getEngineTier()));
+            tooltip.add(Text.literal("§a" + getEngineTier(stack)));
             tooltip.add(Text.literal("§7Grants an extra "));
-            tooltip.add(Text.literal("§6" + stack.get(ModDataComponentTypes.MINING_SPEED).getMiningSpeed() + " Mining Speed"));
+            tooltip.add(Text.literal("§6" + getMiningSpeed(stack) + " Mining Speed"));
         } else {
             tooltip.add(Text.literal("§7Drill Engine: §cNot Installed"));
-            tooltip.add(Text.literal("§7Increace your mining speed"));
+            tooltip.add(Text.literal("§7Increase your mining speed"));
             tooltip.add(Text.literal("§7with engine installed."));
         }
         tooltip.add(Text.literal(""));
@@ -194,7 +190,7 @@ public class DrillItem extends PickaxeItem {
             tooltip.add(Text.literal("§a" + upgrade));
         } else {
             tooltip.add(Text.literal("§7Upgrade Module: §cNot Installed"));
-            tooltip.add(Text.literal("§7Increace a certain stat with"));
+            tooltip.add(Text.literal("§7Increase a certain stat with"));
             tooltip.add(Text.literal("§7module installed"));
         }
         tooltip.add(Text.literal(""));
@@ -210,7 +206,7 @@ public class DrillItem extends PickaxeItem {
         tooltip.add(Text.literal(""));
 
         // Fuel
-        if(stack.get(ModDataComponentTypes.FUEL).getFuel() > 0) {
+        if(getFuel(stack) > 0) {
             if (getFuel(stack) > 10000) {
                 tooltip.add(Text.literal("§7Fuel: " + "§2" + (getFuel(stack) / 1000) + "k§8/" + (getMaxFuel(stack) / 1000) + "k"));
             } else {
@@ -255,11 +251,11 @@ public class DrillItem extends PickaxeItem {
 
         // Checks engine
         if (Objects.equals(module, "engine")) {
-            return stack.get(ModDataComponentTypes.ENGINE).getEngineTier() > 0;
+            return getEngineTier(stack) > 0;
         } 
         // Checks fuel tank
         else if (Objects.equals(module, "tank")) {
-            return stack.get(ModDataComponentTypes.TANK).getTankTier() > 0;
+            return getTankTier(stack) > 0;
         } else {
             return false;
         }
@@ -267,18 +263,16 @@ public class DrillItem extends PickaxeItem {
     }
 
     // adds a module to the item
-    public static void addModuleToDrill(String module, String name, ItemStack item) {
+    public static void addModuleToDrill(String module, String name) {
         String[] itemName = name.split(" ");
         int level = RomanNumeralConverter.romanToInt(itemName[3]);
         
         // Adds an engine to the item
         if (Objects.equals(module, "engine")) {
-            engine = item.getName().getString();
             engineTier = level;
         } 
         // Adds a tank to the item
         else if (Objects.equals(module, "tank")) {
-            tank = item.getName().getString();
             tankTier = level;
         }
     }
@@ -300,29 +294,46 @@ public class DrillItem extends PickaxeItem {
     
     // resets the fuel to the base value
     public static void resetFuelCapacity(ItemStack stack) {
-        int fuel = stack.get(ModDataComponentTypes.FUEL).getFuel();
-            editNbtData(stack, false, 0, "fuel", "");
+        int fuel = getFuel(stack);
+            editDrillDataComponents(stack, false, 0, "fuel");
         if (fuel >= 3000) {
-            editNbtData(stack, false, fuel, "decrease_fuel", "");
+            editDrillDataComponents(stack, false, fuel, "decrease_fuel");
         }
     }
     
     // sets the fuel
     private void setFuel(ItemStack stack) {
-        if (stack.get(ModDataComponentTypes.FUEL).getFuel() != 3000 && i < 1) {
-            editNbtData(stack, false, stack.get(ModDataComponentTypes.TANK).getTankTier(), "fuel", "");
+        while (i < 1) {
+            editDrillDataComponents(stack, false, 3000, "fuel");
             i++;
         }
     }
 
-    // gets the fuel count
-    public int getFuel(ItemStack stack) {
+    private void setMiningSpeed(ItemStack stack) {
+        while(j < 1) {
+            editDrillDataComponents(stack, false, 0, "speed");
+            j++;
+        }
+    }
+
+    public static int getFuel(ItemStack stack) {
         return stack.get(ModDataComponentTypes.FUEL).getFuel();
     }
 
-    // gets the maximum fuel of the item
-    public int getMaxFuel(ItemStack stack) {
+    public static int getMaxFuel(ItemStack stack) {
         return stack.get(ModDataComponentTypes.FUEL).getMaxFuel();
+    }
+
+    public static int getTankTier(ItemStack stack) {
+        return stack.get(ModDataComponentTypes.TANK).getTankTier();
+    }
+
+    public static int getEngineTier(ItemStack stack) {
+        return stack.get(ModDataComponentTypes.ENGINE).getEngineTier();
+    }
+
+    public static int getMiningSpeed(ItemStack stack) {
+        return stack.get(ModDataComponentTypes.MINING_SPEED).getMiningSpeed();
     }
 
 
@@ -331,10 +342,10 @@ public class DrillItem extends PickaxeItem {
     // removes fuel after player mined a block
     @Override
     public boolean postMine(ItemStack stack, World world, BlockState state, BlockPos pos, LivingEntity miner) {
-        Subterra.LOGGER.info("postMine: " + stack.get(ModDataComponentTypes.FUEL).getFuel());
+        Subterra.LOGGER.info("postMine: {}", getFuel(stack));
 
-        int newFuel = stack.get(ModDataComponentTypes.FUEL).getFuel() - 1;
-        editNbtData(stack, true, newFuel, "decrease_fuel", "");
+        int newFuel = getFuel(stack) - 1;
+        editDrillDataComponents(stack, true, newFuel, "decrease_fuel");
         return super.postMine(stack, world, state, pos, miner);
     }
     
@@ -342,14 +353,14 @@ public class DrillItem extends PickaxeItem {
     @Override
     public boolean canMine(BlockState state, World world, BlockPos pos, PlayerEntity miner) {
         ItemStack stack = miner.getEquippedStack(EquipmentSlot.MAINHAND);
-        Subterra.LOGGER.info("canMine: " + stack.get(ModDataComponentTypes.FUEL).getFuel());
-        return stack.get(ModDataComponentTypes.FUEL).getFuel() > 0;
+        Subterra.LOGGER.info("canMine: {}", getFuel(stack));
+        return getFuel(stack) > 0;
     }
 
     // required functions
     @Override
     public float getMiningSpeed(ItemStack stack, BlockState state) {
-        float miningSpeed = this.baseMiningSpeed + stack.get(ModDataComponentTypes.MINING_SPEED).getMiningSpeed();
+        float miningSpeed = this.baseMiningSpeed + getMiningSpeed(stack);
         if (abilityActive) {
             return miningSpeed * 3;
         } else {
@@ -373,4 +384,7 @@ public class DrillItem extends PickaxeItem {
         return false;
     }
 
+    public float getAttackSpeed() {
+        return this.attackSpeed;
+    }
 }

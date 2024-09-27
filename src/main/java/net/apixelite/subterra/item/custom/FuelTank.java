@@ -11,17 +11,13 @@ import net.minecraft.text.Text;
 
 public class FuelTank extends Item {
 
-    private int fuelCapacity;
-    private CustomRarity rarity;
+    private final int fuelCapacity;
+    private final CustomRarity rarity;
 
     public FuelTank(int fuelCapacity, CustomRarity rarity, Settings settings) {
         super(settings);
         this.fuelCapacity = fuelCapacity;
         this.rarity = rarity;
-    }
-
-    public int getFuelCapacity(ItemStack stack) {
-        return this.fuelCapacity;
     }
 
     @Override
@@ -46,7 +42,7 @@ public class FuelTank extends Item {
             // 10000 * 2,5 * 2^(x-2)
             return (int) (10000 * (2.5 * Math.pow(2, (level - 2))));
         } else {
-            return (int) 10000 * level;
+            return 7000 * level + 3000;
         }
     }
 }
