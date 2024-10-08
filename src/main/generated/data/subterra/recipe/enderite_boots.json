@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "#": {
+      "item": "minecraft:netherite_boots"
+    },
+    "I": {
+      "item": "subterra:enderite_ingot"
+    }
+  },
+  "pattern": [
+    "   ",
+    "I#I",
+    "I I"
+  ],
+  "result": {
+    "count": 1,
+    "id": "subterra:enderite_boots"
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "E": {
+      "item": "subterra:drill_engine_tier_2"
+    },
+    "I": {
+      "item": "subterra:aragonite_ingot"
+    },
+    "S": {
+      "item": "minecraft:sugar"
+    },
+    "T": {
+      "item": "subterra:fuel_tank"
+    }
+  },
+  "pattern": [
+    "SSS",
+    "IEI",
+    "TIT"
+  ],
+  "result": {
+    "count": 1,
+    "id": "subterra:drill_engine_tier_3"
+  }
+}

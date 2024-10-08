@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "#": {
+      "item": "subterra:infernite_stick"
+    },
+    "I": {
+      "item": "subterra:infernite_ingot"
+    }
+  },
+  "pattern": [
+    "II ",
+    "I# ",
+    " # "
+  ],
+  "result": {
+    "count": 1,
+    "id": "subterra:infernite_axe"
+  }
+}

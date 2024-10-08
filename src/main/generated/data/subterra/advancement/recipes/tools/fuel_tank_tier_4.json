@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_fuel_tank": {
+      "conditions": {
+        "items": [
+          {
+            "items": "subterra:fuel_tank"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "minecraft:fuel_tank_tier_4"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_fuel_tank"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "minecraft:fuel_tank_tier_4"
+    ]
+  }
+}

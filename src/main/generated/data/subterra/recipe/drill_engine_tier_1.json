@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "B": {
+      "item": "minecraft:gold_block"
+    },
+    "E": {
+      "item": "subterra:drill_engine"
+    },
+    "I": {
+      "item": "minecraft:gold_ingot"
+    }
+  },
+  "pattern": [
+    "III",
+    "BEB",
+    "BBB"
+  ],
+  "result": {
+    "count": 1,
+    "id": "subterra:drill_engine_tier_1"
+  }
+}

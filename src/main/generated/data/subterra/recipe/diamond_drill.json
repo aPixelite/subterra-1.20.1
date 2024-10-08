@@ -1,0 +1,30 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "B": {
+      "item": "minecraft:iron_block"
+    },
+    "D": {
+      "item": "minecraft:diamond"
+    },
+    "E": {
+      "item": "subterra:drill_engine"
+    },
+    "P": {
+      "item": "minecraft:diamond_pickaxe"
+    },
+    "T": {
+      "item": "subterra:fuel_tank"
+    }
+  },
+  "pattern": [
+    "PD ",
+    "DTB",
+    " BE"
+  ],
+  "result": {
+    "count": 1,
+    "id": "subterra:diamond_drill"
+  }
+}

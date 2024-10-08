@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:blasting",
+  "category": "misc",
+  "cookingtime": 100,
+  "experience": 4.0,
+  "group": "aragonite",
+  "ingredient": {
+    "item": "subterra:raw_aragonite"
+  },
+  "result": {
+    "id": "subterra:aragonite_ingot"
+  }
+}

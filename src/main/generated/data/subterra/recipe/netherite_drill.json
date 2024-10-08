@@ -1,0 +1,30 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "B": {
+      "item": "minecraft:iron_block"
+    },
+    "D": {
+      "item": "subterra:diamond_drill"
+    },
+    "E": {
+      "item": "subterra:drill_engine"
+    },
+    "N": {
+      "item": "minecraft:netherite_ingot"
+    },
+    "P": {
+      "item": "minecraft:netherite_pickaxe"
+    }
+  },
+  "pattern": [
+    "PN ",
+    "NDB",
+    " BE"
+  ],
+  "result": {
+    "count": 1,
+    "id": "subterra:netherite_drill"
+  }
+}

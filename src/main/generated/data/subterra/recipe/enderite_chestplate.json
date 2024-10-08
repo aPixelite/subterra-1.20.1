@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "#": {
+      "item": "minecraft:netherite_chestplate"
+    },
+    "I": {
+      "item": "subterra:enderite_ingot"
+    }
+  },
+  "pattern": [
+    "I#I",
+    "III",
+    "III"
+  ],
+  "result": {
+    "count": 1,
+    "id": "subterra:enderite_chestplate"
+  }
+}

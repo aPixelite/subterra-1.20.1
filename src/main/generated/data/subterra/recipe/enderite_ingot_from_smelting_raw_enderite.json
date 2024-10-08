@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:smelting",
+  "category": "misc",
+  "cookingtime": 200,
+  "experience": 2.0,
+  "group": "enderite",
+  "ingredient": {
+    "item": "subterra:raw_enderite"
+  },
+  "result": {
+    "id": "subterra:enderite_ingot"
+  }
+}

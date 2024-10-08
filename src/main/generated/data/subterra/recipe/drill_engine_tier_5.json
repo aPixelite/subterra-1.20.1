@@ -1,0 +1,27 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "D": {
+      "item": "minecraft:dragon_breath"
+    },
+    "E": {
+      "item": "subterra:drill_engine_tier_4"
+    },
+    "I": {
+      "item": "subterra:infernite_ingot"
+    },
+    "M": {
+      "item": "minecraft:magma_block"
+    }
+  },
+  "pattern": [
+    "DID",
+    "MEM",
+    "IMI"
+  ],
+  "result": {
+    "count": 1,
+    "id": "subterra:drill_engine_tier_5"
+  }
+}

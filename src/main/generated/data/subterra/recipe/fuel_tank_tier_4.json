@@ -1,0 +1,27 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "I": {
+      "item": "subterra:infernite_ingot"
+    },
+    "N": {
+      "item": "minecraft:nether_star"
+    },
+    "S": {
+      "item": "minecraft:shulker_box"
+    },
+    "T": {
+      "item": "subterra:fuel_tank_tier_3"
+    }
+  },
+  "pattern": [
+    "SNS",
+    "ITI",
+    "SIS"
+  ],
+  "result": {
+    "count": 1,
+    "id": "subterra:fuel_tank_tier_4"
+  }
+}

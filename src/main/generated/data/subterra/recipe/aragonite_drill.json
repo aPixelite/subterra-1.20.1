@@ -1,0 +1,30 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "B": {
+      "item": "minecraft:diamond_block"
+    },
+    "D": {
+      "item": "subterra:enderite_drill"
+    },
+    "E": {
+      "item": "subterra:drill_engine"
+    },
+    "I": {
+      "item": "subterra:aragonite_ingot"
+    },
+    "S": {
+      "item": "subterra:aragonite_stick"
+    }
+  },
+  "pattern": [
+    "SI ",
+    "IDB",
+    " BE"
+  ],
+  "result": {
+    "count": 1,
+    "id": "subterra:aragonite_drill"
+  }
+}

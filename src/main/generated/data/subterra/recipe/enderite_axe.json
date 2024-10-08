@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "#": {
+      "item": "subterra:enderite_stick"
+    },
+    "I": {
+      "item": "subterra:enderite_ingot"
+    }
+  },
+  "pattern": [
+    "II ",
+    "I# ",
+    " # "
+  ],
+  "result": {
+    "count": 1,
+    "id": "subterra:enderite_axe"
+  }
+}

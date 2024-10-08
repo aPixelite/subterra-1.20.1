@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:blasting",
+  "category": "misc",
+  "cookingtime": 100,
+  "experience": 6.0,
+  "group": "infernite",
+  "ingredient": {
+    "item": "subterra:raw_infernite"
+  },
+  "result": {
+    "id": "subterra:infernite_ingot"
+  }
+}

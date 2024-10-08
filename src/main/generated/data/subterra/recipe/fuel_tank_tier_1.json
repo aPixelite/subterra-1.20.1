@@ -1,0 +1,27 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "B": {
+      "item": "minecraft:gold_block"
+    },
+    "G": {
+      "item": "minecraft:glowstone_dust"
+    },
+    "I": {
+      "item": "minecraft:gold_ingot"
+    },
+    "T": {
+      "item": "subterra:fuel_tank"
+    }
+  },
+  "pattern": [
+    "BGB",
+    "BTB",
+    "BIB"
+  ],
+  "result": {
+    "count": 1,
+    "id": "subterra:fuel_tank_tier_1"
+  }
+}

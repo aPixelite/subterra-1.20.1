@@ -1,0 +1,30 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "B": {
+      "item": "minecraft:blast_furnace"
+    },
+    "C": {
+      "item": "minecraft:prismarine_crystals"
+    },
+    "E": {
+      "item": "subterra:drill_engine"
+    },
+    "H": {
+      "item": "minecraft:heart_of_the_sea"
+    },
+    "I": {
+      "item": "minecraft:diamond"
+    }
+  },
+  "pattern": [
+    "CHC",
+    "BEB",
+    "CIC"
+  ],
+  "result": {
+    "count": 1,
+    "id": "subterra:drill_engine_tier_2"
+  }
+}

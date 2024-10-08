@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_infernite_ore": {
+      "conditions": {
+        "items": [
+          {
+            "items": "subterra:infernite_ore"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "minecraft:infernite_ingot_from_blasting_infernite_ore"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_infernite_ore"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "minecraft:infernite_ingot_from_blasting_infernite_ore"
+    ]
+  }
+}

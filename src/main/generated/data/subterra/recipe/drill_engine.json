@@ -1,0 +1,27 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "B": {
+      "item": "minecraft:iron_block"
+    },
+    "F": {
+      "item": "minecraft:fire_charge"
+    },
+    "I": {
+      "item": "minecraft:iron_ingot"
+    },
+    "T": {
+      "item": "subterra:fuel_tank"
+    }
+  },
+  "pattern": [
+    "III",
+    "BFB",
+    "BTB"
+  ],
+  "result": {
+    "count": 1,
+    "id": "subterra:drill_engine"
+  }
+}
