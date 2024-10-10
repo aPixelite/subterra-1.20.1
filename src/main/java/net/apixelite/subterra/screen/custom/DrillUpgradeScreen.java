@@ -35,23 +35,27 @@ public class DrillUpgradeScreen extends HandledScreen<DrillUpgradeScreenHandler>
         int y = (height - backgroundHeight) / 2;
 
         Slot drillSlot = this.handler.getSlot(0);
-        Slot engineSlot = this.handler.getSlot(1);
-        Slot upgradeSlot = this.handler.getSlot(2);
-        Slot tankSlot = this.handler.getSlot(3);
+        Slot tankSlot = this.handler.getSlot(1);
+        Slot engineSlot = this.handler.getSlot(2);
+        Slot upgradeSlot = this.handler.getSlot(3);
+        Slot fuelSlot = this.handler.getSlot(4);
 
         context.drawTexture(TEXTURE, x, y, 0, 0, backgroundWidth, backgroundHeight);
 
         if (!drillSlot.hasStack()) {
-            context.drawTexture(TEXTURE, x + 80, y + 17, 176, 0, 16, 16);
-        }
-        if (!engineSlot.hasStack()) {
-            context.drawTexture(TEXTURE, x + 53, y + 39, 176, 15, 16, 16);
-        }
-        if (!upgradeSlot.hasStack()) {
-            context.drawTexture(TEXTURE, x + 80, y + 53, 176, 48, 16, 16);
+            context.drawTexture(TEXTURE, x + 80, y + 26, 176, 0, 16, 16);
         }
         if (!tankSlot.hasStack()) {
-            context.drawTexture(TEXTURE, x + 107, y + 39, 176, 33, 16, 16);
+            context.drawTexture(TEXTURE, x + 36, y + 17, 176, 33, 16, 16);
+        }
+        if (!engineSlot.hasStack()) {
+            context.drawTexture(TEXTURE, x + 36, y + 35, 176, 15, 16, 16);
+        }
+        if (!upgradeSlot.hasStack()) {
+            context.drawTexture(TEXTURE, x + 36, y + 53, 176, 65, 16, 16);
+        }
+        if (!fuelSlot.hasStack()) {
+            context.drawTexture(TEXTURE, x + 124, y + 17, 176, 48, 16, 16);
         }
     }
 

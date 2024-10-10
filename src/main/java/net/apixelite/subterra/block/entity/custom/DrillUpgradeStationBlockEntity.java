@@ -14,9 +14,11 @@ import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.Inventories;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.registry.RegistryWrapper.WrapperLookup;
+import net.minecraft.registry.tag.TagKey;
 import net.minecraft.screen.PropertyDelegate;
 import net.minecraft.screen.ScreenHandler;
 import net.minecraft.server.network.ServerPlayerEntity;
@@ -29,12 +31,14 @@ import java.util.Objects;
 
 @SuppressWarnings("rawtypes")
 public class DrillUpgradeStationBlockEntity extends BlockEntity implements ExtendedScreenHandlerFactory, ImplementedInventory {
-    private final DefaultedList<ItemStack> inventory = DefaultedList.ofSize(4, ItemStack.EMPTY);
+    private final DefaultedList<ItemStack> inventory = DefaultedList.ofSize(6, ItemStack.EMPTY);
 
     private static final int DRILL_SLOT = 0;
-    private static final int ENGINE_SLOT = 1;
-    private static final int UPGRADE_SLOT = 2;
-    private static final int TANK_SLOT = 3;
+    private static final int TANK_SLOT = 1;
+    private static final int ENGINE_SLOT = 2;
+    private static final int UPGRADE_SLOT = 3;
+    private static final int FUEL_SLOT = 4;
+    private static final int BARREL_SLOT = 5;
 
     protected final PropertyDelegate propertyDelegate;
     private int hasEngine = 0;
@@ -130,11 +134,15 @@ public class DrillUpgradeStationBlockEntity extends BlockEntity implements Exten
         ItemStack drill = getStack(DRILL_SLOT);
         ItemStack engine = getStack(ENGINE_SLOT);
         ItemStack tank = getStack(TANK_SLOT);
+        ItemStack fuel = getStack(FUEL_SLOT);
+        ItemStack barrel = getStack(BARREL_SLOT);
 
         // Checks if the item in the slot is a drill
         if (drill.isIn(ModTags.Items.DRILL)) {
             moduleRemoved("drill", false);
 
+
+            // ENGINE
             // Checks if the item has an engine
             if (!hasDrillGotModule("engine", drill)) {
                 // Adds the engine if there is one
@@ -149,7 +157,8 @@ public class DrillUpgradeStationBlockEntity extends BlockEntity implements Exten
                 markDirty(world, pos, state);
             }
     
-    
+
+            // FUEL TANK
             // Checks if the item has a fuel tank
             if (!hasDrillGotModule("tank", drill)) {
                 // Adds the fuel tank if there is one
@@ -164,6 +173,16 @@ public class DrillUpgradeStationBlockEntity extends BlockEntity implements Exten
                 removeModuleOffDrill("tank");
                 markDirty(world, pos, state);
             }
+
+            //FUEL
+            if (fuel.isOf(ModItems.OIL_BARREL) && barrel.getCount() < ModItems.EMPTY_BARREL.getMaxCount()) {
+                if (drill.get(ModDataComponentTypes.FUEL).getFuel() < drill.get(ModDataComponentTypes.FUEL).getMaxFuel()) {
+                    addFuelToDrill(drill);
+                    putBarrelInSlot();
+                    markDirty(world, pos, state);
+                }
+            }
+
         } else {
             markDirty(world, pos, state);
         }
@@ -187,13 +206,38 @@ public class DrillUpgradeStationBlockEntity extends BlockEntity implements Exten
 
         // Makes all slots empty if drill is removed
         if (drill.isEmpty() && !drillRemoved) {
-            this.removeStack(ENGINE_SLOT, 1);
-            this.removeStack(TANK_SLOT, 1);
-            this.removeStack(UPGRADE_SLOT, 1);
+            TagKey[] tagList = {ModTags.Items.DRILL_ENGINE, ModTags.Items.FUEL_TANK};
+
+            for (int i = 1; i <= 2; i++) {
+                if (this.getStack(i).isIn(tagList[i - 1])) {
+                    this.removeStack(i, 1);
+                }
+            }
             moduleRemoved("all", true);
         }
 
 
+    }
+
+    // Puts an empty barrel in the slot
+    private void putBarrelInSlot() {
+        this.setStack(BARREL_SLOT, new ItemStack(ModItems.EMPTY_BARREL));
+        this.removeStack(FUEL_SLOT, 1);
+    }
+
+    // Adds the fuel to the drill
+    private void addFuelToDrill(ItemStack drill) {
+        int maxFuel = drill.get(ModDataComponentTypes.FUEL).getMaxFuel();
+        int fuel = drill.get(ModDataComponentTypes.FUEL).getFuel();
+        int fuelAddition = 10000;
+
+        if (!(fuel + fuelAddition >= maxFuel)) {
+            fuel += fuelAddition;
+            DrillItem.editDrillDataComponents(drill, true, fuel, "change_fuel");
+        } else {
+            fuel = maxFuel;
+        }
+        DrillItem.editDrillDataComponents(drill, true, fuel, "change_fuel");
     }
 
     // Sets the module on the drill

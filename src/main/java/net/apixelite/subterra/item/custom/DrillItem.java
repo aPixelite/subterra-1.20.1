@@ -101,7 +101,7 @@ public class DrillItem extends PickaxeItem {
                 maxFuel = level;
                 fuel = level;
                 break;
-            case "decrease_fuel":
+            case "change_fuel":
                 fuel = level;
                 break;
             case "speed":
@@ -177,7 +177,7 @@ public class DrillItem extends PickaxeItem {
             } else if (item.equals("has_tank")) {
                 return tankTier;
             } else {
-                Subterra.LOGGER.info("Failed at function getModule() {line 242}");
+                Subterra.LOGGER.info("Failed at function getModule() {line 180}");
                 return 0;
             }
         }
@@ -234,7 +234,7 @@ public class DrillItem extends PickaxeItem {
         int fuel = getFuel(stack);
         editDrillDataComponents(stack, false, 3000, "fuel");
         if (fuel >= 3000) {
-            editDrillDataComponents(stack, false, fuel, "decrease_fuel");
+            editDrillDataComponents(stack, false, fuel, "change_fuel");
         }
     }
     
@@ -282,7 +282,7 @@ public class DrillItem extends PickaxeItem {
         Subterra.LOGGER.info("postMine: {}", getFuel(stack));
 
         int newFuel = getFuel(stack) - 1;
-        editDrillDataComponents(stack, true, newFuel, "decrease_fuel");
+        editDrillDataComponents(stack, true, newFuel, "change_fuel");
         return super.postMine(stack, world, state, pos, miner);
     }
     

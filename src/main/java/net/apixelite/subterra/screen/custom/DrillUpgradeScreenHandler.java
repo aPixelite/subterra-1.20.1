@@ -24,15 +24,17 @@ public class DrillUpgradeScreenHandler extends ScreenHandler {
     public DrillUpgradeScreenHandler(int syncId, PlayerInventory playerInventory, BlockEntity blockEntity,
             PropertyDelegate arrayPropertyDelegate) {
         super(ModScreenHandlers.DRILL_UPGRADE_SCREEN_HANDLER, syncId);
-        checkSize(((Inventory) blockEntity), 4);
+        checkSize(((Inventory) blockEntity), 6);
         this.inventory = ((Inventory) blockEntity);
         inventory.onOpen(playerInventory.player);
         this.blockEntity = ((DrillUpgradeStationBlockEntity) blockEntity);
 
-        this.addSlot(new Slot(inventory, 0, 80, 17));
-        this.addSlot(new Slot(inventory, 1, 53, 39));
-        this.addSlot(new Slot(inventory, 2, 80, 53));
-        this.addSlot(new Slot(inventory, 3, 107, 39));
+        this.addSlot(new Slot(inventory, 0, 80, 26));
+        this.addSlot(new Slot(inventory, 1, 36, 17));
+        this.addSlot(new Slot(inventory, 2, 36, 35));
+        this.addSlot(new Slot(inventory, 3, 36, 53));
+        this.addSlot(new Slot(inventory, 4,124, 17));
+        this.addSlot(new Slot(inventory, 5, 124, 52));
 
         addPlayerInventory(playerInventory);
         addPlayerHotbar(playerInventory);
