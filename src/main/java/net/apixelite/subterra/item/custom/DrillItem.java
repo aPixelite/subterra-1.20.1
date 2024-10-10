@@ -14,8 +14,8 @@ import net.apixelite.subterra.components.custom.FuelData;
 import net.apixelite.subterra.components.custom.MiningSpeedData;
 import net.apixelite.subterra.components.custom.TankData;
 import net.apixelite.subterra.util.CustomRarity;
+import net.apixelite.subterra.util.tooltip.DrillItemTooltip;
 import net.minecraft.block.BlockState;
-import net.minecraft.component.ComponentType;
 import net.minecraft.component.DataComponentTypes;
 import net.minecraft.component.type.UnbreakableComponent;
 import net.minecraft.entity.EquipmentSlot;
@@ -32,19 +32,17 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.NotNull;
 
-import javax.xml.crypto.Data;
-
 public class DrillItem extends PickaxeItem {
 
 
     private final float attackDamage;
     private final float attackSpeed;
     private final float baseMiningSpeed;
-    private final CustomRarity rarity;
+    public final CustomRarity rarity;
 
     private boolean abilityActive;
 
-    private static final String upgrade = "";
+    public static final String upgrade = "";
 
     private int stopperInt = 0;
     private int i = 0; 
@@ -55,7 +53,7 @@ public class DrillItem extends PickaxeItem {
     // private static int upgradeTier = 0;
     private static boolean hasEngine = false;
     private static boolean hasTank = false;
-    private static boolean hasUpgrade = false;
+    public static boolean hasUpgrade = false;
     private static int fuel = 3000;
     private static int maxFuel = 3000;
     private static int miningSpeed = 0;
@@ -67,7 +65,7 @@ public class DrillItem extends PickaxeItem {
     private static FuelData fuelData = new FuelData(fuel, maxFuel);
     private static MiningSpeedData miningSpeedData = new MiningSpeedData(miningSpeed);
 
-    private static final UnbreakableComponent unbreakableComponent = new UnbreakableComponent(true);
+    private static final UnbreakableComponent unbreakableComponent = new UnbreakableComponent(true).withShowInTooltip(false);
 
 
     public DrillItem(ToolMaterial material, float miningSpeed, int attackDamage, float attackSpeed, CustomRarity rarity, Settings settings) {
@@ -159,85 +157,7 @@ public class DrillItem extends PickaxeItem {
         setFuel(stack);
         setMiningSpeed(stack);
 
-        // Stats of the item
-        tooltip.add(Text.empty().append(this.getName()).formatted(this.rarity.formatting));
-        tooltip.add(Text.literal("§8Mining level 8"));
-        tooltip.add(Text.literal(""));
-        tooltip.add(Text.literal("§7Damage: §c" + ((int) this.attackDamage)));
-        tooltip.add(Text.literal("§7Mining speed: §a" + ((int) getMiningSpeed(stack, null))));
-        // TO DO: tooltip.add(Text.literal("§7Mining fortune: §a"));
-
-        // The enchantments
-        if(stack.hasEnchantments()) {
-            tooltip.add(Text.literal(""));
-         
-            tooltip.add(Text.literal("§6Enchantments:"));
-            tooltip.add((Text) stack.get(DataComponentTypes.ENCHANTMENTS));
-        }
-
-        tooltip.add(Text.literal(""));
-
-        // Drill parts
-        // Fuel tank
-        if (stack.get(ModDataComponentTypes.TANK).getHasTank()) {
-            tooltip.add(Text.literal("§aFuel Tank Tier " + getTankTier(stack)));
-            tooltip.add(Text.literal("§7Increase your fuel capacity"));
-            tooltip.add(Text.literal("§7to: §2" + getMaxFuel(stack)));
-        } else {
-            tooltip.add(Text.literal("§7Fuel Tank: §cNot Installed"));
-            tooltip.add(Text.literal("§7Increase your fuel capacity"));
-            tooltip.add(Text.literal("§7with tank installed"));
-        }
-        tooltip.add(Text.literal(""));
-
-        // Drill Engine
-        if (stack.get(ModDataComponentTypes.ENGINE).getHasEngine()) {
-            tooltip.add(Text.literal("§aDrill Engine Tier " + getEngineTier(stack)));
-            tooltip.add(Text.literal("§7Grants an extra "));
-            tooltip.add(Text.literal("§6" + getMiningSpeed(stack) + " Mining Speed"));
-        } else {
-            tooltip.add(Text.literal("§7Drill Engine: §cNot Installed"));
-            tooltip.add(Text.literal("§7Increase your mining speed"));
-            tooltip.add(Text.literal("§7with engine installed."));
-        }
-        tooltip.add(Text.literal(""));
-        
-        // Upgrade Module
-        if (hasUpgrade) {
-            tooltip.add(Text.literal("§a" + upgrade));
-        } else {
-            tooltip.add(Text.literal("§7Upgrade Module: §cNot Installed"));
-            tooltip.add(Text.literal("§7Increase a certain stat with"));
-            tooltip.add(Text.literal("§7module installed"));
-        }
-        tooltip.add(Text.literal(""));
-
-
-        // Tool ability
-        tooltip.add(Text.literal("§6Item Ability: Mining Speed Boost"));
-        tooltip.add(Text.literal("§7Usage: §e§lRIGHT CLICK"));
-        tooltip.add(Text.literal("§7Grants §a300% §6Mining Speed"));
-        tooltip.add(Text.literal("§8Duration: §a20s"));
-        tooltip.add(Text.literal("§8Cooldown: §a120s"));
-
-        tooltip.add(Text.literal(""));
-
-        // Fuel
-        if(getFuel(stack) > 0) {
-            if (getFuel(stack) > 10000) {
-                tooltip.add(Text.literal("§7Fuel: " + "§2" + (getFuel(stack) / 1000) + "k§8/" + (getMaxFuel(stack) / 1000) + "k"));
-            } else {
-                tooltip.add(Text.literal("§7Fuel: " + "§2" + getFuel(stack) + "§8/" + (getMaxFuel(stack) / 1000) + "k"));
-            }
-        } else {
-            tooltip.add(Text.literal("§7Fuel: §4Empty"));
-        }
-
-        tooltip.add(Text.literal(""));
-
-        // Item Rarity
-        tooltip.add(Text.literal("§l" + this.rarity + " DRILL").formatted(this.rarity.formatting));
-        
+        DrillItemTooltip.setTooltip(this, stack, tooltip);
 
         super.appendTooltip(stack, context, tooltip, type);
     }

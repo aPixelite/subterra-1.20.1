@@ -28,11 +28,9 @@ public class FuelTank extends Item {
         if (!stack.isOf(ModItems.FUEL_TANK)) {
             tooltip.add(Text.literal("§8Drill Part"));
             tooltip.add(Text.literal(""));
-            tooltip.add(Text.literal("§7Part Type: §6Fuel Tank"));
-            tooltip.add(Text.literal("§7Increases Fuel Capacity To: §2" + (this.fuelCapacity / 1000) + ".000"));
-            tooltip.add(Text.literal(""));
+            tooltip.add(Text.literal("§8Part Type: §bFuel Tank"));
+            tooltip.add(Text.literal("§8Increases Fuel Capacity To: §c" + (this.fuelCapacity / 1000) + ".000"));
         }
-        tooltip.add(Text.literal("§l" + this.rarity).formatted(this.rarity.formatting));
 
         super.appendTooltip(stack, context, tooltip, type);
     }

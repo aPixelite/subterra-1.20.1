@@ -1,13 +1,10 @@
 package net.apixelite.subterra.item;
 
 import net.apixelite.subterra.Subterra;
-import net.apixelite.subterra.components.ModDataComponentTypes;
-import net.apixelite.subterra.components.custom.FuelData;
 import net.apixelite.subterra.item.custom.DrillEngine;
 import net.apixelite.subterra.item.custom.DrillItem;
 import net.apixelite.subterra.item.custom.FuelTank;
 import net.apixelite.subterra.util.CustomRarity;
-import net.minecraft.component.DataComponentTypes;
 import net.minecraft.item.ArmorItem;
 import net.minecraft.item.AxeItem;
 import net.minecraft.item.HoeItem;
@@ -171,7 +168,7 @@ public class ModItems {
     }
 
     public static void registerModItems() {
-        Subterra.LOGGER.info("Registring Mod Items for " + Subterra.MOD_ID);
+        Subterra.LOGGER.info("Registering Mod Items for " + Subterra.MOD_ID);
     }
     
 }

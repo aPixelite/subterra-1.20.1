@@ -13,9 +13,9 @@ public enum CustomRarity {
     SPECIAL(Formatting.RED),
     VERY_SPECIAL(Formatting.DARK_RED);
 
-    public Formatting formatting;
+    public final Formatting formatting;
 
-    private CustomRarity(Formatting formatting) {
+    CustomRarity(Formatting formatting) {
         this.formatting = formatting;
     }
 
