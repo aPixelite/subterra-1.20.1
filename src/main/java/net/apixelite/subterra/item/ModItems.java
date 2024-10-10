@@ -1,10 +1,13 @@
 package net.apixelite.subterra.item;
 
 import net.apixelite.subterra.Subterra;
+import net.apixelite.subterra.components.ModDataComponentTypes;
+import net.apixelite.subterra.components.custom.FuelData;
 import net.apixelite.subterra.item.custom.DrillEngine;
 import net.apixelite.subterra.item.custom.DrillItem;
 import net.apixelite.subterra.item.custom.FuelTank;
 import net.apixelite.subterra.util.CustomRarity;
+import net.minecraft.component.DataComponentTypes;
 import net.minecraft.item.ArmorItem;
 import net.minecraft.item.AxeItem;
 import net.minecraft.item.HoeItem;
@@ -129,9 +132,9 @@ public class ModItems {
     public static final Item INFERNITE_BOOTS = registerItem("infernite_boots", 
             new ArmorItem(ModArmorMaterials.INFERNITE_ARMOR_MATERIAL, ArmorItem.Type.BOOTS, new Item.Settings()
             .maxDamage(ArmorItem.Type.BOOTS.getMaxDamage(69)).fireproof().rarity(Rarity.EPIC)));
-    
-    
-    
+
+
+
     // DRILLS
     public static final Item DIAMOND_DRILL = registerItem("diamond_drill", 
     new DrillItem(ModToolMaterials.DRILL_MATERIAL, 15, 1, -2.8f, CustomRarity.COMMON, new Item.Settings()));

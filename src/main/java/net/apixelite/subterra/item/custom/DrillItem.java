@@ -15,7 +15,9 @@ import net.apixelite.subterra.components.custom.MiningSpeedData;
 import net.apixelite.subterra.components.custom.TankData;
 import net.apixelite.subterra.util.CustomRarity;
 import net.minecraft.block.BlockState;
+import net.minecraft.component.ComponentType;
 import net.minecraft.component.DataComponentTypes;
+import net.minecraft.component.type.UnbreakableComponent;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -30,7 +32,10 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.NotNull;
 
+import javax.xml.crypto.Data;
+
 public class DrillItem extends PickaxeItem {
+
 
     private final float attackDamage;
     private final float attackSpeed;
@@ -41,28 +46,37 @@ public class DrillItem extends PickaxeItem {
 
     private static final String upgrade = "";
 
-    private static final boolean hasUpgrade = false;
-
-    private static int engineTier = 0;
-    private static int tankTier = 0;
-    // private static int drillHasUpgrade = 0;
-
     private int stopperInt = 0;
     private int i = 0; 
     private int j = 0;
 
-    
+    private static int engineTier = 0;
+    private static int tankTier = 0;
+    // private static int upgradeTier = 0;
     private static boolean hasEngine = false;
     private static boolean hasTank = false;
-    // private boolean hasNbtUpgrade = false;
+    private static boolean hasUpgrade = false;
     private static int fuel = 3000;
     private static int maxFuel = 3000;
     private static int miningSpeed = 0;
 
     Timer timer = new Timer();
 
+    private static EngineData engineData = new EngineData(hasEngine, engineTier);
+    private static TankData tankData = new TankData(hasTank, tankTier);
+    private static FuelData fuelData = new FuelData(fuel, maxFuel);
+    private static MiningSpeedData miningSpeedData = new MiningSpeedData(miningSpeed);
+
+    private static final UnbreakableComponent unbreakableComponent = new UnbreakableComponent(true);
+
+
     public DrillItem(ToolMaterial material, float miningSpeed, int attackDamage, float attackSpeed, CustomRarity rarity, Settings settings) {
-        super(material, settings);
+        super(material, settings
+                .component(ModDataComponentTypes.ENGINE, engineData)
+                .component(ModDataComponentTypes.TANK, tankData)
+                .component(ModDataComponentTypes.FUEL, fuelData)
+                .component(ModDataComponentTypes.MINING_SPEED, miningSpeedData)
+                .component(DataComponentTypes.UNBREAKABLE, unbreakableComponent));
         this.attackDamage = attackDamage;
         this.attackSpeed = attackSpeed;
         this.baseMiningSpeed = miningSpeed;
@@ -99,17 +113,20 @@ public class DrillItem extends PickaxeItem {
                 break;
         }
 
-        EngineData engineData = new EngineData(hasEngine, engineTier);
-        TankData tankData = new TankData(hasTank, tankTier);
-        FuelData fuelData = new FuelData(fuel, maxFuel);
-        MiningSpeedData miningSpeedData = new MiningSpeedData(miningSpeed);
+        setDrillData(item);
+    }
+
+    private static void setDrillData(ItemStack item) {
+        engineData = new EngineData(hasEngine, engineTier);
+        tankData = new TankData(hasTank, tankTier);
+        fuelData = new FuelData(fuel, maxFuel);
+        miningSpeedData = new MiningSpeedData(miningSpeed);
 
         item.set(ModDataComponentTypes.ENGINE, engineData);
         item.set(ModDataComponentTypes.TANK, tankData);
         item.set(ModDataComponentTypes.FUEL, fuelData);
         item.set(ModDataComponentTypes.MINING_SPEED, miningSpeedData);
     }
-
 
 // ABILITY FUNCTIONS
     // the Pickaxe Ability
@@ -163,7 +180,7 @@ public class DrillItem extends PickaxeItem {
         // Drill parts
         // Fuel tank
         if (stack.get(ModDataComponentTypes.TANK).getHasTank()) {
-            tooltip.add(Text.literal("§a" + getTankTier(stack)));
+            tooltip.add(Text.literal("§aFuel Tank Tier " + getTankTier(stack)));
             tooltip.add(Text.literal("§7Increase your fuel capacity"));
             tooltip.add(Text.literal("§7to: §2" + getMaxFuel(stack)));
         } else {
@@ -175,7 +192,7 @@ public class DrillItem extends PickaxeItem {
 
         // Drill Engine
         if (stack.get(ModDataComponentTypes.ENGINE).getHasEngine()) {
-            tooltip.add(Text.literal("§a" + getEngineTier(stack)));
+            tooltip.add(Text.literal("§aDrill Engine Tier " + getEngineTier(stack)));
             tooltip.add(Text.literal("§7Grants an extra "));
             tooltip.add(Text.literal("§6" + getMiningSpeed(stack) + " Mining Speed"));
         } else {
@@ -295,7 +312,7 @@ public class DrillItem extends PickaxeItem {
     // resets the fuel to the base value
     public static void resetFuelCapacity(ItemStack stack) {
         int fuel = getFuel(stack);
-            editDrillDataComponents(stack, false, 0, "fuel");
+        editDrillDataComponents(stack, false, 3000, "fuel");
         if (fuel >= 3000) {
             editDrillDataComponents(stack, false, fuel, "decrease_fuel");
         }
