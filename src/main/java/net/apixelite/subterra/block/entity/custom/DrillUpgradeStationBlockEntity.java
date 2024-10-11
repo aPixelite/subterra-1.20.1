@@ -44,6 +44,8 @@ public class DrillUpgradeStationBlockEntity extends BlockEntity implements Exten
     private int hasEngine = 0;
     private int hasTank = 0;
     private int hasUpgrade = 0;
+    private int hasFuel = 0;
+    private int hasBarrel = 0;
 
     private boolean drillRemoved = true;
     private boolean engineRemoved = true;
@@ -62,6 +64,8 @@ public class DrillUpgradeStationBlockEntity extends BlockEntity implements Exten
                     case 0 -> DrillUpgradeStationBlockEntity.this.hasEngine;
                     case 1 -> DrillUpgradeStationBlockEntity.this.hasTank;
                     case 2 -> DrillUpgradeStationBlockEntity.this.hasUpgrade;
+                    case 3 -> DrillUpgradeStationBlockEntity.this.hasFuel;
+                    case 4 -> DrillUpgradeStationBlockEntity.this.hasBarrel;
                     default -> 0;
                 };
             }
@@ -72,13 +76,15 @@ public class DrillUpgradeStationBlockEntity extends BlockEntity implements Exten
                     case 0 -> DrillUpgradeStationBlockEntity.this.hasEngine = value;
                     case 1 -> DrillUpgradeStationBlockEntity.this.hasTank = value;
                     case 2 -> DrillUpgradeStationBlockEntity.this.hasUpgrade = value;
+                    case 3 -> DrillUpgradeStationBlockEntity.this.hasFuel = value;
+                    case 4 -> DrillUpgradeStationBlockEntity.this.hasBarrel = value;
                 }
                 
             }
 
             @Override
             public int size() {
-                return 3;
+                return 5;
             }
         };
     }
@@ -107,6 +113,8 @@ public class DrillUpgradeStationBlockEntity extends BlockEntity implements Exten
         nbt.putInt("drill_upgrade_station.hasEngine", hasEngine);
         nbt.putInt("drill_upgrade_station.hasTank", hasTank);
         nbt.putInt("drill_upgrade_station.hasUpgrade", hasUpgrade);
+        nbt.putInt("drill_upgrade_station.hasFuel", hasFuel);
+        nbt.putInt("drill_upgrade_station.hasBarrel", hasBarrel);
     }
 
     // Loads the nbt
@@ -116,6 +124,8 @@ public class DrillUpgradeStationBlockEntity extends BlockEntity implements Exten
         hasEngine = nbt.getInt("drill_upgrade_station.hasEngine");
         hasTank = nbt.getInt("drill_upgrade_station.hasTank");
         hasUpgrade = nbt.getInt("drill_upgrade_station.hasUpgrade");
+        hasFuel = nbt.getInt("drill_upgrade_station.hasFuel");
+        hasBarrel = nbt.getInt("drill_upgrade_station.hasBarrel");
     }
 
     // Creates the gui
@@ -286,8 +296,8 @@ public class DrillUpgradeStationBlockEntity extends BlockEntity implements Exten
         // Puts engine in the slot
         if (Objects.equals(module, "engine")) {
             moduleRemoved("engine", false);
-            int item = DrillItem.getModule("has_engine");
-            switch (item) {
+            int tier = DrillItem.getModule("has_engine");
+            switch (tier) {
                 case 1 -> this.setStack(ENGINE_SLOT, new ItemStack(ModItems.DRILL_ENGINE_TIER_I));
                 case 2 -> this.setStack(ENGINE_SLOT, new ItemStack(ModItems.DRILL_ENGINE_TIER_II));
                 case 3 -> this.setStack(ENGINE_SLOT, new ItemStack(ModItems.DRILL_ENGINE_TIER_III));
@@ -299,8 +309,8 @@ public class DrillUpgradeStationBlockEntity extends BlockEntity implements Exten
         // puts the fuel tank in the slot
         else if (Objects.equals(module, "tank")) {
             moduleRemoved("tank", false);
-            int item = DrillItem.getModule("has_tank");
-            switch (item) {
+            int tier = DrillItem.getModule("has_tank");
+            switch (tier) {
                 case 1 -> this.setStack(TANK_SLOT, new ItemStack(ModItems.FUEL_TANK_TIER_I));
                 case 2 -> this.setStack(TANK_SLOT, new ItemStack(ModItems.FUEL_TANK_TIER_II));
                 case 3 -> this.setStack(TANK_SLOT, new ItemStack(ModItems.FUEL_TANK_TIER_III));
