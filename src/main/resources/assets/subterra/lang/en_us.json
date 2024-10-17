@@ -78,5 +78,8 @@
     "item.subterra.netherite_drill": "Netherite Drill",
 
     "itemgroup.subterra_group": "Subterra Group",
-    "itemgroup.drill_group": "Drill Group"
+    "itemgroup.drill_group": "Drill Group",
+
+    "enchantment.subterra.lightning_striker": "Lightning Striker",
+    "enchantment.subterra.fuelless": "Fuelless"
 }

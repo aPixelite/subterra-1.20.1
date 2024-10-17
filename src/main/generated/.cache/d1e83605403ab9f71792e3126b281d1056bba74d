@@ -1,4 +1,4 @@
-// 1.21	2024-09-26T19:02:26.2839071	subterra/Model Definitions
+// 1.21	2024-10-11T15:55:36.5963416	subterra/Model Definitions
 e47ac15b6f1e62ac7cc51754e6c8ca254623cfe6 assets\subterra\models\item\infernite_chestplate_emerald_trim.json
 4d6ad2d2d03d5daf64d8fdfb744892321c5ca656 assets\subterra\models\item\enderite_boots_lapis_trim.json
 9b317ef9398f5c074f7a9ec183df777b3b45c230 assets\subterra\models\item\enderite_leggings_emerald_trim.json
@@ -112,8 +112,8 @@ d4c795bc48a48dee0b54776489fb38a25583604b assets\subterra\models\item\enderite_ax
 c0077afe5d976e7c39956d53bff4b0544621597f assets\subterra\models\item\aragonite_chestplate_diamond_trim.json
 46fa7a64d875b4f4dbd9bdc22a2021ce8815db1e assets\subterra\models\item\aragonite_ore.json
 7d2180c463250cc733ec76570feb38933fc3ddb7 assets\subterra\models\item\aragonite_boots_quartz_trim.json
-13dc4415bb16c9145c46f5e47420ae13040aeb55 assets\subterra\models\item\infernite_chestplate_iron_trim.json
 c42d1f934b9f71fb3e6e93fbc554b17855ab995e assets\subterra\models\item\enderite_chestplate_amethyst_trim.json
+13dc4415bb16c9145c46f5e47420ae13040aeb55 assets\subterra\models\item\infernite_chestplate_iron_trim.json
 ab68d81b0f85ef90a74c1ad1c79ed96026ad364c assets\subterra\models\item\infernite_chestplate_copper_trim.json
 165d0cc19dab798e947995bf856f95eeea55f823 assets\subterra\models\item\aragonite_hoe.json
 eb640de49db9730fd1eb47bbd3abd0250a3b9bd2 assets\subterra\models\item\raw_aragonite.json

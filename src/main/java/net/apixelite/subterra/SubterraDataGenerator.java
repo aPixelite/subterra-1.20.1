@@ -1,11 +1,7 @@
 package net.apixelite.subterra;
 
-import net.apixelite.subterra.datagen.ModBlockTagProvider;
-import net.apixelite.subterra.datagen.ModItemTagProvider;
-import net.apixelite.subterra.datagen.ModLootTableProvider;
-import net.apixelite.subterra.datagen.ModModelProvider;
-import net.apixelite.subterra.datagen.ModRecipeProvider;
-import net.apixelite.subterra.datagen.ModWorldGenerator;
+import net.apixelite.subterra.datagen.*;
+import net.apixelite.subterra.enchantment.ModEnchantments;
 import net.apixelite.subterra.world.ModConfiguredFeatures;
 import net.apixelite.subterra.world.ModPlacedFeatures;
 import net.fabricmc.fabric.api.datagen.v1.DataGeneratorEntrypoint;
@@ -24,11 +20,13 @@ public class SubterraDataGenerator implements DataGeneratorEntrypoint {
 		pack.addProvider(ModModelProvider::new);
 		pack.addProvider(ModRecipeProvider::new);
 		pack.addProvider(ModWorldGenerator::new);
+		pack.addProvider(ModRegistryProvider::new);
 	}
 
 	@Override
 	public void buildRegistry(RegistryBuilder registryBuilder) {
 		registryBuilder.addRegistry(RegistryKeys.CONFIGURED_FEATURE, ModConfiguredFeatures::boostrap);
 		registryBuilder.addRegistry(RegistryKeys.PLACED_FEATURE, ModPlacedFeatures::boostrap);
+		registryBuilder.addRegistry(RegistryKeys.ENCHANTMENT, ModEnchantments::bootstrap);
 	}
 }

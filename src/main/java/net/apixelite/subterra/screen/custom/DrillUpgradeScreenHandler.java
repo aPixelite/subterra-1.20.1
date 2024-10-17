@@ -18,7 +18,7 @@ public class DrillUpgradeScreenHandler extends ScreenHandler {
     public final DrillUpgradeStationBlockEntity blockEntity;
 
     public DrillUpgradeScreenHandler(int syncId, PlayerInventory playerInventory, BlockPos pos) {
-        this(syncId, playerInventory, playerInventory.player.getWorld().getBlockEntity(pos), new ArrayPropertyDelegate(4));
+        this(syncId, playerInventory, playerInventory.player.getWorld().getBlockEntity(pos), new ArrayPropertyDelegate(6));
     }
 
     public DrillUpgradeScreenHandler(int syncId, PlayerInventory playerInventory, BlockEntity blockEntity,

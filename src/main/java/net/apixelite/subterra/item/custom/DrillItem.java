@@ -1,9 +1,6 @@
 package net.apixelite.subterra.item.custom;
 
-import java.util.List;
-import java.util.Objects;
-import java.util.Timer;
-import java.util.TimerTask;
+import java.util.*;
 
 import net.apixelite.subterra.util.romannumeralconverter.RomanNumeralConverter;
 
@@ -25,10 +22,14 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.PickaxeItem;
 import net.minecraft.item.ToolMaterial;
 import net.minecraft.item.tooltip.TooltipType;
+import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.text.Text;
 import net.minecraft.util.Hand;
 import net.minecraft.util.TypedActionResult;
+import net.minecraft.util.hit.BlockHitResult;
+import net.minecraft.util.hit.HitResult;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.Direction;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.NotNull;
 
@@ -323,5 +324,39 @@ public class DrillItem extends PickaxeItem {
 
     public float getAttackSpeed() {
         return this.attackSpeed;
+    }
+
+    public static List<BlockPos> getBlocksToBeDestroyed(int range, BlockPos initalBlockPos, ServerPlayerEntity player) {
+        List<BlockPos> positions = new ArrayList<>();
+        HitResult hit = player.raycast(20, 0, false);
+        if (hit.getType() == HitResult.Type.BLOCK) {
+            BlockHitResult blockHit = (BlockHitResult) hit;
+
+            if(blockHit.getSide() == Direction.DOWN || blockHit.getSide() == Direction.UP) {
+                for(int x = -range; x <= range; x++) {
+                    for(int y = -range; y <= range; y++) {
+                        positions.add(new BlockPos(initalBlockPos.getX() + x, initalBlockPos.getY(), initalBlockPos.getZ() + y));
+                    }
+                }
+            }
+
+            if(blockHit.getSide() == Direction.NORTH || blockHit.getSide() == Direction.SOUTH) {
+                for(int x = -range; x <= range; x++) {
+                    for(int y = -range; y <= range; y++) {
+                        positions.add(new BlockPos(initalBlockPos.getX() + x, initalBlockPos.getY() + y, initalBlockPos.getZ()));
+                    }
+                }
+            }
+
+            if(blockHit.getSide() == Direction.EAST || blockHit.getSide() == Direction.WEST) {
+                for(int x = -range; x <= range; x++) {
+                    for(int y = -range; y <= range; y++) {
+                        positions.add(new BlockPos(initalBlockPos.getX(), initalBlockPos.getY() + y, initalBlockPos.getZ() + x));
+                    }
+                }
+            }
+        }
+
+        return positions;
     }
 }

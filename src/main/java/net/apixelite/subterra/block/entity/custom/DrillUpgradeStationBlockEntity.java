@@ -215,7 +215,7 @@ public class DrillUpgradeStationBlockEntity extends BlockEntity implements Exten
 
         // Makes all slots empty if drill is removed
         if (drill.isEmpty() && !drillRemoved) {
-            TagKey[] tagList = {ModTags.Items.DRILL_ENGINE, ModTags.Items.FUEL_TANK};
+            TagKey[] tagList = {ModTags.Items.FUEL_TANK, ModTags.Items.DRILL_ENGINE};
 
             for (int i = 1; i <= 2; i++) {
                 if (this.getStack(i).isIn(tagList[i - 1])) {

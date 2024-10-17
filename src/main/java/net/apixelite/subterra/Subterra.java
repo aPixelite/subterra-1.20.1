@@ -3,6 +3,7 @@ package net.apixelite.subterra;
 import net.apixelite.subterra.block.ModBlocks;
 import net.apixelite.subterra.block.entity.ModBlockEntities;
 import net.apixelite.subterra.components.ModDataComponentTypes;
+import net.apixelite.subterra.enchantment.ModEnchantmentEffects;
 import net.apixelite.subterra.item.ModItemGroups;
 import net.apixelite.subterra.item.ModItems;
 import net.apixelite.subterra.screen.ModScreenHandlers;
@@ -30,6 +31,8 @@ public class Subterra implements ModInitializer {
 		ModScreenHandlers.registerScreenHandlers();
 
 		ModDataComponentTypes.registerDataComponentTypes();
+
+		ModEnchantmentEffects.registerEnchantmentEffects();
 	
 	}
 }

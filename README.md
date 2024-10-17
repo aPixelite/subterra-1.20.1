@@ -33,7 +33,7 @@ There are 5 types of drills:
   - Infernite Drill
   - Enderite Drill
 
-There are alse diffrent upgrade modules for drills.  
+There are also different upgrade modules for drills.  
 They can be applied using the drill upgrade station.  
 
 # Engines

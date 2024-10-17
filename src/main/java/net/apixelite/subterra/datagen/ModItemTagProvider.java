@@ -24,7 +24,6 @@ public class ModItemTagProvider extends FabricTagProvider.ItemTagProvider{
             .add(ModItems.INFERNITE_DRILL);
 
         getOrCreateTagBuilder(ModTags.Items.DRILL_ENGINE)
-            .add(ModItems.DRILL_ENGINE)
             .add(ModItems.DRILL_ENGINE_TIER_I)
             .add(ModItems.DRILL_ENGINE_TIER_II)
             .add(ModItems.DRILL_ENGINE_TIER_III)
@@ -32,7 +31,6 @@ public class ModItemTagProvider extends FabricTagProvider.ItemTagProvider{
             .add(ModItems.DRILL_ENGINE_TIER_V);
 
         getOrCreateTagBuilder(ModTags.Items.FUEL_TANK)
-            .add(ModItems.FUEL_TANK)
             .add(ModItems.FUEL_TANK_TIER_I)
             .add(ModItems.FUEL_TANK_TIER_II)
             .add(ModItems.FUEL_TANK_TIER_III)
