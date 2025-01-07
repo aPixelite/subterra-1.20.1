@@ -23,13 +23,13 @@ public class HammerUsageEvent implements PlayerBlockBreakEvents.Before {
     public boolean beforeBlockBreak(World world, PlayerEntity player, BlockPos pos, BlockState state, @Nullable BlockEntity blockEntity) {
         ItemStack mainHandItem = player.getMainHandStack();
 
-        if (mainHandItem.get(ModDataComponentTypes.ENGINE).getHasEngine()) {
+        if (mainHandItem.get(ModDataComponentTypes.UPGRADE).getHasUpgrade()) {
             if (mainHandItem.getItem() instanceof DrillItem drill && player instanceof ServerPlayerEntity serverPlayer) {
                 if (HARVESTED_BLOCKS.contains(pos)) {
                     return true;
                 }
 
-                for (BlockPos position : DrillItem.getBlocksToBeDestroyed(mainHandItem.get(ModDataComponentTypes.ENGINE).getEngineTier(), pos, serverPlayer)) {
+                for (BlockPos position : DrillItem.getBlocksToBeDestroyed(mainHandItem.get(ModDataComponentTypes.UPGRADE).getLevel(), pos, serverPlayer)) {
                     if (pos == position || !drill.isCorrectForDrops(mainHandItem, world.getBlockState(position))) {
                         continue;
                     }

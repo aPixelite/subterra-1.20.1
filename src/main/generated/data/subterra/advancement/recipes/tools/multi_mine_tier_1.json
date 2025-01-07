@@ -1,0 +1,43 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_drill_engine": {
+      "conditions": {
+        "items": [
+          {
+            "items": "subterra:drill_engine"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_enderite_ingot": {
+      "conditions": {
+        "items": [
+          {
+            "items": "subterra:enderite_ingot"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "minecraft:multi_mine_tier_1"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_enderite_ingot",
+      "has_drill_engine"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "minecraft:multi_mine_tier_1"
+    ]
+  }
+}

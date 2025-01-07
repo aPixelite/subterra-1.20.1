@@ -97,7 +97,11 @@ public class ModItemGroups {
                 entries.add(ModItems.FUEL_TANK_TIER_II);
                 entries.add(ModItems.FUEL_TANK_TIER_III);
                 entries.add(ModItems.FUEL_TANK_TIER_IV);
-                
+
+                entries.add(ModItems.MULTI_MINE_TIER_I);
+                entries.add(ModItems.MULTI_MINE_TIER_II);
+                entries.add(ModItems.MULTI_MINE_TIER_III);
+
             }).build());
     
     public static void registerItemGroups() {

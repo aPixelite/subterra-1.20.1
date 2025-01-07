@@ -35,6 +35,14 @@ public class ModItemTagProvider extends FabricTagProvider.ItemTagProvider{
             .add(ModItems.FUEL_TANK_TIER_II)
             .add(ModItems.FUEL_TANK_TIER_III)
             .add(ModItems.FUEL_TANK_TIER_IV);
+
+        getOrCreateTagBuilder(ModTags.Items.MULTI_MINE)
+            .add(ModItems.MULTI_MINE_TIER_I)
+            .add(ModItems.MULTI_MINE_TIER_II)
+            .add(ModItems.MULTI_MINE_TIER_III);
+
+        getOrCreateTagBuilder(ModTags.Items.UPGRADE)
+            .addTag(ModTags.Items.MULTI_MINE);
     }
 
 }

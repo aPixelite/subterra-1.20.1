@@ -28,11 +28,9 @@ public class ModTags {
         public static final TagKey<Item> DRILL = createTag("drill");
         public static final TagKey<Item> DRILL_ENGINE = createTag("drill_engine");
         public static final TagKey<Item> FUEL_TANK = createTag("fuel_tank");
+        public static final TagKey<Item> UPGRADE = createTag("upgrade");
+        public static final TagKey<Item> MULTI_MINE = createTag("multi_mine");
 
-        public static final TagKey<Item> HAS_ENGINE = createTag("has_engine");
-        public static final TagKey<Item> HAS_UPGRADE = createTag("has_upgrade");
-        public static final TagKey<Item> HAS_TANK = createTag("has_tank");
-        
         private static TagKey<Item> createTag(String name) {
             return TagKey.of(RegistryKeys.ITEM, Identifier.of(Subterra.MOD_ID, name));
         }

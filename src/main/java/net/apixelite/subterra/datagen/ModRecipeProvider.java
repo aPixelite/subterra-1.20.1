@@ -152,6 +152,37 @@ public class ModRecipeProvider extends FabricRecipeProvider{
             .criterion(hasItem(ModItems.FUEL_TANK), conditionsFromItem(ModItems.FUEL_TANK))
             .offerTo(exporter, Identifier.of("fuel_tank_tier_4"));
 
+        // Upgrade Modules
+        // Multi Mine
+        ShapedRecipeJsonBuilder.create(RecipeCategory.TOOLS, ModItems.MULTI_MINE_TIER_I)
+            .pattern(" E ")
+            .pattern("EDE")
+            .pattern(" E ")
+            .input('E', ModItems.ENDERITE_INGOT)
+            .input('D', ModItems.DRILL_ENGINE)
+            .criterion(hasItem(ModItems.ENDERITE_INGOT), conditionsFromItem(ModItems.ENDERITE_INGOT))
+            .criterion(hasItem(ModItems.DRILL_ENGINE), conditionsFromItem(ModItems.DRILL_ENGINE))
+            .offerTo(exporter, Identifier.of("multi_mine_tier_1"));
+
+        ShapedRecipeJsonBuilder.create(RecipeCategory.TOOLS, ModItems.MULTI_MINE_TIER_II)
+            .pattern(" A ")
+            .pattern("AMA")
+            .pattern(" A ")
+            .input('A', ModItems.ARAGONITE_INGOT)
+            .input('M', ModItems.MULTI_MINE_TIER_I)
+            .criterion(hasItem(ModItems.ARAGONITE_INGOT), conditionsFromItem(ModItems.ARAGONITE_INGOT))
+            .criterion(hasItem(ModItems.MULTI_MINE_TIER_I), conditionsFromItem(ModItems.MULTI_MINE_TIER_I))
+            .offerTo(exporter, Identifier.of("multi_mine_tier_2"));
+
+        ShapedRecipeJsonBuilder.create(RecipeCategory.TOOLS, ModItems.MULTI_MINE_TIER_III)
+            .pattern(" I ")
+            .pattern("IMI")
+            .pattern(" I ")
+            .input('I', ModItems.INFERNITE_INGOT)
+            .input('M', ModItems.MULTI_MINE_TIER_II)
+            .criterion(hasItem(ModItems.INFERNITE_INGOT), conditionsFromItem(ModItems.INFERNITE_INGOT))
+            .criterion(hasItem(ModItems.MULTI_MINE_TIER_II), conditionsFromItem(ModItems.MULTI_MINE_TIER_II))
+            .offerTo(exporter, Identifier.of("multi_mine_tier_3"));
 
         // Drills
         ShapedRecipeJsonBuilder.create(RecipeCategory.TOOLS, ModItems.DIAMOND_DRILL)
@@ -268,7 +299,7 @@ public class ModRecipeProvider extends FabricRecipeProvider{
         
         // Stick
         ShapedToolRecipeBuilder("   ", " I ", " # ", ModItems.ENDERITE_INGOT, ModItems.ENDERITE_INGOT, "enderite_stick", ModItems.ENDERITE_STICK, exporter);
-        ShapedToolRecipeBuilder("   ", " I ", " # ", ModItems.ARAGONITE_INGOT, ModItems.ARAGONITE_INGOT, "aragonite_stick", ModItems.INFERNITE_STICK, exporter);
+        ShapedToolRecipeBuilder("   ", " I ", " # ", ModItems.ARAGONITE_INGOT, ModItems.ARAGONITE_INGOT, "aragonite_stick", ModItems.ARAGONITE_STICK, exporter);
         ShapedToolRecipeBuilder("   ", " I ", " # ", ModItems.INFERNITE_INGOT, ModItems.INFERNITE_INGOT, "infernite_stick", ModItems.INFERNITE_STICK, exporter);
             
         }

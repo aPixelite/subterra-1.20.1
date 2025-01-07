@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/handheld",
+  "textures": {
+    "layer0": "subterra:item/multi_mine_tier_2"
+  }
+}

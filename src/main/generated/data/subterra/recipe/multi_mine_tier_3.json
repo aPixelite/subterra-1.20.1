@@ -2,20 +2,20 @@
   "type": "minecraft:crafting_shaped",
   "category": "equipment",
   "key": {
-    "#": {
-      "item": "subterra:aragonite_ingot"
-    },
     "I": {
-      "item": "subterra:aragonite_ingot"
+      "item": "subterra:infernite_ingot"
+    },
+    "M": {
+      "item": "subterra:multi_mine_tier_2"
     }
   },
   "pattern": [
-    "   ",
     " I ",
-    " # "
+    "IMI",
+    " I "
   ],
   "result": {
     "count": 1,
-    "id": "subterra:aragonite_stick"
+    "id": "subterra:multi_mine_tier_3"
   }
 }

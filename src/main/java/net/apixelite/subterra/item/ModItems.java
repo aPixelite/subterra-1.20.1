@@ -4,6 +4,7 @@ import net.apixelite.subterra.Subterra;
 import net.apixelite.subterra.item.custom.DrillEngine;
 import net.apixelite.subterra.item.custom.DrillItem;
 import net.apixelite.subterra.item.custom.FuelTank;
+import net.apixelite.subterra.item.custom.upgrademodules.MultiMine;
 import net.apixelite.subterra.util.CustomRarity;
 import net.minecraft.item.ArmorItem;
 import net.minecraft.item.AxeItem;
@@ -159,7 +160,13 @@ public class ModItems {
     public static final Item FUEL_TANK_TIER_II = registerItem("fuel_tank_tier_2", new FuelTank(25000, CustomRarity.RARE, new Item.Settings().maxCount(1)));
     public static final Item FUEL_TANK_TIER_III = registerItem("fuel_tank_tier_3", new FuelTank(50000, CustomRarity.EPIC, new Item.Settings().maxCount(1)));
     public static final Item FUEL_TANK_TIER_IV = registerItem("fuel_tank_tier_4", new FuelTank(100000, CustomRarity.LEGENDARY, new Item.Settings().maxCount(1)));
-    
+
+    //UPGRADE MODULES
+    //MULTIMINE
+    public static final Item MULTI_MINE_TIER_I = registerItem("multi_mine_tier_1", new MultiMine(1, CustomRarity.RARE, new Item.Settings().maxCount(1)));
+    public static final Item MULTI_MINE_TIER_II = registerItem("multi_mine_tier_2", new MultiMine(2, CustomRarity.RARE, new Item.Settings().maxCount(1)));
+    public static final Item MULTI_MINE_TIER_III = registerItem("multi_mine_tier_3", new MultiMine(3, CustomRarity.EPIC, new Item.Settings().maxCount(1)));
+
     public static final Item EMPTY_BARREL = registerItem("empty_barrel", new Item(new Item.Settings().maxCount(16)));
     public static final Item OIL_BARREL = registerItem("oil_barrel", new Item(new Item.Settings().maxCount(1)));
     

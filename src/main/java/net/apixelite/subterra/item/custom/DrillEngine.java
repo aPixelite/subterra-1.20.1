@@ -29,8 +29,8 @@ public class DrillEngine extends Item {
         if (!stack.isOf(ModItems.DRILL_ENGINE)) {
             tooltip.add(Text.literal("§8Drill Part"));
             tooltip.add(Text.literal(""));
-            tooltip.add(Text.literal("§8Part Type: §bDrill Engine"));
-            tooltip.add(Text.literal("§8Gives: §c" + (getMiningSpeed(this.level)) + " Mining Speed"));
+            tooltip.add(Text.literal("§8Part Type: §6Drill Engine"));
+            tooltip.add(Text.literal("§8Gives: §6" + (getMiningSpeed(this.level)) + " Mining Speed"));
         }
 
         super.appendTooltip(stack, context, tooltip, Type);

@@ -57,17 +57,21 @@
 
 
     "item.subterra.drill_engine": "Drill Engine",
-    "item.subterra.drill_engine_tier_1": "Drill Engine Tier I",
-    "item.subterra.drill_engine_tier_2": "Drill Engine Tier II",
-    "item.subterra.drill_engine_tier_3": "Drill Engine Tier III",
-    "item.subterra.drill_engine_tier_4": "Drill Engine Tier IV",
-    "item.subterra.drill_engine_tier_5": "Drill Engine Tier V",
+    "item.subterra.drill_engine_tier_1": "Drill Engine Tier 1",
+    "item.subterra.drill_engine_tier_2": "Drill Engine Tier 2",
+    "item.subterra.drill_engine_tier_3": "Drill Engine Tier 3",
+    "item.subterra.drill_engine_tier_4": "Drill Engine Tier 4",
+    "item.subterra.drill_engine_tier_5": "Drill Engine Tier 5",
 
     "item.subterra.fuel_tank": "Fuel Tank",
-    "item.subterra.fuel_tank_tier_1": "Fuel Tank Tier I",
-    "item.subterra.fuel_tank_tier_2": "Fuel Tank Tier II",
-    "item.subterra.fuel_tank_tier_3": "Fuel Tank Tier III",
-    "item.subterra.fuel_tank_tier_4": "Fuel Tank Tier IV",
+    "item.subterra.fuel_tank_tier_1": "Fuel Tank Tier 1",
+    "item.subterra.fuel_tank_tier_2": "Fuel Tank Tier 2",
+    "item.subterra.fuel_tank_tier_3": "Fuel Tank Tier 3",
+    "item.subterra.fuel_tank_tier_4": "Fuel Tank Tier 4",
+
+    "item.subterra.multi_mine_tier_1": "Multi Mine Tier 1",
+    "item.subterra.multi_mine_tier_2": "Multi Mine Tier 2",
+    "item.subterra.multi_mine_tier_3": "Multi Mine Tier 3",
 
     "item.subterra.empty_barrel": "Empty Barrel",
     "item.subterra.oil_barrel": "Oil Barrel",

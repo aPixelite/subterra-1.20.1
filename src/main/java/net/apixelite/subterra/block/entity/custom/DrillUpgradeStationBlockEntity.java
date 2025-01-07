@@ -49,7 +49,7 @@ public class DrillUpgradeStationBlockEntity extends BlockEntity implements Exten
     private boolean drillRemoved = true;
     private boolean engineRemoved = true;
     private boolean tankRemoved = true;
-   // private boolean upgradeRemoved = true;
+    private boolean upgradeRemoved = true;
 
 
 
@@ -143,6 +143,7 @@ public class DrillUpgradeStationBlockEntity extends BlockEntity implements Exten
         ItemStack drill = getStack(DRILL_SLOT);
         ItemStack engine = getStack(ENGINE_SLOT);
         ItemStack tank = getStack(TANK_SLOT);
+        ItemStack upgrade = getStack(UPGRADE_SLOT);
         ItemStack fuel = getStack(FUEL_SLOT);
         ItemStack barrel = getStack(BARREL_SLOT);
 
@@ -173,13 +174,27 @@ public class DrillUpgradeStationBlockEntity extends BlockEntity implements Exten
                 // Adds the fuel tank if there is one
                 if (tank.isIn(ModTags.Items.FUEL_TANK)) {
                     setModuleOnDrill("tank", TANK_SLOT);
-                    Subterra.LOGGER.info("{}", drill.get(ModDataComponentTypes.FUEL).getFuel());
                     markDirty(world, pos, state);
                 }
             } 
             // Removes the fuel tank if there is one
             else if (hasDrillGotModule("tank", drill) && !tank.isIn(ModTags.Items.FUEL_TANK) && !tankRemoved) {
                 removeModuleOffDrill("tank");
+                markDirty(world, pos, state);
+            }
+
+            // UPGRADE MODULE
+            // Checks if the item has an upgrade module
+            if (!hasDrillGotModule("upgrade", drill)) {
+                // Adds the upgrade if there is one
+                if (upgrade.isIn(ModTags.Items.UPGRADE)) {
+                    setModuleOnDrill("upgrade", UPGRADE_SLOT);
+                    markDirty(world, pos, state);
+                }
+            }
+            // Removes the upgrade if there is one
+            else if (hasDrillGotModule("upgrade", drill) && !upgrade.isIn(ModTags.Items.UPGRADE) && !upgradeRemoved) {
+                removeModuleOffDrill("upgrade");
                 markDirty(world, pos, state);
             }
 
@@ -197,8 +212,8 @@ public class DrillUpgradeStationBlockEntity extends BlockEntity implements Exten
         }
 
         /* Checks if the item is a Drill
-         * Check if the item has an engine or fuel tank
-         * Adds the engine or fuel tank to the slot
+         * Check if the item has any modules
+         * Adds the module to the slot
         */
         if (drill.isIn(ModTags.Items.DRILL)) {
             moduleRemoved("drill", false);
@@ -210,14 +225,20 @@ public class DrillUpgradeStationBlockEntity extends BlockEntity implements Exten
                 putModuleInSlot("tank");
                 markDirty(world, pos, state);
             }
+            if (hasDrillGotModule("upgrade", drill)) {
+                putModuleInSlot("upgrade");
+                markDirty(world, pos, state);
+            }// else {
+                //Subterra.LOGGER.info("Doesn't have an upgrade module");
+           // }
             markDirty(world, pos, state);
         }
 
         // Makes all slots empty if drill is removed
         if (drill.isEmpty() && !drillRemoved) {
-            TagKey[] tagList = {ModTags.Items.FUEL_TANK, ModTags.Items.DRILL_ENGINE};
+            TagKey[] tagList = {ModTags.Items.FUEL_TANK, ModTags.Items.DRILL_ENGINE, ModTags.Items.UPGRADE};
 
-            for (int i = 1; i <= 2; i++) {
+            for (int i = 1; i <= 3; i++) {
                 if (this.getStack(i).isIn(tagList[i - 1])) {
                     this.removeStack(i, 1);
                 }
@@ -242,17 +263,17 @@ public class DrillUpgradeStationBlockEntity extends BlockEntity implements Exten
 
         if (!(fuel + fuelAddition >= maxFuel)) {
             fuel += fuelAddition;
-            DrillItem.editDrillDataComponents(drill, true, fuel, "change_fuel");
+            DrillItem.editDrillDataComponents(drill, fuel,"change_fuel");
         } else {
             fuel = maxFuel;
         }
-        DrillItem.editDrillDataComponents(drill, true, fuel, "change_fuel");
+        DrillItem.editDrillDataComponents(drill, fuel, "change_fuel");
     }
 
     // Sets the module on the drill
     private void setModuleOnDrill(String module, int slot) {
         String name = getStack(slot).getName().getString();
-        int level = DrillItem.getModule(name);
+        int level = DrillItem.getModule(getStack(slot), "");
         DrillItem.editDrillDataComponents(getStack(DRILL_SLOT), true, level, module);
         DrillItem.addModuleToDrill(module, name);
         moduleRemoved(name, false);
@@ -270,16 +291,17 @@ public class DrillUpgradeStationBlockEntity extends BlockEntity implements Exten
     private void moduleRemoved(String name, boolean value) {
         if (Objects.equals(name, "drill")) {
             drillRemoved = value;
-        }
-        else if (Objects.equals(name, "engine")) {
+        } else if (Objects.equals(name, "engine")) {
             engineRemoved = value;
         } else if (Objects.equals(name, "tank")) {
             tankRemoved = value;
+        } else if (Objects.equals(name, "upgrade")) {
+            upgradeRemoved = value;
         } else if (Objects.equals(name, "all")) {
             drillRemoved = value;
             engineRemoved = value;
             tankRemoved = value;
-            // upgradeRemoved = value;
+            upgradeRemoved = value;
         }
     }
 
@@ -295,7 +317,7 @@ public class DrillUpgradeStationBlockEntity extends BlockEntity implements Exten
         // Puts engine in the slot
         if (Objects.equals(module, "engine")) {
             moduleRemoved("engine", false);
-            int tier = DrillItem.getModule("has_engine");
+            int tier = DrillItem.getModule(getStack(ENGINE_SLOT), "engine");
             switch (tier) {
                 case 1 -> this.setStack(ENGINE_SLOT, new ItemStack(ModItems.DRILL_ENGINE_TIER_I));
                 case 2 -> this.setStack(ENGINE_SLOT, new ItemStack(ModItems.DRILL_ENGINE_TIER_II));
@@ -305,16 +327,27 @@ public class DrillUpgradeStationBlockEntity extends BlockEntity implements Exten
                 default -> Subterra.LOGGER.info("Failed to change Engine ");
             }
         } 
-        // puts the fuel tank in the slot
+        // Puts the fuel tank in the slot
         else if (Objects.equals(module, "tank")) {
             moduleRemoved("tank", false);
-            int tier = DrillItem.getModule("has_tank");
+            int tier = DrillItem.getModule(getStack(TANK_SLOT), "tank");
             switch (tier) {
                 case 1 -> this.setStack(TANK_SLOT, new ItemStack(ModItems.FUEL_TANK_TIER_I));
                 case 2 -> this.setStack(TANK_SLOT, new ItemStack(ModItems.FUEL_TANK_TIER_II));
                 case 3 -> this.setStack(TANK_SLOT, new ItemStack(ModItems.FUEL_TANK_TIER_III));
                 case 4 -> this.setStack(TANK_SLOT, new ItemStack(ModItems.FUEL_TANK_TIER_IV));
                 default -> Subterra.LOGGER.info("Failed to change Tank ");
+            }
+        }
+        // Puts the upgrade module in the slot
+        else if (Objects.equals(module, "upgrade")) {
+            moduleRemoved("upgrade", false);
+            int tier = DrillItem.getModule(getStack(UPGRADE_SLOT), "upgrade");
+            switch (tier) {
+                case 1 -> this.setStack(UPGRADE_SLOT, new ItemStack(ModItems.MULTI_MINE_TIER_I));
+                case 2 -> this.setStack(UPGRADE_SLOT, new ItemStack(ModItems.MULTI_MINE_TIER_II));
+                case 3 -> this.setStack(UPGRADE_SLOT, new ItemStack(ModItems.MULTI_MINE_TIER_III));
+                default -> Subterra.LOGGER.info("Failed to set Upgrade ");
             }
         }
     }

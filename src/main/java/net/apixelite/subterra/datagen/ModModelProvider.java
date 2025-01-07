@@ -47,6 +47,12 @@ public class ModModelProvider extends FabricModelProvider{
         itemModelGenerator.register(ModItems.FUEL_TANK_TIER_III, Models.HANDHELD);
         itemModelGenerator.register(ModItems.FUEL_TANK_TIER_IV, Models.HANDHELD);
 
+        // UPGRADE MODULES
+        // MULTI MINE
+        itemModelGenerator.register(ModItems.MULTI_MINE_TIER_I, Models.HANDHELD);
+        itemModelGenerator.register(ModItems.MULTI_MINE_TIER_II, Models.HANDHELD);
+        itemModelGenerator.register(ModItems.MULTI_MINE_TIER_III, Models.HANDHELD);
+
         itemModelGenerator.register(ModItems.EMPTY_BARREL, Models.GENERATED);
         itemModelGenerator.register(ModItems.OIL_BARREL, Models.GENERATED);
 

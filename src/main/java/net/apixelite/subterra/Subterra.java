@@ -7,9 +7,11 @@ import net.apixelite.subterra.enchantment.ModEnchantmentEffects;
 import net.apixelite.subterra.item.ModItemGroups;
 import net.apixelite.subterra.item.ModItems;
 import net.apixelite.subterra.screen.ModScreenHandlers;
+import net.apixelite.subterra.util.HammerUsageEvent;
 import net.apixelite.subterra.world.gen.ModWorldGeneration;
 import net.fabricmc.api.ModInitializer;
 
+import net.fabricmc.fabric.api.event.player.PlayerBlockBreakEvents;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -33,6 +35,8 @@ public class Subterra implements ModInitializer {
 		ModDataComponentTypes.registerDataComponentTypes();
 
 		ModEnchantmentEffects.registerEnchantmentEffects();
+
+		PlayerBlockBreakEvents.BEFORE.register(new HammerUsageEvent());
 	
 	}
 }
