@@ -10,6 +10,7 @@ import net.minecraft.text.MutableText;
 import net.minecraft.text.Text;
 
 import java.util.List;
+import java.util.Objects;
 
 public class DrillItemTooltip {
 
@@ -24,6 +25,9 @@ public class DrillItemTooltip {
     private static int maxFuel;
     private static MutableText name;
 
+    private static String engineEmoji = "§8[⛏]";
+    private static String tankEmoji = "§8[⏳]";
+    private static String upgradeEmoji = "§8[⬆]";
 
 
     public static void setTooltip(DrillItem item, ItemStack stack, List<Text> tooltip) {
@@ -32,8 +36,10 @@ public class DrillItemTooltip {
         // Item name
         tooltip.add(name);
         tooltip.add(Text.literal("§8Mining level 8"));
-        tooltip.add(Text.literal(""));
 
+        getEmojis();
+        tooltip.add(Text.literal(tankEmoji + " " + engineEmoji + " " + upgradeEmoji));
+        tooltip.add(Text.literal(""));
 
 
         // Item Enchants
@@ -47,6 +53,7 @@ public class DrillItemTooltip {
 
         // Drill parts
         // Fuel tank
+
         if (hasTank) {
             tooltip.add(Text.literal("§aFuel Tank Tier " + tankTier));
             tooltip.add(Text.literal("§7Increase your fuel capacity"));
@@ -114,6 +121,23 @@ public class DrillItemTooltip {
         fuel = DrillItem.getFuel(stack);
         maxFuel = DrillItem.getMaxFuel(stack);
         name = Text.empty().append(item.getName()).formatted(item.rarity.formatting);
+
+    }
+
+    private static void getEmojis() {
+        engineEmoji = "§8[⛏]";
+        tankEmoji = "§8[⏳]";
+        upgradeEmoji = "§8[⬆]";
+
+        if (hasEngine) {
+            engineEmoji = "§6[⛏]";
+        }
+        if (hasTank) {
+            tankEmoji = "§2[⏳]";
+        }
+        if (hasUpgrade) {
+            upgradeEmoji = "§d[⬆]";
+        }
 
     }
 
