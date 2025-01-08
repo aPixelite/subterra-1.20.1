@@ -14,6 +14,7 @@ import net.minecraft.item.ItemConvertible;
 import net.minecraft.item.Items;
 import net.minecraft.recipe.book.RecipeCategory;
 import net.minecraft.registry.RegistryWrapper;
+import net.minecraft.registry.tag.ItemTags;
 import net.minecraft.util.Identifier;
 
 public class ModRecipeProvider extends FabricRecipeProvider{
@@ -27,6 +28,16 @@ public class ModRecipeProvider extends FabricRecipeProvider{
 
     @Override
     public void generate(RecipeExporter exporter) {
+
+        // Barrel
+        ShapedRecipeJsonBuilder.create(RecipeCategory.TOOLS, ModItems.EMPTY_BARREL)
+                .pattern("P P")
+                .pattern("III")
+                .pattern("PPP")
+                .input('P', ItemTags.PLANKS)
+                .input('I', Items.IRON_INGOT)
+                .criterion(hasItem(Items.IRON_INGOT), conditionsFromItem(Items.IRON_INGOT))
+                .offerTo(exporter, Identifier.of("empty_barrel"));
 
         // Engines
         ShapedRecipeJsonBuilder.create(RecipeCategory.TOOLS, ModItems.DRILL_ENGINE)
