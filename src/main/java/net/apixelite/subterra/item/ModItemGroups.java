@@ -2,6 +2,7 @@ package net.apixelite.subterra.item;
 
 import net.apixelite.subterra.Subterra;
 import net.apixelite.subterra.block.ModBlocks;
+import net.apixelite.subterra.fluid.ModFluids;
 import net.fabricmc.fabric.api.itemgroup.v1.FabricItemGroup;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
@@ -75,8 +76,9 @@ public class ModItemGroups {
                 entries.add(ModItems.INFERNITE_BOOTS);
                 
                 // DRILL ITEMS
-                entries.add(ModItems.EMPTY_BARREL);
-                entries.add(ModItems.OIL_BARREL);
+                entries.add(ModFluids.EMPTY_BARREL);
+                entries.add(ModFluids.OIL_BARREL);
+                entries.add(ModItems.FUEL_BARREL);
                 entries.add(ModBlocks.DRILL_UPGRADE_STATION);
 
                 entries.add(ModItems.DIAMOND_DRILL);

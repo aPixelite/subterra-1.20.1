@@ -1,6 +1,7 @@
 package net.apixelite.subterra.datagen;
 
 import net.apixelite.subterra.block.ModBlocks;
+import net.apixelite.subterra.fluid.ModFluids;
 import net.apixelite.subterra.item.ModItems;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricModelProvider;
@@ -53,8 +54,9 @@ public class ModModelProvider extends FabricModelProvider{
         itemModelGenerator.register(ModItems.MULTI_MINE_TIER_II, Models.HANDHELD);
         itemModelGenerator.register(ModItems.MULTI_MINE_TIER_III, Models.HANDHELD);
 
-        itemModelGenerator.register(ModItems.EMPTY_BARREL, Models.GENERATED);
-        itemModelGenerator.register(ModItems.OIL_BARREL, Models.GENERATED);
+        itemModelGenerator.register(ModFluids.EMPTY_BARREL, Models.GENERATED);
+        itemModelGenerator.register(ModFluids.OIL_BARREL, Models.GENERATED);
+        itemModelGenerator.register(ModItems.FUEL_BARREL, Models.GENERATED);
 
 
         // ENDERITE

@@ -167,9 +167,9 @@ public class ModItems {
     public static final Item MULTI_MINE_TIER_II = registerItem("multi_mine_tier_2", new MultiMine(2, CustomRarity.RARE, new Item.Settings().maxCount(1)));
     public static final Item MULTI_MINE_TIER_III = registerItem("multi_mine_tier_3", new MultiMine(3, CustomRarity.EPIC, new Item.Settings().maxCount(1)));
 
-    public static final Item EMPTY_BARREL = registerItem("empty_barrel", new Item(new Item.Settings().maxCount(16)));
-    public static final Item OIL_BARREL = registerItem("oil_barrel", new Item(new Item.Settings().maxCount(1)));
-    
+    //FUEL
+    public static final Item FUEL_BARREL = registerItem("fuel_barrel", new Item(new Item.Settings().maxCount(1)));
+
     public static Item registerItem(String name, Item item) {
         return Registry.register(Registries.ITEM, Identifier.of(Subterra.MOD_ID, name), item);
     }

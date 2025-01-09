@@ -1,6 +1,6 @@
-// 1.21	2024-12-25T14:36:01.208459	subterra/Tags for minecraft:item
-30a458bcad088dc84bfa71d77c81c284087af9f8 data\subterra\tags\item\upgrade.json
-8f724101a8cdc4813f821e47f03694f95856ee7c data\subterra\tags\item\fuel_tank.json
-12081b4e6cd8940116452bb6a1756c92c39a6a36 data\subterra\tags\item\drill_engine.json
-40c95961d92dc336c99f56957afcb6e664517e33 data\subterra\tags\item\drill.json
+// 1.21	2025-01-09T17:59:58.6254189	subterra/Tags for minecraft:item
 d130482630b7e7cee68186e5c2f2cdf12efdf385 data\subterra\tags\item\multi_mine.json
+30a458bcad088dc84bfa71d77c81c284087af9f8 data\subterra\tags\item\upgrade.json
+40c95961d92dc336c99f56957afcb6e664517e33 data\subterra\tags\item\drill.json
+12081b4e6cd8940116452bb6a1756c92c39a6a36 data\subterra\tags\item\drill_engine.json
+8f724101a8cdc4813f821e47f03694f95856ee7c data\subterra\tags\item\fuel_tank.json

@@ -2,6 +2,7 @@ package net.apixelite.subterra.util;
 
 import net.apixelite.subterra.Subterra;
 import net.minecraft.block.Block;
+import net.minecraft.fluid.Fluid;
 import net.minecraft.item.Item;
 import net.minecraft.registry.RegistryKeys;
 import net.minecraft.registry.tag.TagKey;
@@ -33,6 +34,14 @@ public class ModTags {
 
         private static TagKey<Item> createTag(String name) {
             return TagKey.of(RegistryKeys.ITEM, Identifier.of(Subterra.MOD_ID, name));
+        }
+    }
+
+    public static class Fluids {
+        public static final TagKey<Fluid> OIL_FLUID = createTag("oil_fluid");
+
+        private static TagKey<Fluid> createTag(String name) {
+            return TagKey.of(RegistryKeys.FLUID, Identifier.of(Subterra.MOD_ID, name));
         }
     }
 

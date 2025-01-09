@@ -13,6 +13,7 @@ import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.HashSet;
+import java.util.Objects;
 import java.util.Set;
 
 public class HammerUsageEvent implements PlayerBlockBreakEvents.Before {
@@ -23,8 +24,8 @@ public class HammerUsageEvent implements PlayerBlockBreakEvents.Before {
     public boolean beforeBlockBreak(World world, PlayerEntity player, BlockPos pos, BlockState state, @Nullable BlockEntity blockEntity) {
         ItemStack mainHandItem = player.getMainHandStack();
 
-        if (mainHandItem.get(ModDataComponentTypes.UPGRADE).getHasUpgrade()) {
-            if (mainHandItem.getItem() instanceof DrillItem drill && player instanceof ServerPlayerEntity serverPlayer) {
+        if (mainHandItem.getItem() instanceof DrillItem drill && player instanceof ServerPlayerEntity serverPlayer) {
+            if (Objects.requireNonNull(mainHandItem.get(ModDataComponentTypes.UPGRADE)).getHasUpgrade()) {
                 if (HARVESTED_BLOCKS.contains(pos)) {
                     return true;
                 }
@@ -39,6 +40,8 @@ public class HammerUsageEvent implements PlayerBlockBreakEvents.Before {
                     HARVESTED_BLOCKS.remove(position);
                 }
             }
+        } else {
+            return true;
         }
         return true;
     }

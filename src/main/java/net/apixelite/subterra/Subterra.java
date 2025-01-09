@@ -4,6 +4,7 @@ import net.apixelite.subterra.block.ModBlocks;
 import net.apixelite.subterra.block.entity.ModBlockEntities;
 import net.apixelite.subterra.components.ModDataComponentTypes;
 import net.apixelite.subterra.enchantment.ModEnchantmentEffects;
+import net.apixelite.subterra.fluid.ModFluids;
 import net.apixelite.subterra.item.ModItemGroups;
 import net.apixelite.subterra.item.ModItems;
 import net.apixelite.subterra.screen.ModScreenHandlers;
@@ -35,6 +36,8 @@ public class Subterra implements ModInitializer {
 		ModDataComponentTypes.registerDataComponentTypes();
 
 		ModEnchantmentEffects.registerEnchantmentEffects();
+
+		ModFluids.registerFluids();
 
 		PlayerBlockBreakEvents.BEFORE.register(new HammerUsageEvent());
 	

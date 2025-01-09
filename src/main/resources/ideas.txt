@@ -1,0 +1,30 @@
+Upgrade modules/ enchants:
+
+Mine more blocks
+> 3 Tiers
+    Tier 1:
+        3x3 mining
+    Tier 2:
+        5x5 mining
+    Tier 3:
+        7x7 mining
+name: (miner)
+
+
+less fuel usage
+> 3 Tiers
+    Tier 1:
+        15% less fuel usage
+    Tier 3:
+        30% less fuel usage
+    Tier 1:
+        45% less fuel usage
+name: (fuelless)
+
+
+instamine obsidian
+> 1 Tier
+    Tier 1:
+        Insta mine obsidian
+name: (sharppick)
+downside: cant mine anything else

@@ -49,9 +49,6 @@ public class DrillItem extends PickaxeItem {
     private static int engineTier = 0;
     private static int tankTier = 0;
     private static int upgradeTier = 0;
-    private static boolean hasEngine = false;
-    private static boolean hasTank = false;
-    private static boolean hasUpgrade = false;
     private static int fuel = 3000;
     private static int maxFuel = 3000;
     private static int miningSpeed = 0;
@@ -110,24 +107,23 @@ public class DrillItem extends PickaxeItem {
     public static void editDrillDataComponents(ItemStack item, boolean value, int level,  @NotNull String module) {
         switch (module) {
             case "engine":
-                hasEngine = value;
                 engineTier = level;
                 miningSpeed = getMiningSpeedAddition(level);
-                engineData = new EngineData(hasEngine, engineTier);
+                engineData = new EngineData(value, engineTier);
                 item.set(ModDataComponentTypes.ENGINE, engineData);
                 break;
             case "tank":
-                hasTank = value;
                 tankTier = level;
                 maxFuel = getTankFuel(level);
                 fuel = maxFuel;
-                tankData = new TankData(hasTank, tankTier);
+                tankData = new TankData(value, tankTier);
+                fuelData = new FuelData(fuel, maxFuel);
                 item.set(ModDataComponentTypes.TANK, tankData);
+                item.set(ModDataComponentTypes.FUEL, fuelData);
                 break;
             case "upgrade":
-                hasUpgrade = value;
                 upgradeTier = level;
-                upgradeData = new UpgradeData(hasUpgrade, upgradeTier);
+                upgradeData = new UpgradeData(value, upgradeTier);
                 item.set(ModDataComponentTypes.UPGRADE, upgradeData);
                 break;
             default:

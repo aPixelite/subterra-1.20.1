@@ -4,6 +4,7 @@ import net.apixelite.subterra.Subterra;
 import net.apixelite.subterra.block.entity.ImplementedInventory;
 import net.apixelite.subterra.block.entity.ModBlockEntities;
 import net.apixelite.subterra.components.ModDataComponentTypes;
+import net.apixelite.subterra.fluid.ModFluids;
 import net.apixelite.subterra.item.ModItems;
 import net.apixelite.subterra.item.custom.DrillItem;
 import net.apixelite.subterra.screen.custom.DrillUpgradeScreenHandler;
@@ -50,7 +51,6 @@ public class DrillUpgradeStationBlockEntity extends BlockEntity implements Exten
     private boolean engineRemoved = true;
     private boolean tankRemoved = true;
     private boolean upgradeRemoved = true;
-
 
 
     // Saves the data of the block entity
@@ -199,7 +199,7 @@ public class DrillUpgradeStationBlockEntity extends BlockEntity implements Exten
             }
 
             //FUEL
-            if (fuel.isOf(ModItems.OIL_BARREL) && barrel.getCount() < ModItems.EMPTY_BARREL.getMaxCount()) {
+            if (fuel.isOf(ModItems.FUEL_BARREL) && barrel.getCount() < ModFluids.EMPTY_BARREL.getMaxCount()) {
                 if (drill.get(ModDataComponentTypes.FUEL).getFuel() < drill.get(ModDataComponentTypes.FUEL).getMaxFuel()) {
                     addFuelToDrill(drill);
                     putBarrelInSlot();
@@ -211,9 +211,10 @@ public class DrillUpgradeStationBlockEntity extends BlockEntity implements Exten
             markDirty(world, pos, state);
         }
 
-        /* Checks if the item is a Drill
-         * Check if the item has any modules
-         * Adds the module to the slot
+        /*
+        Checks if the item is a Drill
+        Check if the item has any modules
+        Adds the module to the slot
         */
         if (drill.isIn(ModTags.Items.DRILL)) {
             moduleRemoved("drill", false);
@@ -228,9 +229,7 @@ public class DrillUpgradeStationBlockEntity extends BlockEntity implements Exten
             if (hasDrillGotModule("upgrade", drill)) {
                 putModuleInSlot("upgrade");
                 markDirty(world, pos, state);
-            }// else {
-                //Subterra.LOGGER.info("Doesn't have an upgrade module");
-           // }
+            }
             markDirty(world, pos, state);
         }
 
@@ -251,7 +250,7 @@ public class DrillUpgradeStationBlockEntity extends BlockEntity implements Exten
 
     // Puts an empty barrel in the slot
     private void putBarrelInSlot() {
-        this.setStack(BARREL_SLOT, new ItemStack(ModItems.EMPTY_BARREL));
+        this.setStack(BARREL_SLOT, new ItemStack(ModFluids.EMPTY_BARREL));
         this.removeStack(FUEL_SLOT, 1);
     }
 
@@ -289,19 +288,17 @@ public class DrillUpgradeStationBlockEntity extends BlockEntity implements Exten
     }
 
     private void moduleRemoved(String name, boolean value) {
-        if (Objects.equals(name, "drill")) {
-            drillRemoved = value;
-        } else if (Objects.equals(name, "engine")) {
-            engineRemoved = value;
-        } else if (Objects.equals(name, "tank")) {
-            tankRemoved = value;
-        } else if (Objects.equals(name, "upgrade")) {
-            upgradeRemoved = value;
-        } else if (Objects.equals(name, "all")) {
-            drillRemoved = value;
-            engineRemoved = value;
-            tankRemoved = value;
-            upgradeRemoved = value;
+        switch (name) {
+            case "drill" -> drillRemoved = value;
+            case "tank" -> tankRemoved = value;
+            case "engine" -> engineRemoved = value;
+            case "upgrade" -> upgradeRemoved = value;
+            case "all" -> {
+                drillRemoved = value;
+                tankRemoved = value;
+                engineRemoved = value;
+                upgradeRemoved = value;
+            }
         }
     }
 
@@ -314,40 +311,42 @@ public class DrillUpgradeStationBlockEntity extends BlockEntity implements Exten
     // Puts the module in the slot
     private void putModuleInSlot(String module) {
 
-        // Puts engine in the slot
-        if (Objects.equals(module, "engine")) {
-            moduleRemoved("engine", false);
-            int tier = DrillItem.getModule(getStack(ENGINE_SLOT), "engine");
-            switch (tier) {
-                case 1 -> this.setStack(ENGINE_SLOT, new ItemStack(ModItems.DRILL_ENGINE_TIER_I));
-                case 2 -> this.setStack(ENGINE_SLOT, new ItemStack(ModItems.DRILL_ENGINE_TIER_II));
-                case 3 -> this.setStack(ENGINE_SLOT, new ItemStack(ModItems.DRILL_ENGINE_TIER_III));
-                case 4 -> this.setStack(ENGINE_SLOT, new ItemStack(ModItems.DRILL_ENGINE_TIER_IV));
-                case 5 -> this.setStack(ENGINE_SLOT, new ItemStack(ModItems.DRILL_ENGINE_TIER_V));
-                default -> Subterra.LOGGER.info("Failed to change Engine ");
+        switch (module) {
+            // Puts engine in the slot
+            case "engine" -> {
+                moduleRemoved("engine", false);
+                int tier = DrillItem.getModule(getStack(ENGINE_SLOT), "engine");
+                switch (tier) {
+                    case 1 -> this.setStack(ENGINE_SLOT, new ItemStack(ModItems.DRILL_ENGINE_TIER_I));
+                    case 2 -> this.setStack(ENGINE_SLOT, new ItemStack(ModItems.DRILL_ENGINE_TIER_II));
+                    case 3 -> this.setStack(ENGINE_SLOT, new ItemStack(ModItems.DRILL_ENGINE_TIER_III));
+                    case 4 -> this.setStack(ENGINE_SLOT, new ItemStack(ModItems.DRILL_ENGINE_TIER_IV));
+                    case 5 -> this.setStack(ENGINE_SLOT, new ItemStack(ModItems.DRILL_ENGINE_TIER_V));
+                    default -> Subterra.LOGGER.info("Failed to change Engine");
+                }
             }
-        } 
-        // Puts the fuel tank in the slot
-        else if (Objects.equals(module, "tank")) {
-            moduleRemoved("tank", false);
-            int tier = DrillItem.getModule(getStack(TANK_SLOT), "tank");
-            switch (tier) {
-                case 1 -> this.setStack(TANK_SLOT, new ItemStack(ModItems.FUEL_TANK_TIER_I));
-                case 2 -> this.setStack(TANK_SLOT, new ItemStack(ModItems.FUEL_TANK_TIER_II));
-                case 3 -> this.setStack(TANK_SLOT, new ItemStack(ModItems.FUEL_TANK_TIER_III));
-                case 4 -> this.setStack(TANK_SLOT, new ItemStack(ModItems.FUEL_TANK_TIER_IV));
-                default -> Subterra.LOGGER.info("Failed to change Tank ");
+            // Puts the fuel tank in the slot
+            case "tank" -> {
+                moduleRemoved("tank", false);
+                int tier = DrillItem.getModule(getStack(TANK_SLOT), "tank");
+                switch (tier) {
+                    case 1 -> this.setStack(TANK_SLOT, new ItemStack(ModItems.FUEL_TANK_TIER_I));
+                    case 2 -> this.setStack(TANK_SLOT, new ItemStack(ModItems.FUEL_TANK_TIER_II));
+                    case 3 -> this.setStack(TANK_SLOT, new ItemStack(ModItems.FUEL_TANK_TIER_III));
+                    case 4 -> this.setStack(TANK_SLOT, new ItemStack(ModItems.FUEL_TANK_TIER_IV));
+                    default -> Subterra.LOGGER.info("Failed to change Tank");
+                }
             }
-        }
-        // Puts the upgrade module in the slot
-        else if (Objects.equals(module, "upgrade")) {
-            moduleRemoved("upgrade", false);
-            int tier = DrillItem.getModule(getStack(UPGRADE_SLOT), "upgrade");
-            switch (tier) {
-                case 1 -> this.setStack(UPGRADE_SLOT, new ItemStack(ModItems.MULTI_MINE_TIER_I));
-                case 2 -> this.setStack(UPGRADE_SLOT, new ItemStack(ModItems.MULTI_MINE_TIER_II));
-                case 3 -> this.setStack(UPGRADE_SLOT, new ItemStack(ModItems.MULTI_MINE_TIER_III));
-                default -> Subterra.LOGGER.info("Failed to set Upgrade ");
+            // Puts the upgrade module in the slot
+            case "upgrade" -> {
+                moduleRemoved("upgrade", false);
+                int tier = DrillItem.getModule(getStack(UPGRADE_SLOT), "upgrade");
+                switch (tier) {
+                    case 1 -> this.setStack(UPGRADE_SLOT, new ItemStack(ModItems.MULTI_MINE_TIER_I));
+                    case 2 -> this.setStack(UPGRADE_SLOT, new ItemStack(ModItems.MULTI_MINE_TIER_II));
+                    case 3 -> this.setStack(UPGRADE_SLOT, new ItemStack(ModItems.MULTI_MINE_TIER_III));
+                    default -> Subterra.LOGGER.info("Failed to set Upgrade");
+                }
             }
         }
     }

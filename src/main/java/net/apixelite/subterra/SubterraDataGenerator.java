@@ -21,6 +21,7 @@ public class SubterraDataGenerator implements DataGeneratorEntrypoint {
 		pack.addProvider(ModRecipeProvider::new);
 		pack.addProvider(ModWorldGenerator::new);
 		pack.addProvider(ModRegistryProvider::new);
+		pack.addProvider(ModFluidTagProvider::new);
 	}
 
 	@Override

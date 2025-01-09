@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.concurrent.CompletableFuture;
 
 import net.apixelite.subterra.block.ModBlocks;
+import net.apixelite.subterra.fluid.ModFluids;
 import net.apixelite.subterra.item.ModItems;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricRecipeProvider;
@@ -20,6 +21,7 @@ public class ModRecipeProvider extends FabricRecipeProvider{
     private static final List<ItemConvertible> ENDERITE_SMELTABLES = List.of(ModItems.RAW_ENDERITE, ModBlocks.ENDERITE_ORE);
     private static final List<ItemConvertible> ARAGONITE_SMELTABLES = List.of(ModItems.RAW_ARAGONITE, ModBlocks.ARAGONITE_ORE);
     private static final List<ItemConvertible> INFERNITE_SMELTABLES = List.of(ModItems.RAW_INFERNITE, ModBlocks.INFERNITE_ORE);
+    private static final List<ItemConvertible> FUEL_SMELTABLES = List.of(ModFluids.OIL_BARREL);
 
     public ModRecipeProvider(FabricDataOutput output, CompletableFuture<RegistryWrapper.WrapperLookup> registriesFuture) {
         super(output, registriesFuture);
@@ -251,7 +253,8 @@ public class ModRecipeProvider extends FabricRecipeProvider{
         OreSmeltingRecipe(ENDERITE_SMELTABLES, ModItems.ENDERITE_INGOT, 2.0f, 200, "enderite", exporter);
         OreSmeltingRecipe(ARAGONITE_SMELTABLES, ModItems.ARAGONITE_INGOT, 4.0f, 200, "aragonite", exporter);
         OreSmeltingRecipe(INFERNITE_SMELTABLES, ModItems.INFERNITE_INGOT, 6.0f, 200, "infernite", exporter);
-        
+        offerSmelting(exporter, FUEL_SMELTABLES, RecipeCategory.MISC, ModItems.FUEL_BARREL, 8.5f, 400, "fuel");
+
         // Helmet
         ShapedToolRecipeBuilder("III", "I#I", "   ", ModItems.ENDERITE_INGOT, Items.NETHERITE_HELMET, "enderite_helmet", ModItems.ENDERITE_HELMET, exporter);
         ShapedToolRecipeBuilder("III", "I#I", "   ", ModItems.ARAGONITE_INGOT, ModItems.ENDERITE_HELMET, "aragonite_helmet", ModItems.ARAGONITE_HELMET, exporter);
