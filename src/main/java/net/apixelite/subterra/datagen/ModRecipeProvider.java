@@ -31,8 +31,22 @@ public class ModRecipeProvider extends FabricRecipeProvider{
     @Override
     public void generate(RecipeExporter exporter) {
 
+        // Drill Upgrade Station
+        ShapedRecipeJsonBuilder.create(RecipeCategory.TOOLS, ModBlocks.DRILL_UPGRADE_STATION)
+                .pattern("III")
+                .pattern("PAP")
+                .pattern("PSP")
+                .input('P', ItemTags.PLANKS)
+                .input('I', Items.IRON_INGOT)
+                .input('A', Items.ANVIL)
+                .input('S', Items.SMITHING_TABLE)
+                .criterion(hasItem(Items.IRON_INGOT), conditionsFromItem(Items.IRON_INGOT))
+                .criterion(hasItem(Items.ANVIL), conditionsFromItem(Items.ANVIL))
+                .criterion(hasItem(Items.SMITHING_TABLE), conditionsFromItem(Items.SMITHING_TABLE))
+                .offerTo(exporter, Identifier.of("drill_upgrade_station"));
+
         // Barrel
-        ShapedRecipeJsonBuilder.create(RecipeCategory.TOOLS, ModItems.EMPTY_BARREL)
+        ShapedRecipeJsonBuilder.create(RecipeCategory.TOOLS, ModFluids.EMPTY_BARREL)
                 .pattern("P P")
                 .pattern("III")
                 .pattern("PPP")
