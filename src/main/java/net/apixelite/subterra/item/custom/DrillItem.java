@@ -21,8 +21,8 @@ import net.minecraft.item.ToolMaterial;
 import net.minecraft.item.tooltip.TooltipType;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.text.Text;
+import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
-import net.minecraft.util.TypedActionResult;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.hit.HitResult;
 import net.minecraft.util.math.BlockPos;
@@ -65,7 +65,7 @@ public class DrillItem extends PickaxeItem {
 
 
     public DrillItem(ToolMaterial material, float miningSpeed, int attackDamage, float attackSpeed, CustomRarity rarity, Settings settings) {
-        super(material, settings
+        super(material, attackDamage, attackSpeed, settings
                 .component(ModDataComponentTypes.ENGINE, engineData)
                 .component(ModDataComponentTypes.TANK, tankData)
                 .component(ModDataComponentTypes.UPGRADE, upgradeData)
@@ -134,17 +134,17 @@ public class DrillItem extends PickaxeItem {
 // ABILITY FUNCTIONS
     // the Pickaxe Ability
     @Override
-    public TypedActionResult<ItemStack> use(World world, PlayerEntity player, Hand hand) {
+    public ActionResult use(World world, PlayerEntity player, Hand hand) {
         if (stopperInt == 0) {
             stopperInt++;
             abilityActive = true;
-            player.getItemCooldownManager().set(this, 2400);
-            player.sendMessage(Text.literal("§7§lAbility Activated!"));
+            player.getItemCooldownManager().set(this.getDefaultStack(), 2400);
+            player.sendMessage(Text.literal("§7§lAbility Activated!"), false);
             timer.schedule(new TimerTask() {
                 @Override
                 public void run() {
                     abilityActive = false;
-                    player.sendMessage(Text.literal("§cAbility Deactivated!"));
+                    player.sendMessage(Text.literal("§cAbility Deactivated!"), false);
                     stopperInt--;
                 }
             }, 20000);
@@ -313,13 +313,7 @@ public class DrillItem extends PickaxeItem {
         } else {
             return miningSpeed;
         }
-    } 
-    
-    @Override
-    public boolean isEnchantable(ItemStack stack) {
-        return true;
     }
-
     public float getAttackSpeed() {
         return this.attackSpeed;
     }

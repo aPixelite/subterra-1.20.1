@@ -7,12 +7,12 @@ import net.minecraft.fluid.FlowableFluid;
 import net.minecraft.fluid.Fluid;
 import net.minecraft.fluid.FluidState;
 import net.minecraft.item.Item;
+import net.minecraft.server.world.ServerWorld;
 import net.minecraft.state.StateManager;
 import net.minecraft.state.property.Properties;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.world.BlockView;
-import net.minecraft.world.World;
 import net.minecraft.world.WorldAccess;
 import net.minecraft.world.WorldView;
 
@@ -25,11 +25,6 @@ public abstract class OilFluid extends FlowableFluid {
     @Override
     public Fluid getStill() {
         return ModFluids.STILL_OIL;
-    }
-
-    @Override
-    protected boolean isInfinite(World world) {
-        return false;
     }
 
     @Override
@@ -91,6 +86,11 @@ public abstract class OilFluid extends FlowableFluid {
         }
 
         @Override
+        protected boolean isInfinite(ServerWorld world) {
+            return false;
+        }
+
+        @Override
         protected int getMaxFlowDistance(WorldView world) {
             return 5;
         }
@@ -102,6 +102,11 @@ public abstract class OilFluid extends FlowableFluid {
     }
 
     public static class Still extends OilFluid {
+        @Override
+        protected boolean isInfinite(ServerWorld world) {
+            return false;
+        }
+
         @Override
         protected int getMaxFlowDistance(WorldView world) {
             return 4;

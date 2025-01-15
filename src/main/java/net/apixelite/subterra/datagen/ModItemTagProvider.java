@@ -6,6 +6,7 @@ import net.apixelite.subterra.item.ModItems;
 import net.apixelite.subterra.util.ModTags;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricTagProvider;
+import net.minecraft.item.Items;
 import net.minecraft.registry.RegistryWrapper.WrapperLookup;
 
 public class ModItemTagProvider extends FabricTagProvider.ItemTagProvider{
@@ -16,6 +17,18 @@ public class ModItemTagProvider extends FabricTagProvider.ItemTagProvider{
 
     @Override
     protected void configure(WrapperLookup arg) {
+        getOrCreateTagBuilder(ModTags.Items.ENDERITE_REPAIR)
+            .add(ModItems.ENDERITE_INGOT);
+
+        getOrCreateTagBuilder(ModTags.Items.ARAGONITE_REPAIR)
+            .add(ModItems.ARAGONITE_INGOT);
+
+        getOrCreateTagBuilder(ModTags.Items.INFERNITE_REPAIR)
+            .add(ModItems.INFERNITE_INGOT);
+
+        getOrCreateTagBuilder(ModTags.Items.DRILL_REPAIR)
+            .add(Items.PRISMARINE_CRYSTALS);
+
         getOrCreateTagBuilder(ModTags.Items.DRILL)
             .add(ModItems.DIAMOND_DRILL)
             .add(ModItems.NETHERITE_DRILL)

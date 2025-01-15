@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "minecraft:drill_engine_tier_1"
+        "recipe": "subterra:drill_engine_tier_1"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
@@ -26,7 +26,7 @@
   ],
   "rewards": {
     "recipes": [
-      "minecraft:drill_engine_tier_1"
+      "subterra:drill_engine_tier_1"
     ]
   }
 }

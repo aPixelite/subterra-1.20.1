@@ -2,18 +2,10 @@
   "type": "minecraft:crafting_shaped",
   "category": "equipment",
   "key": {
-    "B": {
-      "item": "minecraft:iron_block"
-    },
-    "F": {
-      "item": "minecraft:fire_charge"
-    },
-    "I": {
-      "item": "minecraft:iron_ingot"
-    },
-    "T": {
-      "item": "subterra:fuel_tank"
-    }
+    "B": "minecraft:iron_block",
+    "F": "minecraft:fire_charge",
+    "I": "minecraft:iron_ingot",
+    "T": "subterra:fuel_tank"
   },
   "pattern": [
     "III",

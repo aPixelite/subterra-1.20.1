@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "minecraft:infernite_shovel"
+        "recipe": "subterra:infernite_shovel"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
@@ -26,7 +26,7 @@
   ],
   "rewards": {
     "recipes": [
-      "minecraft:infernite_shovel"
+      "subterra:infernite_shovel"
     ]
   }
 }

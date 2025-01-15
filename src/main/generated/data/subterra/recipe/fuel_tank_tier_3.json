@@ -2,18 +2,10 @@
   "type": "minecraft:crafting_shaped",
   "category": "equipment",
   "key": {
-    "A": {
-      "item": "subterra:aragonite_ingot"
-    },
-    "N": {
-      "item": "minecraft:netherite_ingot"
-    },
-    "P": {
-      "item": "minecraft:phantom_membrane"
-    },
-    "T": {
-      "item": "subterra:fuel_tank_tier_2"
-    }
+    "A": "subterra:aragonite_ingot",
+    "N": "minecraft:netherite_ingot",
+    "P": "minecraft:phantom_membrane",
+    "T": "subterra:fuel_tank_tier_2"
   },
   "pattern": [
     "PNP",

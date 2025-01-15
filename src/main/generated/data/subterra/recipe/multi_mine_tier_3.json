@@ -2,12 +2,8 @@
   "type": "minecraft:crafting_shaped",
   "category": "equipment",
   "key": {
-    "I": {
-      "item": "subterra:infernite_ingot"
-    },
-    "M": {
-      "item": "subterra:multi_mine_tier_2"
-    }
+    "I": "subterra:infernite_ingot",
+    "M": "subterra:multi_mine_tier_2"
   },
   "pattern": [
     " I ",

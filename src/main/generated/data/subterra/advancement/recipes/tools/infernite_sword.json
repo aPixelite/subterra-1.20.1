@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "minecraft:infernite_sword"
+        "recipe": "subterra:infernite_sword"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
@@ -26,7 +26,7 @@
   ],
   "rewards": {
     "recipes": [
-      "minecraft:infernite_sword"
+      "subterra:infernite_sword"
     ]
   }
 }

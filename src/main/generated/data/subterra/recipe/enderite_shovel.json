@@ -2,12 +2,8 @@
   "type": "minecraft:crafting_shaped",
   "category": "equipment",
   "key": {
-    "#": {
-      "item": "subterra:enderite_stick"
-    },
-    "I": {
-      "item": "subterra:enderite_ingot"
-    }
+    "#": "subterra:enderite_stick",
+    "I": "subterra:enderite_ingot"
   },
   "pattern": [
     " I ",

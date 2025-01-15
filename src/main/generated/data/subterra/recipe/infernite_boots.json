@@ -2,12 +2,8 @@
   "type": "minecraft:crafting_shaped",
   "category": "equipment",
   "key": {
-    "#": {
-      "item": "subterra:aragonite_boots"
-    },
-    "I": {
-      "item": "subterra:infernite_ingot"
-    }
+    "#": "subterra:aragonite_boots",
+    "I": "subterra:infernite_ingot"
   },
   "pattern": [
     "   ",

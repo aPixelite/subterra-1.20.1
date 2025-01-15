@@ -2,12 +2,8 @@
   "type": "minecraft:crafting_shaped",
   "category": "equipment",
   "key": {
-    "D": {
-      "item": "subterra:drill_engine"
-    },
-    "E": {
-      "item": "subterra:enderite_ingot"
-    }
+    "D": "subterra:drill_engine",
+    "E": "subterra:enderite_ingot"
   },
   "pattern": [
     " E ",

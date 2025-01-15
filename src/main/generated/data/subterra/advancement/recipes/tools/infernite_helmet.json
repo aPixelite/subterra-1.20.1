@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "minecraft:infernite_helmet"
+        "recipe": "subterra:infernite_helmet"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
@@ -26,7 +26,7 @@
   ],
   "rewards": {
     "recipes": [
-      "minecraft:infernite_helmet"
+      "subterra:infernite_helmet"
     ]
   }
 }

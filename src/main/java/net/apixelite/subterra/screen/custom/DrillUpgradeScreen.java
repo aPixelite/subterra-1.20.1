@@ -5,7 +5,7 @@ import com.mojang.blaze3d.systems.RenderSystem;
 import net.apixelite.subterra.Subterra;
 import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.gui.screen.ingame.HandledScreen;
-import net.minecraft.client.render.GameRenderer;
+import net.minecraft.client.render.RenderLayer;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.screen.slot.Slot;
 import net.minecraft.text.Text;
@@ -13,6 +13,10 @@ import net.minecraft.util.Identifier;
 
 public class DrillUpgradeScreen extends HandledScreen<DrillUpgradeScreenHandler> {
     private static final Identifier TEXTURE = Identifier.of(Subterra.MOD_ID, "textures/gui/drill_upgrade_station_gui.png");
+    private static final Identifier BARREL_SLOT_TEXTURE = Identifier.of(Subterra.MOD_ID, "textures/gui/empty_barrel_slot.png");
+    private static final Identifier DRILL_SLOT_TEXTURE = Identifier.of(Subterra.MOD_ID, "textures/gui/empty_drill_slot.png");
+    private static final Identifier ENGINE_SLOT_TEXTURE = Identifier.of(Subterra.MOD_ID, "textures/gui/empty_engine_slot.png");
+    private static final Identifier TANK_SLOT_TEXTURE = Identifier.of(Subterra.MOD_ID, "textures/gui/empty_tank_slot.png");
 
     public DrillUpgradeScreen(DrillUpgradeScreenHandler handler, PlayerInventory inventory, Text title) {
         super(handler, inventory, title);
@@ -28,7 +32,7 @@ public class DrillUpgradeScreen extends HandledScreen<DrillUpgradeScreenHandler>
 
     @Override
     protected void drawBackground(DrawContext context, float delta, int mouseX, int mouseY) {
-        RenderSystem.setShader(GameRenderer::getPositionTexProgram);
+        RenderSystem.setShader(RenderSystem.getShader());
         RenderSystem.setShaderColor(1f, 1f, 1f, 1f);
         RenderSystem.setShaderTexture(0, TEXTURE);
         int x = (width - backgroundWidth) / 2;
@@ -40,23 +44,26 @@ public class DrillUpgradeScreen extends HandledScreen<DrillUpgradeScreenHandler>
         Slot upgradeSlot = this.handler.getSlot(3);
         Slot fuelSlot = this.handler.getSlot(4);
 
-        context.drawTexture(TEXTURE, x, y, 0, 0, backgroundWidth, backgroundHeight);
+        context.drawTexture(RenderLayer::getGuiTextured, TEXTURE, x, y, 0.0F, 0.0F, backgroundWidth, backgroundHeight, 256, 256);
 
         if (!drillSlot.hasStack()) {
-            context.drawTexture(TEXTURE, x + 80, y + 26, 176, 0, 16, 16);
+            context.drawTexture(RenderLayer::getGuiTextured, DRILL_SLOT_TEXTURE, x + 80, y + 26, 0, 0, 16, 16, 16, 16);
         }
         if (!tankSlot.hasStack()) {
-            context.drawTexture(TEXTURE, x + 36, y + 17, 176, 33, 16, 16);
+            context.drawTexture(RenderLayer::getGuiTextured, TANK_SLOT_TEXTURE, x + 36, y + 17, 0, 0, 16, 16, 16, 16);
         }
         if (!engineSlot.hasStack()) {
-            context.drawTexture(TEXTURE, x + 36, y + 35, 176, 15, 16, 16);
+            context.drawTexture(RenderLayer::getGuiTextured,ENGINE_SLOT_TEXTURE, x + 36, y + 35, 0, 0, 16, 16, 16, 16);
         }
+        /*
         if (!upgradeSlot.hasStack()) {
-            context.drawTexture(TEXTURE, x + 36, y + 53, 176, 65, 16, 16);
+            context.drawTexture(RenderLayer::getGuiTextured, TEXTURE, x + 36, y + 53, 176, 65, 16, 16);
         }
+        */
         if (!fuelSlot.hasStack()) {
-            context.drawTexture(TEXTURE, x + 124, y + 17, 176, 48, 16, 16);
+            context.drawTexture(RenderLayer::getGuiTextured, BARREL_SLOT_TEXTURE, x + 124, y + 17, 0, 0, 16, 16, 16, 16);
         }
+
     }
 
     @Override

@@ -4,9 +4,7 @@
   "cookingtime": 100,
   "experience": 6.0,
   "group": "infernite",
-  "ingredient": {
-    "item": "subterra:infernite_ore"
-  },
+  "ingredient": "subterra:infernite_ore",
   "result": {
     "id": "subterra:infernite_ingot"
   }

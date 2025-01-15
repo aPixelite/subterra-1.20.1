@@ -2,21 +2,11 @@
   "type": "minecraft:crafting_shaped",
   "category": "equipment",
   "key": {
-    "B": {
-      "item": "minecraft:obsidian"
-    },
-    "D": {
-      "item": "subterra:aragonite_drill"
-    },
-    "E": {
-      "item": "subterra:drill_engine"
-    },
-    "I": {
-      "item": "subterra:infernite_ingot"
-    },
-    "S": {
-      "item": "subterra:infernite_stick"
-    }
+    "B": "minecraft:obsidian",
+    "D": "subterra:aragonite_drill",
+    "E": "subterra:drill_engine",
+    "I": "subterra:infernite_ingot",
+    "S": "subterra:infernite_stick"
   },
   "pattern": [
     "SI ",

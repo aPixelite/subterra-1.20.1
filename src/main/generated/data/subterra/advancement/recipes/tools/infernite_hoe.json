@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "minecraft:infernite_hoe"
+        "recipe": "subterra:infernite_hoe"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
@@ -26,7 +26,7 @@
   ],
   "rewards": {
     "recipes": [
-      "minecraft:infernite_hoe"
+      "subterra:infernite_hoe"
     ]
   }
 }

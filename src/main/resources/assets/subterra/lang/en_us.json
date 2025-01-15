@@ -1,8 +1,11 @@
 {
+    "item.subterra.enderite_ore": "Enderite Ore",
     "block.subterra.enderite_ore": "Enderite Ore",
+    "item.subterra.aragonite_ore": "Aragonite Ore",
     "block.subterra.aragonite_ore": "Aragonite Ore",
+    "item.subterra.infernite_ore": "Infernite Ore",
     "block.subterra.infernite_ore": "Infernite Ore",
-    
+
 
     "item.subterra.raw_enderite": "Raw Enderite",
     "item.subterra.enderite_ingot": "Enderite Ingot",
@@ -76,6 +79,7 @@
     "item.subterra.empty_barrel": "Empty Barrel",
     "item.subterra.oil_barrel": "Oil Barrel",
     "item.subterra.fuel_barrel": "Fuel Barrel",
+    "item.subterra.drill_upgrade_station": "Drill Upgrade Station",
     "block.subterra.drill_upgrade_station": "Drill Upgrade Station",
 
 

@@ -2,12 +2,8 @@
   "type": "minecraft:crafting_shaped",
   "category": "equipment",
   "key": {
-    "#": {
-      "item": "subterra:aragonite_leggings"
-    },
-    "I": {
-      "item": "subterra:infernite_ingot"
-    }
+    "#": "subterra:aragonite_leggings",
+    "I": "subterra:infernite_ingot"
   },
   "pattern": [
     "III",

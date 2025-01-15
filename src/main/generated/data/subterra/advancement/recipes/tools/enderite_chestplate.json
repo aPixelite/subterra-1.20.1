@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "minecraft:enderite_chestplate"
+        "recipe": "subterra:enderite_chestplate"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
@@ -26,7 +26,7 @@
   ],
   "rewards": {
     "recipes": [
-      "minecraft:enderite_chestplate"
+      "subterra:enderite_chestplate"
     ]
   }
 }

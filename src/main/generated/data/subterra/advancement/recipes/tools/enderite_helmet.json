@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "minecraft:enderite_helmet"
+        "recipe": "subterra:enderite_helmet"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
@@ -26,7 +26,7 @@
   ],
   "rewards": {
     "recipes": [
-      "minecraft:enderite_helmet"
+      "subterra:enderite_helmet"
     ]
   }
 }

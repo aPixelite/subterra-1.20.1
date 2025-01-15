@@ -2,12 +2,8 @@
   "type": "minecraft:crafting_shaped",
   "category": "equipment",
   "key": {
-    "#": {
-      "item": "subterra:enderite_helmet"
-    },
-    "I": {
-      "item": "subterra:aragonite_ingot"
-    }
+    "#": "subterra:enderite_helmet",
+    "I": "subterra:aragonite_ingot"
   },
   "pattern": [
     "III",

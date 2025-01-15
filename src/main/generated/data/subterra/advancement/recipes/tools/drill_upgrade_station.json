@@ -33,7 +33,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "minecraft:drill_upgrade_station"
+        "recipe": "subterra:drill_upgrade_station"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
@@ -48,7 +48,7 @@
   ],
   "rewards": {
     "recipes": [
-      "minecraft:drill_upgrade_station"
+      "subterra:drill_upgrade_station"
     ]
   }
 }

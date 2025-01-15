@@ -26,6 +26,11 @@ public class ModTags {
     }
 
     public static class Items {
+        public static final TagKey<Item> ENDERITE_REPAIR = createTag("enderite_repair");
+        public static final TagKey<Item> ARAGONITE_REPAIR = createTag("aragonite_repair");
+        public static final TagKey<Item> INFERNITE_REPAIR = createTag("infernite_repair");
+        public static final TagKey<Item> DRILL_REPAIR = createTag("drill_repair");
+
         public static final TagKey<Item> DRILL = createTag("drill");
         public static final TagKey<Item> DRILL_ENGINE = createTag("drill_engine");
         public static final TagKey<Item> FUEL_TANK = createTag("fuel_tank");

@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "minecraft:fuel_tank"
+        "recipe": "subterra:fuel_tank"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
@@ -26,7 +26,7 @@
   ],
   "rewards": {
     "recipes": [
-      "minecraft:fuel_tank"
+      "subterra:fuel_tank"
     ]
   }
 }

@@ -4,9 +4,7 @@
   "cookingtime": 200,
   "experience": 4.0,
   "group": "aragonite",
-  "ingredient": {
-    "item": "subterra:aragonite_ore"
-  },
+  "ingredient": "subterra:aragonite_ore",
   "result": {
     "id": "subterra:aragonite_ingot"
   }
