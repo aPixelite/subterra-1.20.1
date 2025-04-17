@@ -1,7 +1,7 @@
 {
 	"schemaVersion": 1,
 	"id": "subterra",
-	"version": "0.1.0",
+	"version": "1.0.0",
 	"name": "subterra",
 	"description": "A mod that aims to improve the mining experience!",
 	"authors": [
@@ -29,8 +29,8 @@
 		"subterra.mixins.json"
 	],
 	"depends": {
-		"fabricloader": ">=0.16.5",
-		"minecraft": "~1.21",
+		"fabricloader": ">=0.16.13",
+		"minecraft": "1.21.4",
 		"java": ">=21",
 		"fabric-api": "*"
 	},

@@ -1,0 +1,14 @@
+{
+  "layers": {
+    "humanoid": [
+      {
+        "texture": "subterra:enderite"
+      }
+    ],
+    "humanoid_leggings": [
+      {
+        "texture": "subterra:enderite"
+      }
+    ]
+  }
+}

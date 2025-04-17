@@ -1,5 +1,5 @@
 plugins {
-	id 'fabric-loom' version '1.9-SNAPSHOT'
+	id 'fabric-loom' version '1.10-SNAPSHOT'
 	id 'maven-publish'
 }
 
@@ -18,9 +18,27 @@ repositories {
 	// for more information about repositories.
 }
 
-fabricApi {
-	configureDataGeneration()
+//fabricApi {
+//	configureDataGeneration() {
+//		client = true;
+//	}
+//}
+
+loom {
+	runs {
+		datagen {
+			client()
+
+			name "Data Generation"
+			vmArg "-Dfabric-api.datagen"
+			vmArg "-Dfabric-api.datagen.output-dir=${file('src/main/generated')}"
+
+			runDir "build/datagen"
+		}
+	}
 }
+
+sourceSets { main { resources { srcDirs += 'src/main/generated' } } } // adding generated directory to sourceset
 
 dependencies {
 	// To change the versions see the gradle.properties file

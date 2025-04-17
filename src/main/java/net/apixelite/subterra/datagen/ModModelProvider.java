@@ -4,14 +4,16 @@ import net.apixelite.subterra.Subterra;
 import net.apixelite.subterra.block.ModBlocks;
 import net.apixelite.subterra.fluid.ModFluids;
 import net.apixelite.subterra.item.ModItems;
+import net.apixelite.subterra.util.ModEquipmentKeys;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
-import net.fabricmc.fabric.api.datagen.v1.provider.FabricModelProvider;
-import net.minecraft.data.client.BlockStateModelGenerator;
-import net.minecraft.data.client.ItemModelGenerator;
-import net.minecraft.data.client.Models;
-import net.minecraft.entity.EquipmentSlot;
+import net.fabricmc.fabric.api.client.datagen.v1.provider.FabricModelProvider;
+import net.minecraft.client.data.BlockStateModelGenerator;
+import net.minecraft.client.data.ItemModelGenerator;
+import net.minecraft.client.data.Models;
+import net.minecraft.client.render.entity.equipment.EquipmentModel;
 import net.minecraft.item.Item;
-import net.minecraft.item.equipment.EquipmentModel;
+import net.minecraft.item.equipment.EquipmentAsset;
+import net.minecraft.registry.RegistryKey;
 import net.minecraft.util.Identifier;
 
 public class ModModelProvider extends FabricModelProvider{
@@ -76,10 +78,10 @@ public class ModModelProvider extends FabricModelProvider{
         itemModelGenerator.register(ModItems.ENDERITE_SHOVEL, Models.HANDHELD);
         itemModelGenerator.register(ModItems.ENDERITE_HOE, Models.HANDHELD);
 
-        registerArmor(itemModelGenerator, ModItems.ENDERITE_HELMET, "enderite", EquipmentSlot.HEAD);
-        registerArmor(itemModelGenerator, ModItems.ENDERITE_CHESTPLATE, "enderite", EquipmentSlot.CHEST);
-        registerArmor(itemModelGenerator, ModItems.ENDERITE_LEGGINGS, "enderite", EquipmentSlot.LEGS);
-        registerArmor(itemModelGenerator, ModItems.ENDERITE_BOOTS, "enderite", EquipmentSlot.FEET);
+        registerArmor(itemModelGenerator, ModItems.ENDERITE_HELMET, "helmet", ModEquipmentKeys.ENDERITE);
+        registerArmor(itemModelGenerator, ModItems.ENDERITE_CHESTPLATE, "chestplate", ModEquipmentKeys.ENDERITE);
+        registerArmor(itemModelGenerator, ModItems.ENDERITE_LEGGINGS, "leggings", ModEquipmentKeys.ENDERITE);
+        registerArmor(itemModelGenerator, ModItems.ENDERITE_BOOTS, "boots", ModEquipmentKeys.ENDERITE);
         
         // ARAGONITE
         itemModelGenerator.register(ModItems.RAW_ARAGONITE, Models.GENERATED);
@@ -94,10 +96,10 @@ public class ModModelProvider extends FabricModelProvider{
         itemModelGenerator.register(ModItems.ARAGONITE_SHOVEL, Models.HANDHELD);
         itemModelGenerator.register(ModItems.ARAGONITE_HOE, Models.HANDHELD);
 
-        registerArmor(itemModelGenerator, ModItems.ARAGONITE_HELMET, "aragonite", EquipmentSlot.HEAD);
-        registerArmor(itemModelGenerator, ModItems.ARAGONITE_CHESTPLATE, "aragonite", EquipmentSlot.CHEST);
-        registerArmor(itemModelGenerator, ModItems.ARAGONITE_LEGGINGS, "aragonite", EquipmentSlot.LEGS);
-        registerArmor(itemModelGenerator, ModItems.ARAGONITE_BOOTS, "aragonite", EquipmentSlot.FEET);
+        registerArmor(itemModelGenerator, ModItems.ARAGONITE_HELMET, "helmet", ModEquipmentKeys.ARAGONITE);
+        registerArmor(itemModelGenerator, ModItems.ARAGONITE_CHESTPLATE, "chestplate", ModEquipmentKeys.ARAGONITE);
+        registerArmor(itemModelGenerator, ModItems.ARAGONITE_LEGGINGS, "leggings", ModEquipmentKeys.ARAGONITE);
+        registerArmor(itemModelGenerator, ModItems.ARAGONITE_BOOTS, "boots", ModEquipmentKeys.ARAGONITE);
 
         // INFERNITE
         itemModelGenerator.register(ModItems.RAW_INFERNITE, Models.GENERATED);
@@ -112,15 +114,15 @@ public class ModModelProvider extends FabricModelProvider{
         itemModelGenerator.register(ModItems.INFERNITE_SHOVEL, Models.HANDHELD);
         itemModelGenerator.register(ModItems.INFERNITE_HOE, Models.HANDHELD);
 
-        registerArmor(itemModelGenerator, ModItems.INFERNITE_HELMET, "infernite", EquipmentSlot.HEAD);
-        registerArmor(itemModelGenerator, ModItems.INFERNITE_CHESTPLATE, "infernite", EquipmentSlot.CHEST);
-        registerArmor(itemModelGenerator, ModItems.INFERNITE_LEGGINGS, "infernite", EquipmentSlot.LEGS);
-        registerArmor(itemModelGenerator, ModItems.INFERNITE_BOOTS, "infernite", EquipmentSlot.FEET);
+        registerArmor(itemModelGenerator, ModItems.INFERNITE_HELMET, "helmet", ModEquipmentKeys.INFERNITE);
+        registerArmor(itemModelGenerator, ModItems.INFERNITE_CHESTPLATE, "chestplate", ModEquipmentKeys.INFERNITE);
+        registerArmor(itemModelGenerator, ModItems.INFERNITE_LEGGINGS, "leggings", ModEquipmentKeys.INFERNITE);
+        registerArmor(itemModelGenerator, ModItems.INFERNITE_BOOTS, "boots", ModEquipmentKeys.INFERNITE);
     }
 
-    private void registerArmor(ItemModelGenerator itemModelGenerator, Item item, String name, EquipmentSlot slot) {
-        itemModelGenerator.registerArmor(item, Identifier.of(Subterra.MOD_ID, name),
-                EquipmentModel.builder().addHumanoidLayers(Identifier.of(Subterra.MOD_ID, name)).build(), slot);
+    private void registerArmor(ItemModelGenerator itemModelGenerator, Item item, String type, RegistryKey<EquipmentAsset> equipmentAsset) {
+        itemModelGenerator.registerArmor(item, equipmentAsset, type, false);
+//        EquipmentModel.builder().addHumanoidLayers(Identifier.of(Subterra.MOD_ID, name)).build();
     }
 
 }

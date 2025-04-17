@@ -6,6 +6,9 @@ import net.apixelite.subterra.item.custom.DrillItem;
 import net.apixelite.subterra.item.custom.FuelTank;
 import net.apixelite.subterra.item.custom.upgrademodules.MultiMine;
 import net.apixelite.subterra.util.CustomRarity;
+import net.apixelite.subterra.util.ModEquipmentKeys;
+import net.minecraft.component.type.EquippableComponent;
+import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.item.ArmorItem;
 import net.minecraft.item.AxeItem;
 import net.minecraft.item.HoeItem;
@@ -20,6 +23,7 @@ import net.minecraft.registry.RegistryKey;
 import net.minecraft.registry.RegistryKeys;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.Rarity;
+import net.minecraft.component.DataComponentTypes;
 
 public class ModItems {
 
