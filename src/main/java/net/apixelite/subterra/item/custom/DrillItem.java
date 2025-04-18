@@ -143,22 +143,6 @@ public class DrillItem extends Item {
         return super.use(world, player, hand);
     }
 
-    // TODO: Render the tooltip
-//// SET TOOLTIP FUNCTION
-//    // changes the tooltip of the item
-//    @Override
-//    public void appendTooltip(ItemStack stack, TooltipContext context, List<Text> tooltip, TooltipType type) {
-//        tooltip.clear();
-//        setFuel(stack);
-//        setMiningSpeed(stack);
-//
-//        DrillItemTooltip.setTooltip(this, stack, tooltip);
-//
-//        super.appendTooltip(stack, context, tooltip, null, type);
-//    }
-
-
-
 // MODULE FUNCTIONS
     // returns the module installed
     public static int getModule(ItemStack stack, String mod) {

@@ -1,13 +1,7 @@
 package net.apixelite.subterra.item.custom;
 
-import net.apixelite.subterra.Subterra;
-import net.apixelite.subterra.components.ModDataComponentTypes;
 import net.apixelite.subterra.util.CustomRarity;
-import net.apixelite.subterra.util.TooltipHelper;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-
-import java.util.Arrays;
 
 public class DrillEngine extends Item {
 

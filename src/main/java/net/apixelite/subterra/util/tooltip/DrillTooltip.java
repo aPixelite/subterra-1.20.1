@@ -1,14 +1,11 @@
 package net.apixelite.subterra.util.tooltip;
 
-import net.apixelite.subterra.Subterra;
 import net.apixelite.subterra.components.ModDataComponentTypes;
 import net.apixelite.subterra.item.custom.DrillEngine;
 import net.apixelite.subterra.item.custom.DrillItem;
 import net.apixelite.subterra.item.custom.FuelTank;
 import net.apixelite.subterra.util.TooltipHelper;
-import net.minecraft.component.DataComponentTypes;
 import net.minecraft.item.ItemStack;
-import net.minecraft.text.MutableText;
 import net.minecraft.text.Text;
 import org.jetbrains.annotations.NotNull;
 

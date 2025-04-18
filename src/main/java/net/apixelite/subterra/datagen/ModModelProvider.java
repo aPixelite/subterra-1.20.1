@@ -1,6 +1,5 @@
 package net.apixelite.subterra.datagen;
 
-import net.apixelite.subterra.Subterra;
 import net.apixelite.subterra.block.ModBlocks;
 import net.apixelite.subterra.fluid.ModFluids;
 import net.apixelite.subterra.item.ModItems;
@@ -10,7 +9,6 @@ import net.fabricmc.fabric.api.client.datagen.v1.provider.FabricModelProvider;
 import net.minecraft.client.data.BlockStateModelGenerator;
 import net.minecraft.client.data.ItemModelGenerator;
 import net.minecraft.client.data.Models;
-import net.minecraft.client.render.entity.equipment.EquipmentModel;
 import net.minecraft.item.Item;
 import net.minecraft.item.equipment.EquipmentAsset;
 import net.minecraft.registry.RegistryKey;

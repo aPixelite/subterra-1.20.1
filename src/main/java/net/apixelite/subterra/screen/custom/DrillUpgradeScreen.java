@@ -1,7 +1,5 @@
 package net.apixelite.subterra.screen.custom;
 
-import com.mojang.blaze3d.systems.RenderSystem;
-
 import net.apixelite.subterra.Subterra;
 import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.gui.screen.ingame.HandledScreen;

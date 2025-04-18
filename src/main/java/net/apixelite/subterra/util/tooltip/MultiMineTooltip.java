@@ -1,6 +1,5 @@
 package net.apixelite.subterra.util.tooltip;
 
-import net.apixelite.subterra.item.custom.upgrademodules.MultiMine;
 import net.apixelite.subterra.util.TooltipHelper;
 import net.minecraft.text.Text;
 import org.jetbrains.annotations.NotNull;
