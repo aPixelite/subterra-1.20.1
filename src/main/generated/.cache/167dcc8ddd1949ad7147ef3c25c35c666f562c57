@@ -1,4 +1,4 @@
-// 1.21.4	-999999999-01-01T00:00:00	subterra/Block Loot Tables
+// 1.21.5	-999999999-01-01T00:00:00	subterra/Block Loot Tables
 e8642549d0cadf3960050bb4ceb4d65f2467a8cb data/subterra/loot_table/blocks/aragonite_ore.json
 33655e3553feebe17bf0e8bd63b6935293ad5aa3 data/subterra/loot_table/blocks/drill_upgrade_station.json
 626eb17223f088d7b0da50275d90efc7d7997c38 data/subterra/loot_table/blocks/enderite_ore.json

@@ -121,7 +121,7 @@ public class ModModelProvider extends FabricModelProvider{
     }
 
     private void registerArmor(ItemModelGenerator itemModelGenerator, Item item, String type, RegistryKey<EquipmentAsset> equipmentAsset) {
-        itemModelGenerator.registerArmor(item, equipmentAsset, type, false);
+        itemModelGenerator.registerArmor(item, equipmentAsset, Identifier.ofVanilla("trims/items/" + type + "_trim"), false);
 //        EquipmentModel.builder().addHumanoidLayers(Identifier.of(Subterra.MOD_ID, name)).build();
     }
 

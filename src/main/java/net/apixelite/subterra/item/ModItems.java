@@ -6,16 +6,10 @@ import net.apixelite.subterra.item.custom.DrillItem;
 import net.apixelite.subterra.item.custom.FuelTank;
 import net.apixelite.subterra.item.custom.upgrademodules.MultiMine;
 import net.apixelite.subterra.util.CustomRarity;
-import net.apixelite.subterra.util.ModEquipmentKeys;
-import net.minecraft.component.type.EquippableComponent;
-import net.minecraft.entity.EquipmentSlot;
-import net.minecraft.item.ArmorItem;
 import net.minecraft.item.AxeItem;
 import net.minecraft.item.HoeItem;
 import net.minecraft.item.Item;
-import net.minecraft.item.PickaxeItem;
 import net.minecraft.item.ShovelItem;
-import net.minecraft.item.SwordItem;
 import net.minecraft.item.equipment.EquipmentType;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
@@ -23,7 +17,6 @@ import net.minecraft.registry.RegistryKey;
 import net.minecraft.registry.RegistryKeys;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.Rarity;
-import net.minecraft.component.DataComponentTypes;
 
 public class ModItems {
 
@@ -40,15 +33,15 @@ public class ModItems {
             .fireproof().rarity(Rarity.UNCOMMON)));
 
     public static final Item ENDERITE_SWORD = registerItem("enderite_sword",
-        new SwordItem(ModToolMaterials.ENDERITE, 7, -2.4f, new Item.Settings()
+        new Item.Settings().sword(ModToolMaterials.ENDERITE, 7, -2.4f)
                 .registryKey(RegistryKey.of(RegistryKeys.ITEM, Identifier.of(Subterra.MOD_ID, "enderite_sword")))
                 .fireproof()
-                .rarity(Rarity.UNCOMMON)));
+                .rarity(Rarity.UNCOMMON));
     public static final Item ENDERITE_PICKAXE = registerItem("enderite_pickaxe",
-        new PickaxeItem(ModToolMaterials.ENDERITE, 1, -2.8f, new Item.Settings()
+        new Item.Settings().pickaxe(ModToolMaterials.ENDERITE, 1, -2.8f)
                 .registryKey(RegistryKey.of(RegistryKeys.ITEM, Identifier.of(Subterra.MOD_ID, "enderite_pickaxe")))
                 .fireproof()
-                .rarity(Rarity.UNCOMMON)));
+                .rarity(Rarity.UNCOMMON));
     public static final Item ENDERITE_AXE = registerItem("enderite_axe",
         new AxeItem(ModToolMaterials.ENDERITE, 12, -2.8f, new Item.Settings()
                 .registryKey(RegistryKey.of(RegistryKeys.ITEM, Identifier.of(Subterra.MOD_ID, "enderite_pickaxe")))
@@ -66,28 +59,24 @@ public class ModItems {
                 .rarity(Rarity.UNCOMMON)));
 
     public static final Item ENDERITE_HELMET = registerItem("enderite_helmet", 
-        new ArmorItem(ModArmorMaterials.ENDERITE_ARMOR_MATERIAL, EquipmentType.HELMET,
-            new Item.Settings()
+        new Item.Settings().armor(ModArmorMaterials.ENDERITE_ARMOR_MATERIAL, EquipmentType.HELMET)
                     .registryKey(RegistryKey.of(RegistryKeys.ITEM, Identifier.of(Subterra.MOD_ID, "enderite_helmet")))
-                    .maxDamage(EquipmentType.HELMET.getMaxDamage(43)).fireproof().rarity(Rarity.UNCOMMON)));
+                    .maxDamage(EquipmentType.HELMET.getMaxDamage(43)).fireproof().rarity(Rarity.UNCOMMON));
 
     public static final Item ENDERITE_CHESTPLATE = registerItem("enderite_chestplate",
-        new ArmorItem(ModArmorMaterials.ENDERITE_ARMOR_MATERIAL, EquipmentType.CHESTPLATE,
-            new Item.Settings()
+        new Item.Settings().armor(ModArmorMaterials.ENDERITE_ARMOR_MATERIAL, EquipmentType.CHESTPLATE)
                     .registryKey(RegistryKey.of(RegistryKeys.ITEM, Identifier.of(Subterra.MOD_ID, "enderite_chestplate")))
-                    .maxDamage(EquipmentType.CHESTPLATE.getMaxDamage(43)).fireproof().rarity(Rarity.UNCOMMON)));
+                    .maxDamage(EquipmentType.CHESTPLATE.getMaxDamage(43)).fireproof().rarity(Rarity.UNCOMMON));
 
     public static final Item ENDERITE_LEGGINGS = registerItem("enderite_leggings",
-        new ArmorItem(ModArmorMaterials.ENDERITE_ARMOR_MATERIAL, EquipmentType.LEGGINGS,
-            new Item.Settings()
+        new Item.Settings().armor(ModArmorMaterials.ENDERITE_ARMOR_MATERIAL, EquipmentType.LEGGINGS)
                     .registryKey(RegistryKey.of(RegistryKeys.ITEM, Identifier.of(Subterra.MOD_ID, "enderite_leggings")))
-                    .maxDamage(EquipmentType.LEGGINGS.getMaxDamage(43)).fireproof().rarity(Rarity.UNCOMMON)));
+                    .maxDamage(EquipmentType.LEGGINGS.getMaxDamage(43)).fireproof().rarity(Rarity.UNCOMMON));
 
     public static final Item ENDERITE_BOOTS = registerItem("enderite_boots",
-        new ArmorItem(ModArmorMaterials.ENDERITE_ARMOR_MATERIAL, EquipmentType.BOOTS,
-            new Item.Settings()
+        new Item.Settings().armor(ModArmorMaterials.ENDERITE_ARMOR_MATERIAL, EquipmentType.BOOTS)
                     .registryKey(RegistryKey.of(RegistryKeys.ITEM, Identifier.of(Subterra.MOD_ID, "enderite_boots")))
-                    .maxDamage(EquipmentType.BOOTS.getMaxDamage(43)).fireproof().rarity(Rarity.UNCOMMON)));
+                    .maxDamage(EquipmentType.BOOTS.getMaxDamage(43)).fireproof().rarity(Rarity.UNCOMMON));
     
 
     // ARAGONITE
@@ -102,16 +91,17 @@ public class ModItems {
             .registryKey(RegistryKey.of(RegistryKeys.ITEM, Identifier.of(Subterra.MOD_ID, "aragonite_stick")))
             .fireproof().rarity(Rarity.RARE)));
 
-    public static final Item ARAGONITE_SWORD = registerItem("aragonite_sword", 
-        new SwordItem(ModToolMaterials.ARAGONITE, 10, -2.4f, new Item.Settings()
+    public static final Item ARAGONITE_SWORD = registerItem("aragonite_sword",
+        new Item.Settings().sword(ModToolMaterials.ARAGONITE, 10, -2.4f)
                 .registryKey(RegistryKey.of(RegistryKeys.ITEM, Identifier.of(Subterra.MOD_ID, "aragonite_sword")))
                 .fireproof()
-                .rarity(Rarity.RARE)));
+                .rarity(Rarity.RARE));
     public static final Item ARAGONITE_PICKAXE = registerItem("aragonite_pickaxe",
-        new PickaxeItem(ModToolMaterials.ARAGONITE, 1, -2.8f, new Item.Settings()
+            new Item.Settings().pickaxe(ModToolMaterials.ARAGONITE, 1, -2.8f)
                 .registryKey(RegistryKey.of(RegistryKeys.ITEM, Identifier.of(Subterra.MOD_ID, "aragonite_pickaxe")))
                 .fireproof()
-                .rarity(Rarity.RARE)));
+                .rarity(Rarity.RARE));
+
     public static final Item ARAGONITE_AXE = registerItem("aragonite_axe",
         new AxeItem(ModToolMaterials.ARAGONITE, 18, -2.5f, new Item.Settings()
                 .registryKey(RegistryKey.of(RegistryKeys.ITEM, Identifier.of(Subterra.MOD_ID, "aragonite_axe")))
@@ -129,24 +119,24 @@ public class ModItems {
                 .rarity(Rarity.RARE)));
 
     public static final Item ARAGONITE_HELMET = registerItem("aragonite_helmet", 
-            new ArmorItem(ModArmorMaterials.ARAGONITE_ARMOR_MATERIAL, EquipmentType.HELMET, new Item.Settings()
+            new Item.Settings().armor(ModArmorMaterials.ARAGONITE_ARMOR_MATERIAL, EquipmentType.HELMET)
                     .registryKey(RegistryKey.of(RegistryKeys.ITEM, Identifier.of(Subterra.MOD_ID, "aragonite_helmet")))
-                    .maxDamage(EquipmentType.HELMET.getMaxDamage(51)).fireproof().rarity(Rarity.RARE)));
+                    .maxDamage(EquipmentType.HELMET.getMaxDamage(51)).fireproof().rarity(Rarity.RARE));
 
     public static final Item ARAGONITE_CHESTPLATE = registerItem("aragonite_chestplate", 
-            new ArmorItem(ModArmorMaterials.ARAGONITE_ARMOR_MATERIAL, EquipmentType.CHESTPLATE, new Item.Settings()
+            new Item.Settings().armor(ModArmorMaterials.ARAGONITE_ARMOR_MATERIAL, EquipmentType.CHESTPLATE)
                     .registryKey(RegistryKey.of(RegistryKeys.ITEM, Identifier.of(Subterra.MOD_ID, "aragonite_chestplate")))
-                    .maxDamage(EquipmentType.CHESTPLATE.getMaxDamage(51)).fireproof().rarity(Rarity.RARE)));
+                    .maxDamage(EquipmentType.CHESTPLATE.getMaxDamage(51)).fireproof().rarity(Rarity.RARE));
 
     public static final Item ARAGONITE_LEGGINGS = registerItem("aragonite_leggings", 
-            new ArmorItem(ModArmorMaterials.ARAGONITE_ARMOR_MATERIAL, EquipmentType.LEGGINGS, new Item.Settings()
+            new Item.Settings().armor(ModArmorMaterials.ARAGONITE_ARMOR_MATERIAL, EquipmentType.LEGGINGS)
                     .registryKey(RegistryKey.of(RegistryKeys.ITEM, Identifier.of(Subterra.MOD_ID, "aragonite_leggings")))
-                    .maxDamage(EquipmentType.LEGGINGS.getMaxDamage(51)).fireproof().rarity(Rarity.RARE)));
+                    .maxDamage(EquipmentType.LEGGINGS.getMaxDamage(51)).fireproof().rarity(Rarity.RARE));
 
     public static final Item ARAGONITE_BOOTS = registerItem("aragonite_boots", 
-            new ArmorItem(ModArmorMaterials.ARAGONITE_ARMOR_MATERIAL, EquipmentType.BOOTS, new Item.Settings()
+            new Item.Settings().armor(ModArmorMaterials.ARAGONITE_ARMOR_MATERIAL, EquipmentType.BOOTS)
                     .registryKey(RegistryKey.of(RegistryKeys.ITEM, Identifier.of(Subterra.MOD_ID, "aragonite_boots")))
-                    .maxDamage(EquipmentType.BOOTS.getMaxDamage(51)).fireproof().rarity(Rarity.RARE)));
+                    .maxDamage(EquipmentType.BOOTS.getMaxDamage(51)).fireproof().rarity(Rarity.RARE));
     
 
     // INFERNITE
@@ -162,16 +152,16 @@ public class ModItems {
             .fireproof().rarity(Rarity.RARE)));
 
 
-    public static final Item INFERNITE_SWORD = registerItem("infernite_sword", 
-        new SwordItem(ModToolMaterials.INFERNITE, 14, -2.4f, new Item.Settings()
+    public static final Item INFERNITE_SWORD = registerItem("infernite_sword",
+        new Item.Settings().sword(ModToolMaterials.INFERNITE, 14, -2.4f)
                 .registryKey(RegistryKey.of(RegistryKeys.ITEM, Identifier.of(Subterra.MOD_ID, "infernite_sword")))
                 .fireproof()
-                .rarity(Rarity.EPIC)));
+                .rarity(Rarity.EPIC));
     public static final Item INFERNITE_PICKAXE = registerItem("infernite_pickaxe",
-        new PickaxeItem(ModToolMaterials.INFERNITE, 1, -2.8f, new Item.Settings()
+        new Item.Settings().pickaxe(ModToolMaterials.INFERNITE, 1, -2.8f)
                 .registryKey(RegistryKey.of(RegistryKeys.ITEM, Identifier.of(Subterra.MOD_ID, "infernite_pickaxe")))
                 .fireproof()
-                .rarity(Rarity.EPIC)));
+                .rarity(Rarity.EPIC));
     public static final Item INFERNITE_AXE = registerItem("infernite_axe",
         new AxeItem(ModToolMaterials.INFERNITE, 26, -2.5f, new Item.Settings()
                 .registryKey(RegistryKey.of(RegistryKeys.ITEM, Identifier.of(Subterra.MOD_ID, "infernite_axe")))
@@ -189,21 +179,21 @@ public class ModItems {
                 .rarity(Rarity.EPIC)));
 
     public static final Item INFERNITE_HELMET = registerItem("infernite_helmet", 
-            new ArmorItem(ModArmorMaterials.INFERNITE_ARMOR_MATERIAL, EquipmentType.HELMET, new Item.Settings()
+            new Item.Settings().armor(ModArmorMaterials.INFERNITE_ARMOR_MATERIAL, EquipmentType.HELMET)
                     .registryKey(RegistryKey.of(RegistryKeys.ITEM, Identifier.of(Subterra.MOD_ID, "infernite_helmet")))
-                    .maxDamage(EquipmentType.HELMET.getMaxDamage(69)).fireproof().rarity(Rarity.EPIC)));
+                    .maxDamage(EquipmentType.HELMET.getMaxDamage(69)).fireproof().rarity(Rarity.EPIC));
     public static final Item INFERNITE_CHESTPLATE = registerItem("infernite_chestplate", 
-            new ArmorItem(ModArmorMaterials.INFERNITE_ARMOR_MATERIAL, EquipmentType.CHESTPLATE, new Item.Settings()
+            new Item.Settings().armor(ModArmorMaterials.INFERNITE_ARMOR_MATERIAL, EquipmentType.CHESTPLATE)
                     .registryKey(RegistryKey.of(RegistryKeys.ITEM, Identifier.of(Subterra.MOD_ID, "infernite_chestplate")))
-                    .maxDamage(EquipmentType.CHESTPLATE.getMaxDamage(69)).fireproof().rarity(Rarity.EPIC)));
+                    .maxDamage(EquipmentType.CHESTPLATE.getMaxDamage(69)).fireproof().rarity(Rarity.EPIC));
     public static final Item INFERNITE_LEGGINGS = registerItem("infernite_leggings", 
-            new ArmorItem(ModArmorMaterials.INFERNITE_ARMOR_MATERIAL, EquipmentType.LEGGINGS, new Item.Settings()
+            new Item.Settings().armor(ModArmorMaterials.INFERNITE_ARMOR_MATERIAL, EquipmentType.LEGGINGS)
                     .registryKey(RegistryKey.of(RegistryKeys.ITEM, Identifier.of(Subterra.MOD_ID, "infernite_leggings")))
-                    .maxDamage(EquipmentType.LEGGINGS.getMaxDamage(69)).fireproof().rarity(Rarity.EPIC)));
+                    .maxDamage(EquipmentType.LEGGINGS.getMaxDamage(69)).fireproof().rarity(Rarity.EPIC));
     public static final Item INFERNITE_BOOTS = registerItem("infernite_boots", 
-            new ArmorItem(ModArmorMaterials.INFERNITE_ARMOR_MATERIAL, EquipmentType.BOOTS, new Item.Settings()
+            new Item.Settings().armor(ModArmorMaterials.INFERNITE_ARMOR_MATERIAL, EquipmentType.BOOTS)
                     .registryKey(RegistryKey.of(RegistryKeys.ITEM, Identifier.of(Subterra.MOD_ID, "infernite_boots")))
-                    .maxDamage(EquipmentType.BOOTS.getMaxDamage(69)).fireproof().rarity(Rarity.EPIC)));
+                    .maxDamage(EquipmentType.BOOTS.getMaxDamage(69)).fireproof().rarity(Rarity.EPIC));
 
 
 
@@ -278,6 +268,10 @@ public class ModItems {
     public static final Item FUEL_BARREL = registerItem("fuel_barrel", new Item(new Item.Settings()
             .registryKey(RegistryKey.of(RegistryKeys.ITEM, Identifier.of(Subterra.MOD_ID, "fuel_barrel")))
             .maxCount(1)));
+
+    public static Item registerItem(String name, Item.Settings settings) {
+        return Registry.register(Registries.ITEM, RegistryKey.of(RegistryKeys.ITEM, Identifier.of(Subterra.MOD_ID, name)), new Item(settings));
+    }
 
     public static Item registerItem(String name, Item item) {
         return Registry.register(Registries.ITEM, RegistryKey.of(RegistryKeys.ITEM, Identifier.of(Subterra.MOD_ID, name)), item);

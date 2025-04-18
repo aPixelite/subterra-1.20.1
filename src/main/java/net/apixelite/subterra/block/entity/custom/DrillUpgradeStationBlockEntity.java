@@ -120,11 +120,11 @@ public class DrillUpgradeStationBlockEntity extends BlockEntity implements Exten
     @Override
     public void readNbt(NbtCompound nbt, WrapperLookup registryLookup) {
         super.readNbt(nbt, registryLookup);
-        hasEngine = nbt.getInt("drill_upgrade_station.hasEngine");
-        hasTank = nbt.getInt("drill_upgrade_station.hasTank");
-        hasUpgrade = nbt.getInt("drill_upgrade_station.hasUpgrade");
-        hasFuel = nbt.getInt("drill_upgrade_station.hasFuel");
-        hasBarrel = nbt.getInt("drill_upgrade_station.hasBarrel");
+        hasEngine = nbt.getInt("drill_upgrade_station.hasEngine", 0);
+        hasTank = nbt.getInt("drill_upgrade_station.hasTank", 0);
+        hasUpgrade = nbt.getInt("drill_upgrade_station.hasUpgrade", 0);
+        hasFuel = nbt.getInt("drill_upgrade_station.hasFuel", 0);
+        hasBarrel = nbt.getInt("drill_upgrade_station.hasBarrel", 0);
     }
 
     // Creates the gui

@@ -50,7 +50,7 @@ public class BarrelItem extends BucketItem {
             BlockPos blockPos = blockHitResult.getBlockPos();
             Direction direction = blockHitResult.getSide();
             BlockPos blockPos2 = blockPos.offset(direction);
-            if (!world.canPlayerModifyAt(user, blockPos) || !user.canPlaceOn(blockPos2, direction, itemStack)) {
+            if (!world.canEntityModifyAt(user, blockPos) || !user.canPlaceOn(blockPos2, direction, itemStack)) {
                 return ActionResult.FAIL;
             } else if (this.fluid == Fluids.EMPTY) {
                 BlockState blockState = world.getBlockState(blockPos);

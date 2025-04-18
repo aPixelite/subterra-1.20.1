@@ -15,6 +15,7 @@ import net.minecraft.block.entity.BlockEntityTicker;
 import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.screen.NamedScreenHandlerFactory;
+import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.ItemScatterer;
 import net.minecraft.util.hit.BlockHitResult;
@@ -53,17 +54,15 @@ public class DrillUpgradeStationBlock extends BlockWithEntity implements BlockEn
     }
 
     @Override
-    public void onStateReplaced(BlockState state, World world, BlockPos pos, BlockState newState, boolean moved) {
-        if (state.getBlock() != newState.getBlock()) {
-            BlockEntity blockEntity = world.getBlockEntity(pos);
-            if (blockEntity instanceof DrillUpgradeStationBlockEntity) {
-                ItemScatterer.spawn(world, pos, (DrillUpgradeStationBlockEntity)blockEntity);
-                world.updateComparators(pos, this);
-            }
-            super.onStateReplaced(state, world, pos, newState, moved);
+    public void onStateReplaced(BlockState state, ServerWorld world, BlockPos pos, boolean moved) {
+        BlockEntity blockEntity = world.getBlockEntity(pos);
+        if (blockEntity instanceof DrillUpgradeStationBlockEntity) {
+            ItemScatterer.spawn(world, pos, (DrillUpgradeStationBlockEntity)blockEntity);
+            world.updateComparators(pos, this);
         }
+        super.onStateReplaced(state, world, pos, moved);
     }
-    
+
     @Override
     public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, BlockHitResult hit) {
         if (!world.isClient) {

@@ -8,17 +8,12 @@ import net.apixelite.subterra.util.ModTags;
 import net.apixelite.subterra.Subterra;
 import net.apixelite.subterra.components.ModDataComponentTypes;
 import net.apixelite.subterra.util.CustomRarity;
-import net.apixelite.subterra.util.tooltip.DrillItemTooltip;
 import net.minecraft.block.BlockState;
-import net.minecraft.component.DataComponentTypes;
-import net.minecraft.component.type.UnbreakableComponent;
-import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.PickaxeItem;
 import net.minecraft.item.ToolMaterial;
-import net.minecraft.item.tooltip.TooltipType;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.text.Text;
 import net.minecraft.util.ActionResult;
@@ -30,7 +25,7 @@ import net.minecraft.util.math.Direction;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.NotNull;
 
-public class DrillItem extends PickaxeItem {
+public class DrillItem extends Item {
 
 
     private final float attackDamage;
@@ -61,17 +56,13 @@ public class DrillItem extends PickaxeItem {
     private static FuelData fuelData = new FuelData(fuel, maxFuel);
     private static MiningSpeedData miningSpeedData = new MiningSpeedData(miningSpeed);
 
-    private static final UnbreakableComponent unbreakableComponent = new UnbreakableComponent(true).withShowInTooltip(false);
-
-
     public DrillItem(ToolMaterial material, float miningSpeed, int attackDamage, float attackSpeed, CustomRarity rarity, Settings settings) {
-        super(material, attackDamage, attackSpeed, settings
+        super(settings.pickaxe(material, attackDamage, attackSpeed).maxDamage(100)
                 .component(ModDataComponentTypes.ENGINE, engineData)
                 .component(ModDataComponentTypes.TANK, tankData)
                 .component(ModDataComponentTypes.UPGRADE, upgradeData)
                 .component(ModDataComponentTypes.FUEL, fuelData)
-                .component(ModDataComponentTypes.MINING_SPEED, miningSpeedData)
-                .component(DataComponentTypes.UNBREAKABLE, unbreakableComponent));
+                .component(ModDataComponentTypes.MINING_SPEED, miningSpeedData));
         this.attackDamage = attackDamage;
         this.attackSpeed = attackSpeed;
         this.baseMiningSpeed = miningSpeed;
@@ -152,20 +143,19 @@ public class DrillItem extends PickaxeItem {
         return super.use(world, player, hand);
     }
 
- 
-
-// SET TOOLTIP FUNCTION
-    // changes the tooltip of the item
-    @Override
-    public void appendTooltip(ItemStack stack, TooltipContext context, List<Text> tooltip, TooltipType type) {
-        tooltip.clear();
-        setFuel(stack);
-        setMiningSpeed(stack);
-
-        DrillItemTooltip.setTooltip(this, stack, tooltip);
-
-        super.appendTooltip(stack, context, tooltip, type);
-    }
+    // TODO: Render the tooltip
+//// SET TOOLTIP FUNCTION
+//    // changes the tooltip of the item
+//    @Override
+//    public void appendTooltip(ItemStack stack, TooltipContext context, List<Text> tooltip, TooltipType type) {
+//        tooltip.clear();
+//        setFuel(stack);
+//        setMiningSpeed(stack);
+//
+//        DrillItemTooltip.setTooltip(this, stack, tooltip);
+//
+//        super.appendTooltip(stack, context, tooltip, null, type);
+//    }
 
 
 
@@ -294,13 +284,13 @@ public class DrillItem extends PickaxeItem {
     public boolean postMine(ItemStack stack, World world, BlockState state, BlockPos pos, LivingEntity miner) {
         int newFuel = getFuel(stack) - 1;
         editDrillDataComponents(stack, newFuel, "change_fuel");
+        stack.setDamage(-1); // TODO: Temporary solution to unbreakable component
         return super.postMine(stack, world, state, pos, miner);
     }
     
     // check if the player has enough fuel to mine
     @Override
-    public boolean canMine(BlockState state, World world, BlockPos pos, PlayerEntity miner) {
-        ItemStack stack = miner.getEquippedStack(EquipmentSlot.MAINHAND);
+    public boolean canMine(ItemStack stack, BlockState state, World world, BlockPos pos, LivingEntity miner) {
         return getFuel(stack) > 0;
     }
 
@@ -317,6 +307,8 @@ public class DrillItem extends PickaxeItem {
     public float getAttackSpeed() {
         return this.attackSpeed;
     }
+
+
 
     public static List<BlockPos> getBlocksToBeDestroyed(int range, BlockPos initalBlockPos, ServerPlayerEntity player) {
         List<BlockPos> positions = new ArrayList<>();

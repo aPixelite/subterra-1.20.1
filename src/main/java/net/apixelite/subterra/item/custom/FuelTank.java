@@ -20,20 +20,21 @@ public class FuelTank extends Item {
         this.rarity = rarity;
     }
 
-    @Override
-    public void appendTooltip(ItemStack stack, TooltipContext context, List<Text> tooltip, TooltipType type) {
-        tooltip.clear();
-
-        tooltip.add(Text.empty().append(this.getName()).formatted(this.rarity.formatting));
-        if (!stack.isOf(ModItems.FUEL_TANK)) {
-            tooltip.add(Text.literal("§8Drill Part"));
-            tooltip.add(Text.literal(""));
-            tooltip.add(Text.literal("§8Part Type: §6Fuel Tank"));
-            tooltip.add(Text.literal("§8Increases Fuel Capacity To: §6" + (this.fuelCapacity / 1000) + ".000"));
-        }
-
-        super.appendTooltip(stack, context, tooltip, type);
-    }
+    // TODO: Render the tooltip
+//    @Override
+//    public void appendTooltip(ItemStack stack, TooltipContext context, List<Text> tooltip, TooltipType type) {
+//        tooltip.clear();
+//
+//        tooltip.add(Text.empty().append(this.getName()).formatted(this.rarity.formatting));
+//        if (!stack.isOf(ModItems.FUEL_TANK)) {
+//            tooltip.add(Text.literal("§8Drill Part"));
+//            tooltip.add(Text.literal(""));
+//            tooltip.add(Text.literal("§8Part Type: §6Fuel Tank"));
+//            tooltip.add(Text.literal("§8Increases Fuel Capacity To: §6" + (this.fuelCapacity / 1000) + ".000"));
+//        }
+//
+//        super.appendTooltip(stack, context, tooltip, type);
+//    }
 
     public static int getFuel(int level) {
         if (level >= 2) {

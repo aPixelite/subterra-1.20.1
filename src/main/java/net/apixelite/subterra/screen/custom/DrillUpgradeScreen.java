@@ -28,13 +28,9 @@ public class DrillUpgradeScreen extends HandledScreen<DrillUpgradeScreenHandler>
         titleY = 1000;
         playerInventoryTitleY = 1000;
     }
-    
 
     @Override
     protected void drawBackground(DrawContext context, float delta, int mouseX, int mouseY) {
-        RenderSystem.setShader(RenderSystem.getShader());
-        RenderSystem.setShaderColor(1f, 1f, 1f, 1f);
-        RenderSystem.setShaderTexture(0, TEXTURE);
         int x = (width - backgroundWidth) / 2;
         int y = (height - backgroundHeight) / 2;
 
