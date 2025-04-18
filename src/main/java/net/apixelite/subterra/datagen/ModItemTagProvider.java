@@ -8,6 +8,7 @@ import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricTagProvider;
 import net.minecraft.item.Items;
 import net.minecraft.registry.RegistryWrapper.WrapperLookup;
+import net.minecraft.registry.tag.ItemTags;
 
 public class ModItemTagProvider extends FabricTagProvider.ItemTagProvider{
 
@@ -17,6 +18,21 @@ public class ModItemTagProvider extends FabricTagProvider.ItemTagProvider{
 
     @Override
     protected void configure(WrapperLookup arg) {
+        getOrCreateTagBuilder(ItemTags.MINING_ENCHANTABLE)
+            .add(ModItems.DIAMOND_DRILL)
+            .add(ModItems.NETHERITE_DRILL)
+            .add(ModItems.ENDERITE_DRILL)
+            .add(ModItems.ARAGONITE_DRILL)
+            .add(ModItems.INFERNITE_DRILL);
+
+        getOrCreateTagBuilder(ItemTags.MINING_LOOT_ENCHANTABLE)
+            .add(ModItems.DIAMOND_DRILL)
+            .add(ModItems.NETHERITE_DRILL)
+            .add(ModItems.ENDERITE_DRILL)
+            .add(ModItems.ARAGONITE_DRILL)
+            .add(ModItems.INFERNITE_DRILL);
+
+
         getOrCreateTagBuilder(ModTags.Items.ENDERITE_REPAIR)
             .add(ModItems.ENDERITE_INGOT);
 

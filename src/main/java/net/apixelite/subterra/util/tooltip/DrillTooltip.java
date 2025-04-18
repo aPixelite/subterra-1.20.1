@@ -4,6 +4,7 @@ import net.apixelite.subterra.components.ModDataComponentTypes;
 import net.apixelite.subterra.item.custom.DrillEngine;
 import net.apixelite.subterra.item.custom.DrillItem;
 import net.apixelite.subterra.item.custom.FuelTank;
+import net.apixelite.subterra.item.custom.upgrademodules.MultiMine;
 import net.apixelite.subterra.util.TooltipHelper;
 import net.minecraft.item.ItemStack;
 import net.minecraft.text.Text;
@@ -68,8 +69,12 @@ public class DrillTooltip {
         // Upgrade Module
         if (hasUpgrade) {
             tooltipText.add("§aMulti Mine Tier " + upgradeTier);
+            tooltipText.add("§7Allows you to mine a bigger area");
+            tooltipText.add("§7Mine a §6" + MultiMine.getArea(upgradeTier) + "§7 area");
         } else {
             tooltipText.add("§7Upgrade Module: §cNot Installed");
+            tooltipText.add("§7Upgrade your drill with");
+            tooltipText.add("§7special upgrades");
         }
         tooltipText.add("");
 
