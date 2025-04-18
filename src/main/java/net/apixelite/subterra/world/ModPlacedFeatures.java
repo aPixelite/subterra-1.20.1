@@ -27,13 +27,13 @@ public class ModPlacedFeatures {
         var configuredFeatureRegistryEntryLookup = context.getRegistryLookup(RegistryKeys.CONFIGURED_FEATURE);
 
         register(context, ENDERITE_ORE_PLACED_KEY, configuredFeatureRegistryEntryLookup.getOrThrow(ModConfiguredFeatures.ENDERITE_ORE_KEY),
-                ModOrePlacement.modifiersWithCount(3, // Veins per chunk
+                ModOrePlacement.modifiersWithCount(6, // Veins per chunk
                         HeightRangePlacementModifier.uniform(YOffset.fixed(0), YOffset.fixed(80))));
         register(context, ARAGONITE_ORE_PLACED_KEY, configuredFeatureRegistryEntryLookup.getOrThrow(ModConfiguredFeatures.ARAGONITE_ORE_KEY),
-                ModOrePlacement.modifiersWithCount(3, // Veins per chunk
+                ModOrePlacement.modifiersWithCount(12, // Veins per chunk
                         HeightRangePlacementModifier.uniform(YOffset.fixed(-64), YOffset.fixed(-32))));
         register(context, INFERNITE_ORE_PLACED_KEY, configuredFeatureRegistryEntryLookup.getOrThrow(ModConfiguredFeatures.INFERNITE_ORE_KEY),
-                ModOrePlacement.modifiersWithCount(3, // Veins per chunk
+                ModOrePlacement.modifiersWithCount(8, // Veins per chunk
                         HeightRangePlacementModifier.uniform(YOffset.fixed(96), YOffset.fixed(125))));
 
         register(context, OIL_POCKET_PLACED_KEY, configuredFeatureRegistryEntryLookup.getOrThrow(ModConfiguredFeatures.OIL_POCKEY_KEY),
