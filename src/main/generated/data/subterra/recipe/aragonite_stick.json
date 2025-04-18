@@ -2,12 +2,11 @@
   "type": "minecraft:crafting_shaped",
   "category": "equipment",
   "key": {
-    "#": "subterra:aragonite_ingot",
-    "I": "subterra:aragonite_ingot"
+    "#": "subterra:aragonite_ingot"
   },
   "pattern": [
     "   ",
-    " I ",
+    " # ",
     " # "
   ],
   "result": {

@@ -25,6 +25,7 @@ public class ModItemGroups {
                 entries.add(ModItems.ENDERITE_INGOT);
 
                 entries.add(ModItems.ENDERITE_STICK);
+                entries.add(ModItems.ENDERITE_UPGRADE_SMITHING_TEMPLATE);
 
                 entries.add(ModItems.ENDERITE_SWORD);
                 entries.add(ModItems.ENDERITE_PICKAXE);
@@ -44,6 +45,7 @@ public class ModItemGroups {
                 entries.add(ModItems.ARAGONITE_INGOT);
 
                 entries.add(ModItems.ARAGONITE_STICK);
+                entries.add(ModItems.ARAGONITE_UPGRADE_SMITHING_TEMPLATE);
 
                 entries.add(ModItems.ARAGONITE_SWORD);
                 entries.add(ModItems.ARAGONITE_PICKAXE);
@@ -63,6 +65,7 @@ public class ModItemGroups {
                 entries.add(ModItems.INFERNITE_INGOT);
 
                 entries.add(ModItems.INFERNITE_STICK);
+                entries.add(ModItems.INFERNITE_UPGRADE_SMITHING_TEMPLATE);
 
                 entries.add(ModItems.INFERNITE_SWORD);
                 entries.add(ModItems.INFERNITE_PICKAXE);

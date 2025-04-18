@@ -2,12 +2,11 @@
   "type": "minecraft:crafting_shaped",
   "category": "equipment",
   "key": {
-    "#": "subterra:enderite_ingot",
-    "I": "subterra:enderite_ingot"
+    "#": "subterra:enderite_ingot"
   },
   "pattern": [
     "   ",
-    " I ",
+    " # ",
     " # "
   ],
   "result": {

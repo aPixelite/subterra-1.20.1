@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:smithing_transform",
+  "addition": "subterra:aragonite_ingot",
+  "base": "subterra:enderite_helmet",
+  "result": {
+    "id": "subterra:aragonite_helmet"
+  },
+  "template": "subterra:aragonite_upgrade_smithing_template"
+}

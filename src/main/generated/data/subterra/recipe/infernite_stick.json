@@ -2,12 +2,11 @@
   "type": "minecraft:crafting_shaped",
   "category": "equipment",
   "key": {
-    "#": "subterra:infernite_ingot",
-    "I": "subterra:infernite_ingot"
+    "#": "subterra:infernite_ingot"
   },
   "pattern": [
     "   ",
-    " I ",
+    " # ",
     " # "
   ],
   "result": {

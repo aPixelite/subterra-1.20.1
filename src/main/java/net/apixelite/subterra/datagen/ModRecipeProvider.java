@@ -8,11 +8,14 @@ import net.apixelite.subterra.fluid.ModFluids;
 import net.apixelite.subterra.item.ModItems;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricRecipeProvider;
+import net.minecraft.block.Blocks;
 import net.minecraft.data.recipe.RecipeExporter;
 import net.minecraft.data.recipe.RecipeGenerator;
+import net.minecraft.data.recipe.SmithingTransformRecipeJsonBuilder;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemConvertible;
 import net.minecraft.item.Items;
+import net.minecraft.recipe.Ingredient;
 import net.minecraft.recipe.book.RecipeCategory;
 import net.minecraft.registry.RegistryWrapper;
 import net.minecraft.registry.tag.ItemTags;
@@ -275,6 +278,10 @@ public class ModRecipeProvider extends FabricRecipeProvider{
                         .criterion(hasItem(ModItems.DIAMOND_DRILL), conditionsFromItem(ModItems.ARAGONITE_DRILL))
                         .offerTo(exporter);
 
+                // Upgrade Templates
+                offerSmithingTemplateCopyingRecipe(ModItems.ENDERITE_UPGRADE_SMITHING_TEMPLATE, Blocks.END_STONE_BRICKS);
+                offerSmithingTemplateCopyingRecipe(ModItems.ARAGONITE_UPGRADE_SMITHING_TEMPLATE, Blocks.GRASS_BLOCK);
+                offerSmithingTemplateCopyingRecipe(ModItems.INFERNITE_UPGRADE_SMITHING_TEMPLATE, Blocks.SOUL_SAND);
 
                 // Smelting
                 OreSmeltingRecipe(ENDERITE_SMELTABLES, ModItems.ENDERITE_INGOT, 2.0f, 200, "enderite");
@@ -283,65 +290,84 @@ public class ModRecipeProvider extends FabricRecipeProvider{
                 offerSmelting(FUEL_SMELTABLES, RecipeCategory.MISC, ModItems.FUEL_BARREL, 8.5f, 400, "fuel");
 
                 // Helmet
-                ShapedToolRecipeBuilder("III", "I#I", "   ", ModItems.ENDERITE_INGOT, Items.NETHERITE_HELMET, "enderite_helmet", ModItems.ENDERITE_HELMET, exporter);
-                ShapedToolRecipeBuilder("III", "I#I", "   ", ModItems.ARAGONITE_INGOT, ModItems.ENDERITE_HELMET, "aragonite_helmet", ModItems.ARAGONITE_HELMET, exporter);
-                ShapedToolRecipeBuilder("III", "I#I", "   ", ModItems.INFERNITE_INGOT, ModItems.ARAGONITE_HELMET, "infernite_helmet", ModItems.INFERNITE_HELMET, exporter);
-
+                offerEnderiteUpgradeRecipe(Items.NETHERITE_HELMET, ModItems.ENDERITE_HELMET, RecipeCategory.COMBAT, exporter);
+                offerAragoniteUpgradeRecipe(ModItems.ENDERITE_HELMET, ModItems.ARAGONITE_HELMET, RecipeCategory.COMBAT, exporter);
+                offerInferniteUpgradeRecipe(ModItems.ARAGONITE_HELMET, ModItems.INFERNITE_HELMET, RecipeCategory.COMBAT, exporter);
                 // Chestplate
-                ShapedToolRecipeBuilder("I#I", "III", "III", ModItems.ENDERITE_INGOT, Items.NETHERITE_CHESTPLATE, "enderite_chestplate", ModItems.ENDERITE_CHESTPLATE, exporter);
-                ShapedToolRecipeBuilder("I#I", "III", "III", ModItems.ARAGONITE_INGOT, ModItems.ENDERITE_CHESTPLATE, "aragonite_chestplate", ModItems.ARAGONITE_CHESTPLATE, exporter);
-                ShapedToolRecipeBuilder("I#I", "III", "III", ModItems.INFERNITE_INGOT, ModItems.ARAGONITE_CHESTPLATE, "infernite_chestplate", ModItems.INFERNITE_CHESTPLATE, exporter);
+                offerEnderiteUpgradeRecipe(Items.NETHERITE_CHESTPLATE, ModItems.ENDERITE_CHESTPLATE, RecipeCategory.COMBAT, exporter);
+                offerAragoniteUpgradeRecipe(ModItems.ENDERITE_CHESTPLATE, ModItems.ARAGONITE_CHESTPLATE, RecipeCategory.COMBAT, exporter);
+                offerInferniteUpgradeRecipe(ModItems.ARAGONITE_CHESTPLATE, ModItems.INFERNITE_CHESTPLATE, RecipeCategory.COMBAT, exporter);
 
                 // Leggings
-                ShapedToolRecipeBuilder("III", "I#I", "I I", ModItems.ENDERITE_INGOT, Items.NETHERITE_LEGGINGS, "enderite_leggings", ModItems.ENDERITE_LEGGINGS, exporter);
-                ShapedToolRecipeBuilder("III", "I#I", "I I", ModItems.ARAGONITE_INGOT, ModItems.ENDERITE_LEGGINGS, "aragonite_leggings", ModItems.ARAGONITE_LEGGINGS, exporter);
-                ShapedToolRecipeBuilder("III", "I#I", "I I", ModItems.INFERNITE_INGOT, ModItems.ARAGONITE_LEGGINGS, "infernite_leggings", ModItems.INFERNITE_LEGGINGS, exporter);
+                offerEnderiteUpgradeRecipe(Items.NETHERITE_LEGGINGS, ModItems.ENDERITE_LEGGINGS, RecipeCategory.COMBAT, exporter);
+                offerAragoniteUpgradeRecipe(ModItems.ENDERITE_LEGGINGS, ModItems.ARAGONITE_LEGGINGS, RecipeCategory.COMBAT, exporter);
+                offerInferniteUpgradeRecipe(ModItems.ARAGONITE_LEGGINGS, ModItems.INFERNITE_LEGGINGS, RecipeCategory.COMBAT, exporter);
 
                 // Boots
-                ShapedToolRecipeBuilder("   ", "I#I", "I I", ModItems.ENDERITE_INGOT, Items.NETHERITE_BOOTS, "enderite_boots", ModItems.ENDERITE_BOOTS, exporter);
-                ShapedToolRecipeBuilder("   ", "I#I", "I I", ModItems.ARAGONITE_INGOT, ModItems.ENDERITE_BOOTS, "aragonite_boots", ModItems.ARAGONITE_BOOTS, exporter);
-                ShapedToolRecipeBuilder("   ", "I#I", "I I", ModItems.INFERNITE_INGOT, ModItems.ARAGONITE_BOOTS, "infernite_boots", ModItems.INFERNITE_BOOTS, exporter);
+                offerEnderiteUpgradeRecipe(Items.NETHERITE_BOOTS, ModItems.ENDERITE_BOOTS, RecipeCategory.COMBAT, exporter);
+                offerAragoniteUpgradeRecipe(ModItems.ENDERITE_BOOTS, ModItems.ARAGONITE_BOOTS, RecipeCategory.COMBAT, exporter);
+                offerInferniteUpgradeRecipe(ModItems.ARAGONITE_BOOTS, ModItems.INFERNITE_BOOTS, RecipeCategory.COMBAT, exporter);
 
                 // Sword
-                ShapedToolRecipeBuilder(" I ", " I ", " # ", ModItems.ENDERITE_INGOT, ModItems.ENDERITE_STICK, "enderite_sword", ModItems.ENDERITE_SWORD, exporter);
-                ShapedToolRecipeBuilder(" I ", " I ", " # ", ModItems.ARAGONITE_INGOT, ModItems.ARAGONITE_STICK, "aragonite_sword", ModItems.ARAGONITE_SWORD, exporter);
-                ShapedToolRecipeBuilder(" I ", " I ", " # ", ModItems.INFERNITE_INGOT, ModItems.INFERNITE_STICK, "infernite_sword", ModItems.INFERNITE_SWORD, exporter);
+                offerEnderiteUpgradeRecipe(Items.NETHERITE_SWORD, ModItems.ENDERITE_SWORD, RecipeCategory.COMBAT, exporter);
+                offerAragoniteUpgradeRecipe(ModItems.ENDERITE_SWORD, ModItems.ARAGONITE_SWORD, RecipeCategory.COMBAT, exporter);
+                offerInferniteUpgradeRecipe(ModItems.ARAGONITE_SWORD, ModItems.INFERNITE_SWORD, RecipeCategory.COMBAT, exporter);
 
                 // Pickaxe
-                ShapedToolRecipeBuilder("III", " # ", " # ", ModItems.ENDERITE_INGOT, ModItems.ENDERITE_STICK, "enderite_pickaxe", ModItems.ENDERITE_PICKAXE, exporter);
-                ShapedToolRecipeBuilder("III", " # ", " # ", ModItems.ARAGONITE_INGOT, ModItems.ARAGONITE_STICK, "aragonite_pickaxe", ModItems.ARAGONITE_PICKAXE, exporter);
-                ShapedToolRecipeBuilder("III", " # ", " # ", ModItems.INFERNITE_INGOT, ModItems.INFERNITE_STICK, "infernite_pickaxe", ModItems.INFERNITE_PICKAXE, exporter);
+                offerEnderiteUpgradeRecipe(Items.NETHERITE_PICKAXE, ModItems.ENDERITE_PICKAXE, RecipeCategory.TOOLS, exporter);
+                offerAragoniteUpgradeRecipe(ModItems.ENDERITE_PICKAXE, ModItems.ARAGONITE_PICKAXE, RecipeCategory.TOOLS, exporter);
+                offerInferniteUpgradeRecipe(ModItems.ARAGONITE_PICKAXE, ModItems.INFERNITE_PICKAXE, RecipeCategory.TOOLS, exporter);
 
                 // Axe
-                ShapedToolRecipeBuilder("II ", "I# ", " # ", ModItems.ENDERITE_INGOT, ModItems.ENDERITE_STICK, "enderite_axe", ModItems.ENDERITE_AXE, exporter);
-                ShapedToolRecipeBuilder("II ", "I# ", " # ", ModItems.ARAGONITE_INGOT, ModItems.ARAGONITE_STICK, "aragonite_axe", ModItems.ARAGONITE_AXE, exporter);
-                ShapedToolRecipeBuilder("II ", "I# ", " # ", ModItems.INFERNITE_INGOT, ModItems.INFERNITE_STICK, "infernite_axe", ModItems.INFERNITE_AXE, exporter);
+                offerEnderiteUpgradeRecipe(Items.NETHERITE_AXE, ModItems.ENDERITE_AXE, RecipeCategory.TOOLS, exporter);
+                offerAragoniteUpgradeRecipe(ModItems.ENDERITE_AXE, ModItems.ARAGONITE_AXE, RecipeCategory.TOOLS, exporter);
+                offerInferniteUpgradeRecipe(ModItems.ARAGONITE_AXE, ModItems.INFERNITE_AXE, RecipeCategory.TOOLS, exporter);
 
                 //Shovel
-                ShapedToolRecipeBuilder(" I ", " # ", " # ", ModItems.ENDERITE_INGOT, ModItems.ENDERITE_STICK, "enderite_shovel", ModItems.ENDERITE_SHOVEL, exporter);
-                ShapedToolRecipeBuilder(" I ", " # ", " # ", ModItems.ARAGONITE_INGOT, ModItems.ARAGONITE_STICK, "aragonite_shovel", ModItems.ARAGONITE_SHOVEL, exporter);
-                ShapedToolRecipeBuilder(" I ", " # ", " # ", ModItems.INFERNITE_INGOT, ModItems.INFERNITE_STICK, "infernite_shovel", ModItems.INFERNITE_SHOVEL, exporter);
+                offerEnderiteUpgradeRecipe(Items.NETHERITE_SHOVEL, ModItems.ENDERITE_SHOVEL, RecipeCategory.TOOLS, exporter);
+                offerAragoniteUpgradeRecipe(ModItems.ENDERITE_SHOVEL, ModItems.ARAGONITE_SHOVEL, RecipeCategory.TOOLS, exporter);
+                offerInferniteUpgradeRecipe(ModItems.ARAGONITE_SHOVEL, ModItems.INFERNITE_SHOVEL, RecipeCategory.TOOLS, exporter);
 
                 // Hoe
-                ShapedToolRecipeBuilder("II ", " # ", " # ", ModItems.ENDERITE_INGOT, ModItems.ENDERITE_STICK, "enderite_hoe", ModItems.ENDERITE_HOE, exporter);
-                ShapedToolRecipeBuilder("II ", " # ", " # ", ModItems.ARAGONITE_INGOT, ModItems.ARAGONITE_STICK, "aragonite_hoe", ModItems.ARAGONITE_HOE, exporter);
-                ShapedToolRecipeBuilder("II ", " # ", " # ", ModItems.INFERNITE_INGOT, ModItems.INFERNITE_STICK, "infernite_hoe", ModItems.INFERNITE_HOE, exporter);
+                offerEnderiteUpgradeRecipe(Items.NETHERITE_HOE, ModItems.ENDERITE_HOE, RecipeCategory.TOOLS, exporter);
+                offerAragoniteUpgradeRecipe(ModItems.ENDERITE_HOE, ModItems.ARAGONITE_HOE, RecipeCategory.TOOLS, exporter);
+                offerInferniteUpgradeRecipe(ModItems.ARAGONITE_HOE, ModItems.INFERNITE_HOE, RecipeCategory.TOOLS, exporter);
 
                 // Stick
-                ShapedToolRecipeBuilder("   ", " I ", " # ", ModItems.ENDERITE_INGOT, ModItems.ENDERITE_INGOT, "enderite_stick", ModItems.ENDERITE_STICK, exporter);
-                ShapedToolRecipeBuilder("   ", " I ", " # ", ModItems.ARAGONITE_INGOT, ModItems.ARAGONITE_INGOT, "aragonite_stick", ModItems.ARAGONITE_STICK, exporter);
-                ShapedToolRecipeBuilder("   ", " I ", " # ", ModItems.INFERNITE_INGOT, ModItems.INFERNITE_INGOT, "infernite_stick", ModItems.INFERNITE_STICK, exporter);
-
+                StickRecipeBuilder(ModItems.ENDERITE_INGOT, ModItems.ENDERITE_STICK, exporter);
+                StickRecipeBuilder(ModItems.ARAGONITE_INGOT, ModItems.ARAGONITE_STICK, exporter);
+                StickRecipeBuilder(ModItems.INFERNITE_INGOT, ModItems.INFERNITE_STICK, exporter);
             }
-            private void ShapedToolRecipeBuilder(String pat1, String pat2, String pat3,
-                                                 Item ingot, Item item, String name, Item result, RecipeExporter exporter) {
+
+            private void offerEnderiteUpgradeRecipe(Item input, Item result, RecipeCategory category, RecipeExporter exporter) {
+                ItemUpgradeRecipe(input, ModItems.ENDERITE_INGOT, ModItems.ENDERITE_UPGRADE_SMITHING_TEMPLATE, result, exporter, category);
+            }
+            private void offerAragoniteUpgradeRecipe(Item input, Item result, RecipeCategory category, RecipeExporter exporter) {
+                ItemUpgradeRecipe(input, ModItems.ARAGONITE_INGOT, ModItems.ARAGONITE_UPGRADE_SMITHING_TEMPLATE, result, exporter, category);
+            }
+            private void offerInferniteUpgradeRecipe(Item input, Item result, RecipeCategory category, RecipeExporter exporter) {
+                ItemUpgradeRecipe(input, ModItems.INFERNITE_INGOT, ModItems.INFERNITE_UPGRADE_SMITHING_TEMPLATE, result, exporter, category);
+            }
+
+            private void ItemUpgradeRecipe(Item item, Item ingot, Item template, Item result, RecipeExporter exporter, RecipeCategory category) {
+                SmithingTransformRecipeJsonBuilder.create(
+                                Ingredient.ofItem(template),
+                                Ingredient.ofItem(item),
+                                Ingredient.ofItem(ingot),
+                                category,
+                                result
+                        )
+                        .criterion("has_required_ingot", conditionsFromItem(ingot))
+                        .offerTo(exporter, getItemPath(result) + "_smithing");
+            }
+
+            private void StickRecipeBuilder(Item item, Item result, RecipeExporter exporter) {
                 createShaped(RecipeCategory.TOOLS, result)
-                        .pattern(pat1)
-                        .pattern(pat2)
-                        .pattern(pat3)
+                        .pattern("   ")
+                        .pattern(" # ")
+                        .pattern(" # ")
                         .input('#', item)
-                        .input('I', ingot)
-                        .criterion(hasItem(ingot), conditionsFromItem(ingot))
+                        .criterion(hasItem(item), conditionsFromItem(item))
                         .offerTo(exporter);
             }
 

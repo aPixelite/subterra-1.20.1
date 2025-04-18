@@ -20,6 +20,14 @@ import net.minecraft.util.Rarity;
 
 public class ModItems {
 
+    // Upgrade templates
+    public static final Item ENDERITE_UPGRADE_SMITHING_TEMPLATE = registerItem("enderite_upgrade_smithing_template", new Item(new Item.Settings()
+            .registryKey(RegistryKey.of(RegistryKeys.ITEM, Identifier.of(Subterra.MOD_ID, "enderite_upgrade_smithing_template")))));
+    public static final Item ARAGONITE_UPGRADE_SMITHING_TEMPLATE = registerItem("aragonite_upgrade_smithing_template", new Item(new Item.Settings()
+            .registryKey(RegistryKey.of(RegistryKeys.ITEM, Identifier.of(Subterra.MOD_ID, "aragonite_upgrade_smithing_template")))));
+    public static final Item INFERNITE_UPGRADE_SMITHING_TEMPLATE = registerItem("infernite_upgrade_smithing_template", new Item(new Item.Settings()
+            .registryKey(RegistryKey.of(RegistryKeys.ITEM, Identifier.of(Subterra.MOD_ID, "infernite_upgrade_smithing_template")))));
+
     // ENDERITE
     public static final Item RAW_ENDERITE = registerItem("raw_enderite", new Item(new Item.Settings()
             .registryKey(RegistryKey.of(RegistryKeys.ITEM, Identifier.of(Subterra.MOD_ID, "raw_enderite")))

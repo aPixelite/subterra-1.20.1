@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:smithing_transform",
+  "addition": "subterra:aragonite_ingot",
+  "base": "subterra:enderite_axe",
+  "result": {
+    "id": "subterra:aragonite_axe"
+  },
+  "template": "subterra:aragonite_upgrade_smithing_template"
+}

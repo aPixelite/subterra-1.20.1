@@ -68,6 +68,7 @@ public class ModModelProvider extends FabricModelProvider{
         itemModelGenerator.register(ModItems.ENDERITE_INGOT, Models.GENERATED);
 
         itemModelGenerator.register(ModItems.ENDERITE_STICK, Models.GENERATED);
+        itemModelGenerator.register(ModItems.ENDERITE_UPGRADE_SMITHING_TEMPLATE, Models.GENERATED);
 
         itemModelGenerator.register(ModItems.ENDERITE_SWORD, Models.HANDHELD);
         itemModelGenerator.register(ModItems.ENDERITE_PICKAXE, Models.HANDHELD);
@@ -86,6 +87,7 @@ public class ModModelProvider extends FabricModelProvider{
         itemModelGenerator.register(ModItems.ARAGONITE_INGOT, Models.GENERATED);
 
         itemModelGenerator.register(ModItems.ARAGONITE_STICK, Models.GENERATED);
+        itemModelGenerator.register(ModItems.ARAGONITE_UPGRADE_SMITHING_TEMPLATE, Models.GENERATED);
 
         itemModelGenerator.register(ModItems.ARAGONITE_SWORD, Models.HANDHELD);
         itemModelGenerator.register(ModItems.ARAGONITE_PICKAXE, Models.HANDHELD);
@@ -104,6 +106,7 @@ public class ModModelProvider extends FabricModelProvider{
         itemModelGenerator.register(ModItems.INFERNITE_INGOT, Models.GENERATED);
 
         itemModelGenerator.register(ModItems.INFERNITE_STICK, Models.GENERATED);
+        itemModelGenerator.register(ModItems.INFERNITE_UPGRADE_SMITHING_TEMPLATE, Models.GENERATED);
 
         itemModelGenerator.register(ModItems.INFERNITE_SWORD, Models.HANDHELD);
         itemModelGenerator.register(ModItems.INFERNITE_PICKAXE, Models.HANDHELD);

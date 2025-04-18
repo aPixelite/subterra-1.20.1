@@ -18,7 +18,12 @@
     "item.subterra.enderite_stick": "Enderite Stick",
     "item.subterra.aragonite_stick": "Aragonite Stick",
     "item.subterra.infernite_stick": "Infernite Stick",
-    
+
+
+    "item.subterra.enderite_upgrade_smithing_template": "Enderite Upgrade",
+    "item.subterra.aragonite_upgrade_smithing_template": "Aragonite Upgrade",
+    "item.subterra.infernite_upgrade_smithing_template": "Infernite Upgrade",
+
 
     "item.subterra.enderite_sword": "Enderite Sword",
     "item.subterra.enderite_pickaxe": "Enderite Pickaxe",

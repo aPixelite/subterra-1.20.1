@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:smithing_transform",
+  "addition": "subterra:aragonite_ingot",
+  "base": "subterra:enderite_leggings",
+  "result": {
+    "id": "subterra:aragonite_leggings"
+  },
+  "template": "subterra:aragonite_upgrade_smithing_template"
+}
