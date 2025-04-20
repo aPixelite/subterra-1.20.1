@@ -1,7 +1,15 @@
 // 1.21.5	-999999999-01-01T00:00:00	subterra/Tags for minecraft:item
-4b9aeae1a93a9e04c6f8d4b4b36df448f28ffe2b data/minecraft/tags/item/enchantable/durability.json
-73c265ed231f210da02e4a6dc868bc3ceba6ec61 data/minecraft/tags/item/enchantable/mining.json
-73c265ed231f210da02e4a6dc868bc3ceba6ec61 data/minecraft/tags/item/enchantable/mining_loot.json
+ca862c85ce9cb333f603340ddfd930836d4b9301 data/minecraft/tags/item/axes.json
+7f500c264bf556c10ed94bb047bd35cb8d1a0547 data/minecraft/tags/item/chest_armor.json
+40c95961d92dc336c99f56957afcb6e664517e33 data/minecraft/tags/item/enchantable/mining.json
+40c95961d92dc336c99f56957afcb6e664517e33 data/minecraft/tags/item/enchantable/mining_loot.json
+c64ee3ce7a2698a369607dc117c9a6bac67e0e5f data/minecraft/tags/item/foot_armor.json
+8a437254944a073a5cda7a00577d3ce5bdd81222 data/minecraft/tags/item/head_armor.json
+da1cba5ecf536c0e657fd0ffc6aedaa2e8f8d560 data/minecraft/tags/item/hoes.json
+50f6171119af78509898fd80f41543c8b242fbf9 data/minecraft/tags/item/leg_armor.json
+9df27cc47044158810d624d0d5b82917c5afb62c data/minecraft/tags/item/pickaxes.json
+a22ca634e08e8c69fd54aca58247e9188c020050 data/minecraft/tags/item/shovels.json
+3010a3025ac0d3d55f0c559aaa9e8cc07e2ae547 data/minecraft/tags/item/swords.json
 a029e8988fdac0859a778a780ec9812d56128244 data/subterra/tags/item/aragonite_repair.json
 40c95961d92dc336c99f56957afcb6e664517e33 data/subterra/tags/item/drill.json
 12081b4e6cd8940116452bb6a1756c92c39a6a36 data/subterra/tags/item/drill_engine.json

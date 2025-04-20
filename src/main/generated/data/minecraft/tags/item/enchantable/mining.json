@@ -1,17 +1,5 @@
 {
   "values": [
-    "subterra:enderite_shovel",
-    "subterra:enderite_pickaxe",
-    "subterra:enderite_axe",
-    "subterra:enderite_hoe",
-    "subterra:aragonite_shovel",
-    "subterra:aragonite_pickaxe",
-    "subterra:aragonite_axe",
-    "subterra:aragonite_hoe",
-    "subterra:infernite_shovel",
-    "subterra:infernite_pickaxe",
-    "subterra:infernite_axe",
-    "subterra:infernite_hoe",
     "subterra:diamond_drill",
     "subterra:netherite_drill",
     "subterra:enderite_drill",
