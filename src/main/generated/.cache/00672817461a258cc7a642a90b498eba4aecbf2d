@@ -1,6 +1,7 @@
 // 1.21.5	-999999999-01-01T00:00:00	subterra/Tags for minecraft:item
-40c95961d92dc336c99f56957afcb6e664517e33 data/minecraft/tags/item/enchantable/mining.json
-40c95961d92dc336c99f56957afcb6e664517e33 data/minecraft/tags/item/enchantable/mining_loot.json
+4b9aeae1a93a9e04c6f8d4b4b36df448f28ffe2b data/minecraft/tags/item/enchantable/durability.json
+73c265ed231f210da02e4a6dc868bc3ceba6ec61 data/minecraft/tags/item/enchantable/mining.json
+73c265ed231f210da02e4a6dc868bc3ceba6ec61 data/minecraft/tags/item/enchantable/mining_loot.json
 a029e8988fdac0859a778a780ec9812d56128244 data/subterra/tags/item/aragonite_repair.json
 40c95961d92dc336c99f56957afcb6e664517e33 data/subterra/tags/item/drill.json
 12081b4e6cd8940116452bb6a1756c92c39a6a36 data/subterra/tags/item/drill_engine.json

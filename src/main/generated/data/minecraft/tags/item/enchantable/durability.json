@@ -11,11 +11,6 @@
     "subterra:infernite_shovel",
     "subterra:infernite_pickaxe",
     "subterra:infernite_axe",
-    "subterra:infernite_hoe",
-    "subterra:diamond_drill",
-    "subterra:netherite_drill",
-    "subterra:enderite_drill",
-    "subterra:aragonite_drill",
-    "subterra:infernite_drill"
+    "subterra:infernite_hoe"
   ]
 }
